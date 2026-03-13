@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Bookmark } from "lucide-react";
 
 interface Restaurant {
@@ -13,6 +13,7 @@ interface Restaurant {
   bestTime: string;
   ratings: number;
   verified: boolean;
+  photo?: string;
 }
 
 const NOISE_COLOURS: Record<string, string> = {
@@ -23,34 +24,64 @@ const NOISE_COLOURS: Record<string, string> = {
 
 interface Props {
   restaurant: Restaurant;
+  selected?: boolean;
 }
 
-export default function RestaurantCard({ restaurant }: Props) {
+export default function RestaurantCard({ restaurant, selected }: Props) {
   return (
-    <Link
-      href={`/restaurant/${restaurant.slug}`}
-      className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-sm transition-all duration-200 cursor-pointer overflow-hidden flex flex-col h-[180px] shrink-0"
+    <div
+      className={`
+        group bg-ivory rounded border transition-all duration-200 
+        cursor-pointer overflow-hidden flex flex-col shrink-0
+        ${
+          selected
+            ? "border-amber shadow-md"
+            : "border-warm-border hover:border-green-300 hover:shadow-sm"
+        }
+      `}
     >
-      {/* Accent bar */}
-      <div className="h-0.5 w-full shrink-0 bg-green-600 group-hover:bg-amber transition-colors duration-200" />
+      {/* Photo */}
+      {restaurant.photo && (
+        <div className="relative h-28 w-full overflow-hidden shrink-0">
+          <Image
+            src={restaurant.photo}
+            alt={restaurant.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="400px"
+          />
+          <div className="absolute inset-0 bg-green-900/10" />
+        </div>
+      )}
 
+      {/* Accent bar */}
       <div
-        className="p-4 flex flex-col overflow-hidden"
-        style={{ height: "calc(180px - 2px)" }}
-      >
+        className={`
+        h-0.5 w-full shrink-0 transition-colors duration-200
+        ${selected ? "bg-amber" : "bg-green-600 group-hover:bg-amber"}
+      `}
+      />
+
+      <div className="p-4 flex flex-col" style={{ height: "176px" }}>
         {/* Top row */}
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1 min-w-0">
             <span
               className={`
-                font-sans text-[0.55rem] tracking-[0.1em] uppercase
-                px-2 py-0.5 rounded-full mb-1 inline-block
-                ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
-              `}
+              font-sans text-[0.55rem] tracking-[0.1em] uppercase
+              px-2 py-0.5 rounded-full mb-1 inline-block
+              ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
+            `}
             >
               {restaurant.noise}
             </span>
-            <h3 className="font-display text-base font-medium text-green-800 group-hover:text-green-600 transition-colors leading-tight truncate">
+            <h3
+              className={`
+              font-display text-base font-medium leading-tight truncate
+              transition-colors
+              ${selected ? "text-green-600" : "text-green-800 group-hover:text-green-600"}
+            `}
+            >
               {restaurant.name}
             </h3>
           </div>
@@ -100,11 +131,11 @@ export default function RestaurantCard({ restaurant }: Props) {
               <Bookmark size={13} />
             </button>
             <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors">
-              View →
+              {selected ? "See map →" : "Select →"}
             </span>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

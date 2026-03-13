@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { RESTAURANTS } from "@/lib/data/restaurants";
+import Image from "next/image";
 
 const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
@@ -41,6 +42,19 @@ export default function FeaturedRestaurants() {
               href={`/restaurant/${restaurant.slug}`}
               className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
             >
+              {/* Photo */}
+              {restaurant.photo && (
+                <div className="relative h-40 w-full overflow-hidden shrink-0">
+                  <Image
+                    src={restaurant.photo}
+                    alt={restaurant.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="400px"
+                  />
+                  <div className="absolute inset-0 bg-green-900/10" />
+                </div>
+              )}
               {/* Top accent bar */}
               <div className="h-0.5 w-full bg-green-600 group-hover:bg-amber transition-colors duration-300" />
 

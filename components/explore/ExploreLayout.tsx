@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import MapPlaceholder from "./MapPlaceholder";
+import GoogleMap from "./GoogleMap";
 import { Search } from "lucide-react";
 import { RESTAURANTS } from "@/lib/data/restaurants";
 
 export default function ExploreLayout() {
   const [search, setSearch] = useState("");
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
 
   const filtered = RESTAURANTS.filter(
     (r) =>
@@ -40,7 +42,21 @@ export default function ExploreLayout() {
         {/* Cards list */}
         <div className="flex-1 overflow-y-auto no-scrollbar p-4 flex flex-col gap-3 min-h-0">
           {filtered.map((restaurant) => (
-            <RestaurantCard key={restaurant.slug} restaurant={restaurant} />
+            <div
+              key={restaurant.slug}
+              onMouseEnter={() => setHoveredSlug(restaurant.slug)}
+              onMouseLeave={() => setHoveredSlug(null)}
+              onClick={() =>
+                setSelectedSlug(
+                  selectedSlug === restaurant.slug ? null : restaurant.slug,
+                )
+              }
+            >
+              <RestaurantCard
+                restaurant={restaurant}
+                selected={selectedSlug === restaurant.slug}
+              />
+            </div>
           ))}
 
           {filtered.length === 0 && (
@@ -58,7 +74,11 @@ export default function ExploreLayout() {
 
       {/* Right — map */}
       <div className="flex-1 relative">
-        <MapPlaceholder />
+        <GoogleMap
+          hoveredSlug={hoveredSlug}
+          selectedSlug={selectedSlug}
+          onSelectSlug={setSelectedSlug}
+        />
       </div>
     </div>
   );

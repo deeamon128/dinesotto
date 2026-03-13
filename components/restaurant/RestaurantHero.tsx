@@ -1,6 +1,8 @@
 import { MapPin, BadgeCheck } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
+  photo?: string;
   name: string;
   cuisine: string;
   area: string;
@@ -22,6 +24,7 @@ const NOISE_COLOURS: Record<string, string> = {
 };
 
 export default function RestaurantHero({
+  photo,
   name,
   cuisine,
   area,
@@ -37,6 +40,19 @@ export default function RestaurantHero({
 }: Props) {
   return (
     <section className="relative bg-green-900 overflow-hidden">
+      {/* Background photo */}
+      {photo && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={photo}
+            alt={name}
+            fill
+            className="object-cover opacity-15"
+            priority
+          />
+          <div className="absolute inset-0 bg-green-900/85" />
+        </div>
+      )}
       {/* Amber glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full bg-amber/10 blur-[100px] pointer-events-none" />
       <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
