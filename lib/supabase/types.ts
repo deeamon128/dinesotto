@@ -3,6 +3,7 @@ export interface DbRestaurant {
   name:             string
   slug:             string
   cuisine:          string | null
+  occasions: string[] | null
   area:             string | null
   address:          string | null
   postcode:         string | null
