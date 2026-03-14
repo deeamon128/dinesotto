@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { MappedRestaurant } from "@/lib/supabase/mappers";
 
 const TIME_SLOTS = [
   "Breakfast",
@@ -50,7 +51,6 @@ function ScaleInput({
   onChange: (v: number) => void;
 }) {
   const LABELS = ["Silent", "Soft", "Noticeable", "Loud", "Very Loud"];
-
   return (
     <div>
       <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
@@ -84,10 +84,13 @@ function ScaleInput({
 }
 
 interface Props {
-  restaurantId: string;
+  restaurants: MappedRestaurant[];
 }
 
-export default function RatingForm({ restaurantId }: Props) {
+export default function RateVisitForm({ restaurants }: Props) {
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState<MappedRestaurant | null>(null);
+  const [showResults, setShowResults] = useState(false);
   const [timeSlot, setTimeSlot] = useState("");
   const [day, setDay] = useState("");
   const [musicScore, setMusicScore] = useState(0);
@@ -99,6 +102,19 @@ export default function RatingForm({ restaurantId }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const filtered = restaurants.filter(
+    (r) =>
+      search.length > 1 &&
+      (r.name.toLowerCase().includes(search.toLowerCase()) ||
+        r.area.toLowerCase().includes(search.toLowerCase())),
+  );
+
+  function selectRestaurant(r: MappedRestaurant) {
+    setSelected(r);
+    setSearch(r.name);
+    setShowResults(false);
+  }
+
   function toggleSource(s: string) {
     setSources((prev) =>
       prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
@@ -109,7 +125,7 @@ export default function RatingForm({ restaurantId }: Props) {
     e.preventDefault();
     setError(null);
 
-    // Validation
+    if (!selected) return setError("Please select a restaurant.");
     if (!timeSlot) return setError("Please select a time slot.");
     if (!day) return setError("Please select a day.");
     if (!musicScore) return setError("Please rate the music level.");
@@ -121,7 +137,7 @@ export default function RatingForm({ restaurantId }: Props) {
     const supabase = createClient();
 
     const { error: insertError } = await supabase.from("ratings").insert({
-      restaurant_id: restaurantId,
+      restaurant_id: selected.id,
       time_slot: TIME_SLOT_MAP[timeSlot],
       day_of_week: DAY_MAP[day],
       music_score: musicScore,
@@ -145,41 +161,76 @@ export default function RatingForm({ restaurantId }: Props) {
 
   if (submitted) {
     return (
-      <section className="bg-ivory py-16 px-8 border-t border-warm-border">
-        <div className="max-w-2xl mx-auto text-center py-12">
-          <p className="font-display text-4xl italic text-green-700 mb-4">
-            Thank you.
-          </p>
-          <p className="font-sans font-light text-muted text-sm">
-            Your rating has been submitted and will appear once verified.
-          </p>
-        </div>
-      </section>
+      <div className="text-center py-16">
+        <p className="font-display text-4xl italic text-green-700 mb-4">
+          Thank you.
+        </p>
+        <p className="font-sans font-light text-muted text-sm max-w-sm mx-auto">
+          Your rating has been submitted and will appear once verified.
+        </p>
+      </div>
     );
   }
 
   return (
-    <section className="bg-ivory py-16 px-8 border-t border-warm-border">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-10">
-          <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-2">
-            Share your experience
-          </p>
-          <h2 className="font-display text-3xl font-light italic text-green-700">
-            Rate your visit
-          </h2>
-          <p className="font-sans font-light text-muted text-sm mt-2">
-            Your rating is anonymous and helps real people make better choices.
-          </p>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      {error && (
+        <div className="bg-amber/10 border border-amber/30 rounded px-4 py-3">
+          <p className="font-sans text-sm text-amber">{error}</p>
+        </div>
+      )}
+
+      {/* Restaurant search */}
+      <div className="flex flex-col gap-1.5">
+        <label className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60">
+          Which restaurant did you visit? *
+        </label>
+        <div className="relative">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setSelected(null);
+              setShowResults(true);
+            }}
+            onFocus={() => setShowResults(true)}
+            placeholder="Search by name or area..."
+            className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors"
+          />
+
+          {/* Search results */}
+          {showResults && filtered.length > 0 && (
+            <div className="absolute top-full left-0 right-0 mt-1 bg-ivory border border-warm-border rounded shadow-lg py-1 z-50">
+              {filtered.map((r) => (
+                <button
+                  key={r.slug}
+                  type="button"
+                  onClick={() => selectRestaurant(r)}
+                  className="w-full text-left px-4 py-3 hover:bg-ivory-dark transition-colors border-b border-warm-border last:border-0"
+                >
+                  <p className="font-display text-sm font-medium text-green-800">
+                    {r.name}
+                  </p>
+                  <p className="font-sans text-xs text-muted/60">
+                    {r.cuisine} · {r.area}
+                  </p>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
-        {error && (
-          <div className="bg-amber/10 border border-amber/30 rounded px-4 py-3 mb-6">
-            <p className="font-sans text-sm text-amber">{error}</p>
-          </div>
+        {selected && (
+          <p className="font-sans text-xs text-green-600 mt-1">
+            ✓ {selected.name}, {selected.area}
+          </p>
         )}
+      </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      {/* Only show rest of form once restaurant is selected */}
+      {selected && (
+        <>
           {/* Time slot */}
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
@@ -234,7 +285,6 @@ export default function RatingForm({ restaurantId }: Props) {
             </div>
           </div>
 
-          {/* Scores */}
           <ScaleInput
             label="Music Level"
             value={musicScore}
@@ -278,11 +328,10 @@ export default function RatingForm({ restaurantId }: Props) {
             </div>
           </div>
 
-          {/* Written review */}
-          <div>
-            <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
+          <div className="flex flex-col gap-1.5">
+            <label className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60">
               Anything else? (optional)
-            </p>
+            </label>
             <textarea
               rows={4}
               value={review}
@@ -292,7 +341,6 @@ export default function RatingForm({ restaurantId }: Props) {
             />
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
@@ -307,8 +355,12 @@ export default function RatingForm({ restaurantId }: Props) {
           >
             {loading ? "Submitting..." : "Add My Rating"}
           </button>
-        </form>
-      </div>
-    </section>
+
+          <p className="font-sans text-[0.65rem] text-muted/40 text-center">
+            Your rating is anonymous and helps real people make better choices.
+          </p>
+        </>
+      )}
+    </form>
   );
 }

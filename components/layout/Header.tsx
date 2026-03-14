@@ -78,7 +78,7 @@ export default function Header() {
             Sign In
           </button>
           <Link
-            href="/rate"
+            href="/suggest"
             className="
             bg-green-600 hover:bg-green-400 
             text-white text-[0.76rem] font-medium
@@ -127,7 +127,7 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/rate"
+            href="/suggest"
             onClick={() => setMenuOpen(false)}
             className="
               bg-green-600 text-white text-sm font-medium

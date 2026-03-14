@@ -14,7 +14,7 @@ export default function CTABand() {
 
         <div className="flex items-center justify-center gap-4">
           <Link
-            href="/rate"
+            href="/suggest"
             className="bg-green-600 hover:bg-green-500 text-white font-sans text-sm tracking-wide px-6 py-3 rounded transition-colors"
           >
             Suggest a Restaurant
