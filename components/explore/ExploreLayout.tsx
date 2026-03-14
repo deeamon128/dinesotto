@@ -4,14 +4,18 @@ import { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import GoogleMap from "./GoogleMap";
 import { Search } from "lucide-react";
-import { RESTAURANTS } from "@/lib/data/restaurants";
+import { MappedRestaurant } from "@/lib/supabase/mappers";
 
-export default function ExploreLayout() {
+interface Props {
+  restaurants: MappedRestaurant[];
+}
+
+export default function ExploreLayout({ restaurants }: Props) {
   const [search, setSearch] = useState("");
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
 
-  const filtered = RESTAURANTS.filter(
+  const filtered = restaurants.filter(
     (r) =>
       r.name.toLowerCase().includes(search.toLowerCase()) ||
       r.area.toLowerCase().includes(search.toLowerCase()) ||
@@ -75,6 +79,7 @@ export default function ExploreLayout() {
       {/* Right — map */}
       <div className="flex-1 relative">
         <GoogleMap
+          restaurants={restaurants}
           hoveredSlug={hoveredSlug}
           selectedSlug={selectedSlug}
           onSelectSlug={setSelectedSlug}

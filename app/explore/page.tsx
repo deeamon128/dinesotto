@@ -1,7 +1,10 @@
 import FilterBar from "@/components/explore/FilterBar";
 import ExploreLayout from "@/components/explore/ExploreLayout";
+import { getRestaurants } from "@/lib/supabase/queries";
 
-export default function ExplorePage() {
+export default async function ExplorePage() {
+  const restaurants = await getRestaurants();
+
   return (
     <main>
       <div className="pt-16">
@@ -16,7 +19,7 @@ export default function ExplorePage() {
           </div>
         </div>
         <FilterBar />
-        <ExploreLayout />
+        <ExploreLayout restaurants={restaurants} />
       </div>
     </main>
   );

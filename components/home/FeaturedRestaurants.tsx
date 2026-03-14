@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { RESTAURANTS } from "@/lib/data/restaurants";
 import Image from "next/image";
+import { MapPin } from "lucide-react";
+import { MappedRestaurant } from "@/lib/supabase/mappers";
 
 const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
@@ -9,14 +9,14 @@ const NOISE_COLOURS: Record<string, string> = {
   Moderate: "bg-amber/10 text-amber",
 };
 
-// Just pick the first 3 verified ones as featured
-const FEATURED = RESTAURANTS.filter((r) => r.verified).slice(0, 3);
+interface Props {
+  restaurants: MappedRestaurant[];
+}
 
-export default function FeaturedRestaurants() {
+export default function FeaturedRestaurants({ restaurants }: Props) {
   return (
     <section className="bg-ivory-dark py-24 px-8">
       <div className="max-w-5xl mx-auto">
-        {/* Section header */}
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
@@ -34,15 +34,13 @@ export default function FeaturedRestaurants() {
           </Link>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {FEATURED.map((restaurant) => (
+          {restaurants.map((restaurant) => (
             <Link
               key={restaurant.slug}
               href={`/restaurant/${restaurant.slug}`}
               className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
             >
-              {/* Photo */}
               {restaurant.photo && (
                 <div className="relative h-40 w-full overflow-hidden shrink-0">
                   <Image
@@ -55,22 +53,20 @@ export default function FeaturedRestaurants() {
                   <div className="absolute inset-0 bg-green-900/10" />
                 </div>
               )}
-              {/* Top accent bar */}
+
               <div className="h-0.5 w-full bg-green-600 group-hover:bg-amber transition-colors duration-300" />
 
               <div className="p-6 flex flex-col flex-1">
-                {/* Noise pill */}
                 <span
                   className={`
                   self-start font-sans text-[0.6rem] tracking-[0.12em]
                   uppercase px-2.5 py-1 rounded-full mb-4
-                  ${NOISE_COLOURS[restaurant.noise]}
+                  ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
                 `}
                 >
                   {restaurant.noise}
                 </span>
 
-                {/* Name + cuisine */}
                 <h3 className="font-display text-xl font-medium text-green-800 group-hover:text-green-600 transition-colors mb-1">
                   {restaurant.name}
                 </h3>
@@ -82,7 +78,6 @@ export default function FeaturedRestaurants() {
                   </span>
                 </div>
 
-                {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {restaurant.tags.map((tag) => (
                     <span
@@ -94,7 +89,6 @@ export default function FeaturedRestaurants() {
                   ))}
                 </div>
 
-                {/* Bottom row */}
                 <div className="mt-auto flex items-center justify-between pt-4 border-t border-warm-border">
                   <div>
                     <p className="font-sans text-[0.58rem] tracking-[0.12em] uppercase text-muted/60 mb-0.5">
