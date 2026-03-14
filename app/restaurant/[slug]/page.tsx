@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { getRestaurantBySlug } from "@/lib/supabase/queries";
+import {
+  getRestaurantBySlug,
+  getHeatmapData,
+  getRatingsByRestaurant,
+} from "@/lib/supabase/queries";
 import RestaurantHero from "@/components/restaurant/RestaurantHero";
 import NoiseHeatmap from "@/components/restaurant/NoiseHeatmap";
 import Reviews from "@/components/restaurant/Reviews";
@@ -14,6 +18,11 @@ export default async function RestaurantPage({ params }: Props) {
   const restaurant = await getRestaurantBySlug(slug);
 
   if (!restaurant) notFound();
+
+  const [heatmapData, reviews] = await Promise.all([
+    getHeatmapData(restaurant.id),
+    getRatingsByRestaurant(restaurant.id),
+  ]);
 
   return (
     <main>
@@ -32,8 +41,8 @@ export default async function RestaurantPage({ params }: Props) {
         bestTime={restaurant.bestTime}
         noise={restaurant.noise}
       />
-      <NoiseHeatmap />
-      <Reviews />
+      <NoiseHeatmap data={heatmapData} />
+      <Reviews reviews={reviews} />
       <RatingForm restaurantId={restaurant.id} />
     </main>
   );
