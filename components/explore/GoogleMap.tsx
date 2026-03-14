@@ -7,8 +7,8 @@ import {
   useMap,
 } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
-import { RESTAURANTS } from "@/lib/data/restaurants";
 import Link from "next/link";
+import { MappedRestaurant } from "@/lib/supabase/mappers";
 
 const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "#2c4a2c",
@@ -89,9 +89,14 @@ interface Props {
   onSelectSlug?: (slug: string | null) => void;
 }
 
-function MapContent({ hoveredSlug, selectedSlug, onSelectSlug }: Props) {
+function MapContent({
+  restaurants,
+  hoveredSlug,
+  selectedSlug,
+  onSelectSlug,
+}: Props) {
   const map = useMap();
-  const selected = RESTAURANTS.find((r) => r.slug === selectedSlug);
+  const selected = restaurants.find((r) => r.slug === selectedSlug);
   const [markers, setMarkers] = useState<Map<string, google.maps.Marker>>(
     new Map(),
   );
@@ -102,7 +107,7 @@ function MapContent({ hoveredSlug, selectedSlug, onSelectSlug }: Props) {
 
     const newMarkers = new Map<string, google.maps.Marker>();
 
-    RESTAURANTS.forEach((restaurant) => {
+    restaurants.forEach((restaurant) => {
       const colour = NOISE_COLOURS[restaurant.noise] ?? "#2c4a2c";
 
       const marker = new google.maps.Marker({
@@ -138,7 +143,7 @@ function MapContent({ hoveredSlug, selectedSlug, onSelectSlug }: Props) {
   // Update marker styles on hover/select
   useEffect(() => {
     markers.forEach((marker, slug) => {
-      const restaurant = RESTAURANTS.find((r) => r.slug === slug);
+      const restaurant = restaurants.find((r) => r.slug === slug);
       if (!restaurant) return;
 
       const colour = NOISE_COLOURS[restaurant.noise] ?? "#2c4a2c";
@@ -161,14 +166,14 @@ function MapContent({ hoveredSlug, selectedSlug, onSelectSlug }: Props) {
   // Pan on hover
   useEffect(() => {
     if (!map || !hoveredSlug) return;
-    const r = RESTAURANTS.find((r) => r.slug === hoveredSlug);
+    const r = restaurants.find((r) => r.slug === hoveredSlug);
     if (r) map.panTo({ lat: r.lat, lng: r.lng });
   }, [map, hoveredSlug]);
 
   // Fly to selected
   useEffect(() => {
     if (!map || !selectedSlug) return;
-    const r = RESTAURANTS.find((r) => r.slug === selectedSlug);
+    const r = restaurants.find((r) => r.slug === selectedSlug);
     if (r) {
       map.panTo({ lat: r.lat, lng: r.lng });
       map.setZoom(14);
@@ -242,6 +247,7 @@ function MapContent({ hoveredSlug, selectedSlug, onSelectSlug }: Props) {
 }
 
 export default function GoogleMap({
+  restaurants,
   hoveredSlug,
   selectedSlug,
   onSelectSlug,
@@ -259,6 +265,7 @@ export default function GoogleMap({
         style={{ width: "100%", height: "100%" }}
       >
         <MapContent
+          restaurants={restaurants}
           hoveredSlug={hoveredSlug}
           selectedSlug={selectedSlug}
           onSelectSlug={onSelectSlug}

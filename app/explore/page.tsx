@@ -1,5 +1,4 @@
-import FilterBar from "@/components/explore/FilterBar";
-import ExploreLayout from "@/components/explore/ExploreLayout";
+import ExploreWrapper from "@/components/explore/ExploreWrapper";
 import { getRestaurants } from "@/lib/supabase/queries";
 
 export default async function ExplorePage() {
@@ -18,8 +17,7 @@ export default async function ExplorePage() {
             </h1>
           </div>
         </div>
-        <FilterBar />
-        <ExploreLayout restaurants={restaurants} />
+        <ExploreWrapper restaurants={restaurants} />
       </div>
     </main>
   );

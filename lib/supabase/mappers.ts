@@ -20,6 +20,7 @@ export function mapRestaurant(r: DbRestaurant) {
     name:         r.name,
     slug:         r.slug,
     cuisine:      r.cuisine ?? '',
+    occasions: r.occasions ?? [],
     area:         r.area ?? '',
     address:      r.address ?? '',
     postcode:     r.postcode ?? '',

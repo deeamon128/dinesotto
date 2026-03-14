@@ -39,7 +39,7 @@ export default function Footer() {
   return (
     <footer className="bg-ivory-dark border-t border-warm-border">
       {/* Main footer */}
-      <div className="max-w-5xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-5xl mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-12">
         {/* Brand col */}
         <div className="flex flex-col gap-6">
           <SottoLogo className="w-28" darkMode={false} />
