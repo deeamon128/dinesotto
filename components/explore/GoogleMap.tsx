@@ -83,6 +83,7 @@ const MAP_STYLES = [
 ];
 
 interface Props {
+  restaurants: MappedRestaurant[];
   hoveredSlug?: string | null;
   selectedSlug?: string | null;
   onSelectSlug?: (slug: string | null) => void;

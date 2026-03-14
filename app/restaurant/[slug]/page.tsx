@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { RESTAURANTS } from "@/lib/data/restaurants";
+import { getRestaurantBySlug } from "@/lib/supabase/queries";
 import RestaurantHero from "@/components/restaurant/RestaurantHero";
 import NoiseHeatmap from "@/components/restaurant/NoiseHeatmap";
 import Reviews from "@/components/restaurant/Reviews";
@@ -11,13 +11,14 @@ interface Props {
 
 export default async function RestaurantPage({ params }: Props) {
   const { slug } = await params;
-  const restaurant = RESTAURANTS.find((r) => r.slug === slug);
+  const restaurant = await getRestaurantBySlug(slug);
 
   if (!restaurant) notFound();
 
   return (
     <main>
       <RestaurantHero
+        photo={restaurant.photo ?? undefined}
         name={restaurant.name}
         cuisine={restaurant.cuisine}
         area={restaurant.area}
@@ -33,11 +34,7 @@ export default async function RestaurantPage({ params }: Props) {
       />
       <NoiseHeatmap />
       <Reviews />
-      <RatingForm />
+      <RatingForm restaurantId={restaurant.id} />
     </main>
   );
-}
-
-export async function generateStaticParams() {
-  return RESTAURANTS.map((r) => ({ slug: r.slug }));
 }
