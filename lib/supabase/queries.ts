@@ -46,3 +46,22 @@ export async function getRatingsByRestaurant(restaurantId: string) {
 
   return data
 }
+
+export async function getHeatmapData(restaurantId: string) {
+  const supabase = await createServerSupabaseClient()
+
+  const { data, error } = await supabase
+    .rpc('get_heatmap', { p_restaurant_id: restaurantId })
+
+  if (error) {
+    console.error('Heatmap error:', error)
+    return []
+  }
+
+  return data as {
+    time_slot:   string
+    day_of_week: string
+    avg_score:   number
+    count:       number
+  }[]
+}
