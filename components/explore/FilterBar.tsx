@@ -178,67 +178,69 @@ export default function FilterBar({
         </button>
 
         {/* View toggle — hidden on mobile */}
-        <div className="hidden md:flex items-center border border-warm-border rounded overflow-hidden shrink-0 ml-auto">
-          <button
-            onClick={() => setView("cards")}
-            className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "cards" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect
-                x="0"
-                y="0"
-                width="6"
-                height="6"
-                rx="1"
-                fill="currentColor"
-                opacity="0.8"
-              />
-              <rect
-                x="8"
-                y="0"
-                width="6"
-                height="6"
-                rx="1"
-                fill="currentColor"
-                opacity="0.8"
-              />
-              <rect
-                x="0"
-                y="8"
-                width="6"
-                height="6"
-                rx="1"
-                fill="currentColor"
-                opacity="0.8"
-              />
-              <rect
-                x="8"
-                y="8"
-                width="6"
-                height="6"
-                rx="1"
-                fill="currentColor"
-                opacity="0.8"
-              />
-            </svg>
-            Cards
-          </button>
-          <div className="w-px h-5 bg-warm-border" />
-          <button
-            onClick={() => setView("map")}
-            className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "map" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z"
-                fill="currentColor"
-                opacity="0.8"
-              />
-              <circle cx="7" cy="5" r="1.5" fill="white" />
-            </svg>
-            Map
-          </button>
-        </div>
+        {!isMobile && (
+          <div className="hidden md:flex items-center border border-warm-border rounded overflow-hidden shrink-0 ml-auto">
+            <button
+              onClick={() => setView("cards")}
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "cards" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect
+                  x="0"
+                  y="0"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  fill="currentColor"
+                  opacity="0.8"
+                />
+                <rect
+                  x="8"
+                  y="0"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  fill="currentColor"
+                  opacity="0.8"
+                />
+                <rect
+                  x="0"
+                  y="8"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  fill="currentColor"
+                  opacity="0.8"
+                />
+                <rect
+                  x="8"
+                  y="8"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  fill="currentColor"
+                  opacity="0.8"
+                />
+              </svg>
+              Cards
+            </button>
+            <div className="w-px h-5 bg-warm-border" />
+            <button
+              onClick={() => setView("map")}
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "map" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M7 1C4.8 1 3 2.8 3 5c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z"
+                  fill="currentColor"
+                  opacity="0.8"
+                />
+                <circle cx="7" cy="5" r="1.5" fill="white" />
+              </svg>
+              Map
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
