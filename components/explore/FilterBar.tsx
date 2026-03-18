@@ -53,6 +53,7 @@ export default function FilterBar({
   setVerifiedOnly,
   view,
   setView,
+  isMobile,
 }: Props) {
   const [cuisineOpen, setCuisineOpen] = useState(false);
   const [occasionOpen, setOccasionOpen] = useState(false);
