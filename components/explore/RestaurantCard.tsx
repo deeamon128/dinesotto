@@ -14,7 +14,7 @@ interface Restaurant {
   bestTime: string;
   ratings: number;
   verified: boolean;
-  photo?: string;
+  photo?: string | null;
 }
 
 const NOISE_COLOURS: Record<string, string> = {
