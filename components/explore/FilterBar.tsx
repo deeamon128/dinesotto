@@ -64,32 +64,35 @@ export default function FilterBar({
   return (
     <div className="bg-ivory border-b border-warm-border px-8 py-4 sticky top-16 z-30">
       <div className="flex items-center justify-between gap-4">
-        {/* Filters — left side */}
-        <div className="flex items-center gap-3 overflow-x-auto no-scrollbar flex-1">
-          {NOISE_FILTERS.map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() => {
-                setActiveNoise(value);
-                closeAll();
-              }}
-              className={`
-                shrink-0 font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded
-                border transition-all duration-200
-                ${
-                  activeNoise === value
-                    ? "bg-green-600 text-white border-green-600"
-                    : "bg-ivory text-muted border-warm-border hover:border-green-400 hover:text-green-600"
-                }
-              `}
-            >
-              {label}
-            </button>
-          ))}
+        {/* Left side — all filters */}
+        <div className="flex items-center gap-3 flex-1">
+          {/* Noise pills — scrollable on small screens */}
+          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar">
+            {NOISE_FILTERS.map(({ label, value }) => (
+              <button
+                key={value}
+                onClick={() => {
+                  setActiveNoise(value);
+                  closeAll();
+                }}
+                className={`
+                  shrink-0 font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded
+                  border transition-all duration-200 cursor-pointer
+                  ${
+                    activeNoise === value
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory text-muted border-warm-border hover:border-green-400 hover:text-green-600"
+                  }
+                `}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
-          <div className="w-px h-5 bg-warm-border shrink-0 mx-1" />
+          <div className="w-px h-5 bg-warm-border shrink-0" />
 
-          {/* Cuisine */}
+          {/* Cuisine dropdown — outside overflow so it can escape */}
           <div className="relative shrink-0">
             <button
               onClick={() => {
@@ -98,7 +101,7 @@ export default function FilterBar({
               }}
               className={`
                 font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                transition-all duration-200 flex items-center gap-2
+                transition-all duration-200 flex items-center gap-2 cursor-pointer
                 ${
                   activeCuisine
                     ? "bg-green-600 text-white border-green-600"
@@ -110,7 +113,7 @@ export default function FilterBar({
               <span className="text-[0.6rem]">{cuisineOpen ? "▴" : "▾"}</span>
             </button>
             {cuisineOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-50 min-w-[160px]">
+              <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[100] min-w-[160px]">
                 {activeCuisine && (
                   <button
                     onClick={() => {
@@ -145,7 +148,7 @@ export default function FilterBar({
             )}
           </div>
 
-          {/* Occasion */}
+          {/* Occasion dropdown — outside overflow so it can escape */}
           <div className="relative shrink-0">
             <button
               onClick={() => {
@@ -154,7 +157,7 @@ export default function FilterBar({
               }}
               className={`
                 font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                transition-all duration-200 flex items-center gap-2
+                transition-all duration-200 flex items-center gap-2 cursor-pointer
                 ${
                   activeOccasion
                     ? "bg-green-600 text-white border-green-600"
@@ -166,7 +169,7 @@ export default function FilterBar({
               <span className="text-[0.6rem]">{occasionOpen ? "▴" : "▾"}</span>
             </button>
             {occasionOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-50 min-w-[160px]">
+              <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[100] min-w-[160px]">
                 {activeOccasion && (
                   <button
                     onClick={() => {
@@ -201,9 +204,9 @@ export default function FilterBar({
             )}
           </div>
 
-          <div className="w-px h-5 bg-warm-border shrink-0 mx-1" />
+          <div className="w-px h-5 bg-warm-border shrink-0" />
 
-          {/* Verified */}
+          {/* Verified toggle */}
           <button
             onClick={() => {
               setVerifiedOnly(!verifiedOnly);
@@ -211,7 +214,7 @@ export default function FilterBar({
             }}
             className={`
               shrink-0 font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-              transition-all duration-200 flex items-center gap-2
+              transition-all duration-200 flex items-center gap-2 cursor-pointer
               ${
                 verifiedOnly
                   ? "bg-green-600 text-white border-green-600"
@@ -224,13 +227,13 @@ export default function FilterBar({
           </button>
         </div>
 
-        {/* View toggle — right side */}
+        {/* Right side — view toggle */}
         <div className="flex items-center border border-warm-border rounded overflow-hidden shrink-0">
           <button
             onClick={() => setView("cards")}
             className={`
               px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200
-              flex items-center gap-2
+              flex items-center gap-2 cursor-pointer
               ${
                 view === "cards"
                   ? "bg-green-600 text-white"
@@ -283,7 +286,7 @@ export default function FilterBar({
             onClick={() => setView("map")}
             className={`
               px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200
-              flex items-center gap-2
+              flex items-center gap-2 cursor-pointer
               ${
                 view === "map"
                   ? "bg-green-600 text-white"
