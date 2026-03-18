@@ -3,6 +3,7 @@ import { Newsreader, DM_Sans } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
