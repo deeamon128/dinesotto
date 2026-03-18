@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import Link from "next/link";
 
 const TIME_SLOTS = [
   "Breakfast",
@@ -146,13 +147,51 @@ export default function RatingForm({ restaurantId }: Props) {
   if (submitted) {
     return (
       <section className="bg-ivory py-16 px-8 border-t border-warm-border">
-        <div className="max-w-2xl mx-auto text-center py-12">
-          <p className="font-display text-4xl italic text-green-700 mb-4">
-            Thank you.
-          </p>
-          <p className="font-sans font-light text-muted text-sm">
-            Your rating has been submitted and will appear once verified.
-          </p>
+        <div className="max-w-2xl mx-auto">
+          {/* Thank you message */}
+          <div className="text-center py-8 mb-8 border-b border-warm-border">
+            <p className="font-display text-4xl italic text-green-700 mb-3">
+              Thank you.
+            </p>
+            <p className="font-sans font-light text-muted text-sm">
+              Your rating has been submitted and will appear once verified.
+            </p>
+          </div>
+
+          {/* Prompt to rate again */}
+          <div className="text-center">
+            <p className="font-display text-xl italic text-green-700 mb-2">
+              Did you also visit at a different time?
+            </p>
+            <p className="font-sans font-light text-muted text-sm mb-8">
+              Each time slot helps build a more accurate picture for future
+              visitors.
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  setTimeSlot("");
+                  setDay("");
+                  setMusicScore(0);
+                  setCrowdScore(0);
+                  setSpacingScore(0);
+                  setSources([]);
+                  setReview("");
+                }}
+                className="bg-green-600 hover:bg-green-500 text-white font-display italic text-base px-6 py-3 rounded transition-colors"
+              >
+                Rate another visit
+              </button>
+
+              <Link
+                href="/"
+                className="border border-warm-border text-muted hover:text-green-600 hover:border-green-400 font-sans text-sm px-6 py-3 rounded transition-all"
+              >
+                No thanks
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     );

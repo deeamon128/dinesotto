@@ -14,6 +14,7 @@ export default function ExploreWrapper({ restaurants }: Props) {
   const [activeCuisine, setActiveCuisine] = useState("");
   const [activeOccasion, setActiveOccasion] = useState("");
   const [verifiedOnly, setVerifiedOnly] = useState(false);
+  const [view, setView] = useState<"cards" | "map">("cards");
 
   const filtered = restaurants.filter((r) => {
     if (activeNoise === "library" && r.noise !== "Library Quiet") return false;
@@ -21,7 +22,6 @@ export default function ExploreWrapper({ restaurants }: Props) {
       return false;
     if (activeNoise === "moderate" && r.noise !== "Moderate") return false;
     if (activeCuisine && r.cuisine !== activeCuisine) return false;
-    if (activeOccasion && !r.occasions.includes(activeOccasion)) return false;
     if (verifiedOnly && !r.verified) return false;
     return true;
   });
@@ -37,8 +37,10 @@ export default function ExploreWrapper({ restaurants }: Props) {
         setActiveOccasion={setActiveOccasion}
         verifiedOnly={verifiedOnly}
         setVerifiedOnly={setVerifiedOnly}
+        view={view}
+        setView={setView}
       />
-      <ExploreLayout restaurants={filtered} />
+      <ExploreLayout restaurants={filtered} view={view} />
     </>
   );
 }
