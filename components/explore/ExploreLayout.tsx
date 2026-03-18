@@ -70,7 +70,7 @@ export default function ExploreLayout({ restaurants, view }: Props) {
       {view === "map" && (
         <div className="flex h-[calc(100vh-8rem)] overflow-hidden min-h-0">
           {/* Left — cards */}
-          <div className="w-[400px] min-w-[400px] shrink-0 flex flex-col border-r border-warm-border bg-ivory-dark min-h-0">
+          <div className="w-full md:w-[380px] md:min-w-[380px] shrink-0 flex flex-col border-r border-warm-border bg-ivory-dark min-h-0">
             {/* Search */}
             <div className="p-4 border-b border-warm-border">
               <div className="flex items-center gap-3 bg-ivory border border-warm-border rounded px-3 py-2.5">
@@ -121,8 +121,8 @@ export default function ExploreLayout({ restaurants, view }: Props) {
             </div>
           </div>
 
-          {/* Right — map only loads when view === 'map' */}
-          <div className="flex-1 relative">
+          {/* Right — map only loads when view === 'map'  — hidden on mobile*/}
+          <div className="hidden md:block flex-1 relative">
             <GoogleMap
               restaurants={filtered}
               hoveredSlug={hoveredSlug}

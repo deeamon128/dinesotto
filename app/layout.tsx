@@ -40,6 +40,7 @@ export default function RootLayout({
       `}
       >
         <Header />
+        <SpeedInsights />
         {children}
         <Footer />
       </body>
