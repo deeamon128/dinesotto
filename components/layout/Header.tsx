@@ -64,19 +64,6 @@ export default function Header() {
 
         {/* Actions */}
         <div className="hidden md:flex items-center gap-3">
-          <button
-            className={`
-            text-[0.76rem] tracking-[0.04em] px-4 py-2
-            rounded border transition-all duration-200
-            ${
-              scrolled
-                ? "border-warm-border text-charcoal hover:border-green-600 hover:text-green-600"
-                : "border-green-300/25 text-green-300/70 hover:border-green-300/50 hover:text-green-100"
-            }
-          `}
-          >
-            Sign In
-          </button>
           <Link
             href="/suggest"
             className="
@@ -112,7 +99,6 @@ export default function Header() {
             { label: "Home", href: "/" },
             { label: "Explore", href: "/explore" },
             { label: "About", href: "/about" },
-            { label: "Sign In", href: "/signin" },
           ].map(({ label, href }) => (
             <Link
               key={href}

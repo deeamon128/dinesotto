@@ -43,11 +43,8 @@ export default function Footer() {
         {/* Brand col */}
         <div className="flex flex-col gap-6">
           <SottoLogo className="w-28" darkMode={false} />
-          <p className="font-sans font-light text-muted/60 text-xs leading-relaxed max-w-[180px]">
-            Quiet dining, found. Built with care in London.
-          </p>
           <p className="font-display italic text-amber text-sm">
-            For the 12 million.
+            For anyone who values conversation.
           </p>
         </div>
 
