@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Bookmark, ArrowRight } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 
 interface Restaurant {
   name: string;
@@ -30,7 +30,8 @@ interface Props {
 
 export default function RestaurantCard({ restaurant, selected }: Props) {
   return (
-    <div
+    <Link
+      href={`/restaurant/${restaurant.slug}`}
       className={`group bg-ivory rounded border transition-all duration-200 cursor-pointer overflow-hidden flex flex-col shrink-0 ${selected ? "border-amber shadow-md" : "border-warm-border hover:border-green-300 hover:shadow-sm"}`}
     >
       {/* Photo */}
@@ -102,24 +103,11 @@ export default function RestaurantCard({ restaurant, selected }: Props) {
           <p className="font-display text-xs italic text-amber truncate max-w-[160px]">
             {restaurant.bestTime}
           </p>
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
-              className="text-muted/30 hover:text-green-600 transition-colors"
-            ></button>
-            <Link
-              href={`/restaurant/${restaurant.slug}`}
-              onClick={(e) => e.stopPropagation()}
-              className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 hover:text-green-400 transition-colors flex items-center gap-1"
-            >
-              View <ArrowRight size={11} />
-            </Link>
-          </div>
+          <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
+            View <ArrowRight size={11} />
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
