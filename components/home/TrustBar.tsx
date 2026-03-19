@@ -1,11 +1,26 @@
-const STATS = [
-  { number: "482", label: "Restaurants Listed" },
-  { number: "261", label: "Verified Quiet" },
-  { number: "8,4k", label: "Community Ratings" },
-  { number: "32", label: "London Boroughs" },
-];
+type Props = {
+  totalRestaurants: number;
+  verifiedCount: number;
+  ratingsCount: number;
+};
 
-export default function TrustBar() {
+export default function TrustBar({
+  totalRestaurants = 0,
+  verifiedCount = 0,
+  ratingsCount = 0,
+}: Props) {
+  const STATS = [
+    { number: totalRestaurants.toString(), label: "Restaurants Listed" },
+    { number: verifiedCount.toString(), label: "Verified Quiet" },
+    {
+      number:
+        ratingsCount >= 1000
+          ? `${(ratingsCount / 1000).toFixed(1)}k`
+          : ratingsCount.toString(),
+      label: "Community Ratings",
+    },
+    { number: "32", label: "London Boroughs" },
+  ];
   return (
     <section className="bg-ivory border-y border-warm-border">
       <div className="max-w-4xl mx-auto px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">

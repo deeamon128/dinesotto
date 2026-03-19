@@ -1,13 +1,30 @@
 import { createServerSupabaseClient } from './server'
 import { mapRestaurant } from './mappers'
 
-export async function getRestaurants() {
+interface GetRestaurantsOptions {
+  orderBy?: string;
+  limit?: number;
+  verified?: boolean;
+}
+
+export async function getRestaurants(options: GetRestaurantsOptions = {}) {
   const supabase = await createServerSupabaseClient()
 
-  const { data, error } = await supabase
+  const {
+    orderBy = 'overall_score',
+    limit,
+    verified,
+  } = options;
+
+  let query = supabase
     .from('restaurants')
     .select('*')
-    .order('overall_score', { ascending: false })
+    .order(orderBy, { ascending: false })
+
+  if (verified !== undefined) query = query.eq('verified', verified)
+  if (limit !== undefined) query = query.limit(limit)
+
+  const { data, error } = await query
 
   if (error) {
     console.error('Error fetching restaurants:', error)
