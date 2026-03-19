@@ -5,13 +5,14 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 
 const AREAS = [
-  "Mayfair",
-  "Chelsea",
   "Covent Garden",
   "Notting Hill",
   "Marylebone",
   "Soho",
   "Shoreditch",
+  "Brixton",
+  "Camden",
+  "Mayfair",
 ];
 
 export default function Hero() {
@@ -95,10 +96,10 @@ export default function Hero() {
           <span className="not-italic text-amber/90">actually talk.</span>
         </h1>
 
-        <p className="font-sans font-light text-green-300/60 text-base mb-10 max-w-md mx-auto">
+        {/* <p className="font-sans font-light text-green-300/60 text-base mb-10 max-w-md mx-auto">
           Rated by noise level, music volume, and time of day — so you never
           have to shout across the table again.
-        </p>
+        </p> */}
 
         {/* Search bar */}
         <div className="flex items-stretch bg-ivory rounded overflow-hidden shadow-2xl max-w-lg mx-auto mb-8">
@@ -132,7 +133,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-30">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-2 opacity-30">
         <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-green-300">
           Scroll
         </span>

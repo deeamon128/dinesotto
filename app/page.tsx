@@ -4,16 +4,40 @@ import FeaturedRestaurants from "@/components/home/FeaturedRestaurants";
 import HowItWorks from "@/components/home/HowItWorks";
 import CTABand from "@/components/home/CTABand";
 import { getRestaurants } from "@/lib/supabase/queries";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export default async function Home() {
-  const restaurants = await getRestaurants();
-  const featured = restaurants.filter((r) => r.verified).slice(0, 3);
+  const supabase = await createServerSupabaseClient();
+
+  const [
+    featured,
+    topRated,
+    { count: totalRestaurants },
+    { count: verifiedCount },
+    { count: ratingsCount },
+  ] = await Promise.all([
+    getRestaurants({ verified: true, limit: 3 }),
+    getRestaurants({ orderBy: "overall_score", limit: 3 }),
+    supabase.from("restaurants").select("*", { count: "exact", head: true }),
+    supabase
+      .from("restaurants")
+      .select("*", { count: "exact", head: true })
+      .eq("verified", true),
+    supabase
+      .from("ratings")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "approved"),
+  ]);
 
   return (
     <main>
       <Hero />
-      <TrustBar />
-      <FeaturedRestaurants restaurants={featured} />
+      <TrustBar
+        totalRestaurants={totalRestaurants ?? 0}
+        verifiedCount={verifiedCount ?? 0}
+        ratingsCount={ratingsCount ?? 0}
+      />
+      <FeaturedRestaurants restaurants={featured} topRated={topRated} />
       <HowItWorks />
       <CTABand />
     </main>
