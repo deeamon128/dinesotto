@@ -45,13 +45,13 @@ function ScaleInput({
   label,
   value,
   onChange,
+  labels = ["Silent", "Soft", "Noticeable", "Loud", "Very Loud"],
 }: {
   label: string;
   value: number;
   onChange: (v: number) => void;
+  labels?: string[];
 }) {
-  const LABELS = ["Silent", "Soft", "Noticeable", "Loud", "Very Loud"];
-
   return (
     <div>
       <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
@@ -75,7 +75,7 @@ function ScaleInput({
           >
             <span className="font-display text-lg font-light">{i}</span>
             <span className="font-sans text-[0.52rem] tracking-wide text-center leading-tight">
-              {LABELS[i - 1]}
+              {labels[i - 1]}
             </span>
           </button>
         ))}
@@ -110,7 +110,6 @@ export default function RatingForm({ restaurantId }: Props) {
     e.preventDefault();
     setError(null);
 
-    // Validation
     if (!timeSlot) return setError("Please select a time slot.");
     if (!day) return setError("Please select a day.");
     if (!musicScore) return setError("Please rate the music level.");
@@ -148,7 +147,6 @@ export default function RatingForm({ restaurantId }: Props) {
     return (
       <section className="bg-ivory py-16 px-8 border-t border-warm-border">
         <div className="max-w-2xl mx-auto">
-          {/* Thank you message */}
           <div className="text-center py-8 mb-8 border-b border-warm-border">
             <p className="font-display text-4xl italic text-green-700 mb-3">
               Thank you.
@@ -158,7 +156,6 @@ export default function RatingForm({ restaurantId }: Props) {
             </p>
           </div>
 
-          {/* Prompt to rate again */}
           <div className="text-center">
             <p className="font-display text-xl italic text-green-700 mb-2">
               Did you also visit at a different time?
@@ -288,6 +285,13 @@ export default function RatingForm({ restaurantId }: Props) {
             label="Table Spacing"
             value={spacingScore}
             onChange={setSpacingScore}
+            labels={[
+              "Very Spacious",
+              "Spacious",
+              "Comfortable",
+              "Cosy",
+              "Cramped",
+            ]}
           />
 
           {/* Noise sources */}
@@ -337,11 +341,7 @@ export default function RatingForm({ restaurantId }: Props) {
             disabled={loading}
             className={`
               text-white font-display italic text-lg px-6 py-4 rounded transition-colors
-              ${
-                loading
-                  ? "bg-green-400 cursor-not-allowed"
-                  : "bg-green-600 hover:bg-green-500"
-              }
+              ${loading ? "bg-green-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-500"}
             `}
           >
             {loading ? "Submitting..." : "Add My Rating"}

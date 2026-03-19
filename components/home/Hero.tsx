@@ -91,7 +91,7 @@ export default function Hero() {
           London's quiet dining guide
         </p>
 
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-6 max-w-2xl mx-auto text-balance">
+        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-16 max-w-2xl mx-auto text-balance">
           Find restaurants where you can{" "}
           <span className="not-italic text-amber/90">actually talk.</span>
         </h1>
