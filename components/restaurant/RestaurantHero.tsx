@@ -21,7 +21,19 @@ const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
   "Pleasantly Quiet": "bg-green-50 text-green-600",
   Moderate: "bg-amber/10 text-amber",
+  Loud: "bg-red-50 text-red-600",
 };
+
+function toBarWidth(score: number): number {
+  // Converts DB score (2-10) back to raw (1-5) then to percentage
+  // Low score = quiet = short bar
+  return (6 - score / 2) * 20;
+}
+
+function toRawLabel(score: number): string {
+  const raw = Math.round(6 - score / 2);
+  return `${raw}/5`;
+}
 
 export default function RestaurantHero({
   photo,
@@ -64,11 +76,7 @@ export default function RestaurantHero({
             {/* Noise pill + verified */}
             <div className="flex items-center gap-3 mb-4">
               <span
-                className={`
-                font-sans text-[0.62rem] tracking-[0.12em] uppercase
-                px-3 py-1 rounded-full
-                ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}
-              `}
+                className={`font-sans text-[0.62rem] tracking-[0.12em] uppercase px-3 py-1 rounded-full ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}`}
               >
                 {noise}
               </span>
@@ -117,14 +125,14 @@ export default function RestaurantHero({
                 <p className="font-sans text-[0.62rem] tracking-[0.12em] uppercase text-green-300/40">
                   {label}
                 </p>
-                <p className="font-display text-lg font-light text-green-100">
-                  {score}
+                <p className="font-sans text-[0.62rem] text-green-300/40">
+                  {toRawLabel(score)}
                 </p>
               </div>
               <div className="h-1 bg-green-800 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-amber rounded-full transition-all duration-700"
-                  style={{ width: `${score * 10}%` }}
+                  style={{ width: `${toBarWidth(score)}%` }}
                 />
               </div>
             </div>
