@@ -102,12 +102,12 @@ export default function RateVisitForm({ restaurants }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const filtered = restaurants.filter(
-    (r) =>
-      search.length > 1 &&
-      (r.name.toLowerCase().includes(search.toLowerCase()) ||
-        r.area.toLowerCase().includes(search.toLowerCase())),
-  );
+  const filtered = restaurants.filter((r) => {
+    if (search.length === 0) return false;
+    const q = search.toLowerCase();
+    return r.name.toLowerCase().startsWith(q);
+    // r.area.toLowerCase().startsWith(q)  // startsWith instead of includes for area
+  });
 
   function selectRestaurant(r: MappedRestaurant) {
     setSelected(r);

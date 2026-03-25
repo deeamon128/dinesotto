@@ -123,7 +123,7 @@ export default function Hero() {
           {AREAS.map((area) => (
             <Link
               key={area}
-              href={`/directory?area=${area.toLowerCase()}`}
+              href={`/explore?area=${area.toLowerCase().replace(/ /g, "+")}`}
               className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/20 text-green-300/50 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
             >
               {area}
