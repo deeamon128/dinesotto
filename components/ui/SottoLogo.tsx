@@ -12,7 +12,7 @@ export default function SottoLogo({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 800 320"
+      viewBox="140 80 520 210"
       className={className}
       aria-label="Sotto — Quiet Dining"
     >

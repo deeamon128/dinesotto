@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const NOISE_FILTERS = [
   { label: "All", value: "all" },
@@ -28,6 +28,17 @@ const OCCASIONS = [
   "Celebration",
 ];
 
+const AREAS = [
+  "Covent Garden",
+  "Notting Hill",
+  "Marylebone",
+  "Soho",
+  "Shoreditch",
+  "Brixton",
+  "Camden",
+  "Mayfair",
+];
+
 interface Props {
   activeNoise: string;
   setActiveNoise: (v: string) => void;
@@ -35,11 +46,95 @@ interface Props {
   setActiveCuisine: (v: string) => void;
   activeOccasion: string;
   setActiveOccasion: (v: string) => void;
+  activeArea: string;
+  setActiveArea: (v: string) => void;
   verifiedOnly: boolean;
   setVerifiedOnly: (v: boolean) => void;
   view: "cards" | "map";
   setView: (v: "cards" | "map") => void;
   isMobile: boolean;
+}
+
+function Dropdown({
+  label,
+  value,
+  setValue,
+  options,
+}: {
+  label: string;
+  value: string;
+  setValue: (v: string) => void;
+  options: string[];
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative shrink-0">
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className={`font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${
+          value
+            ? "bg-green-600 text-white border-green-600"
+            : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"
+        }`}
+      >
+        {value || label}
+        <span className="text-[0.6rem]">{open ? "▴" : "▾"}</span>
+      </button>
+
+      {open && (
+        <div
+          className="fixed mt-1 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[999] min-w-[160px]"
+          style={{
+            top: ref.current
+              ? ref.current.getBoundingClientRect().bottom + 4
+              : 0,
+            left: ref.current ? ref.current.getBoundingClientRect().left : 0,
+          }}
+        >
+          {value && (
+            <button
+              onClick={() => {
+                setValue("");
+                setOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 font-sans text-xs text-amber hover:bg-ivory-dark transition-colors border-b border-warm-border"
+            >
+              Clear ✕
+            </button>
+          )}
+          {options.map((o) => (
+            <button
+              key={o}
+              onClick={() => {
+                setValue(o === value ? "" : o);
+                setOpen(false);
+              }}
+              className={`w-full text-left px-4 py-2 font-sans text-xs transition-colors ${
+                value === o
+                  ? "text-green-600 bg-green-50"
+                  : "text-muted hover:text-green-600 hover:bg-ivory-dark"
+              }`}
+            >
+              {o}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function FilterBar({
@@ -49,20 +144,14 @@ export default function FilterBar({
   setActiveCuisine,
   activeOccasion,
   setActiveOccasion,
+  activeArea,
+  setActiveArea,
   verifiedOnly,
   setVerifiedOnly,
   view,
   setView,
   isMobile,
 }: Props) {
-  const [cuisineOpen, setCuisineOpen] = useState(false);
-  const [occasionOpen, setOccasionOpen] = useState(false);
-
-  function closeAll() {
-    setCuisineOpen(false);
-    setOccasionOpen(false);
-  }
-
   return (
     <div className="bg-ivory border-b border-warm-border px-4 md:px-8 py-3 sticky top-16 z-30">
       <div className="flex items-center gap-3 overflow-x-auto no-scrollbar">
@@ -70,11 +159,12 @@ export default function FilterBar({
         {NOISE_FILTERS.map(({ label, value }) => (
           <button
             key={value}
-            onClick={() => {
-              setActiveNoise(value);
-              closeAll();
-            }}
-            className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 ${activeNoise === value ? "bg-green-600 text-white border-green-600" : "bg-ivory text-muted border-warm-border hover:border-green-400 hover:text-green-600"}`}
+            onClick={() => setActiveNoise(value)}
+            className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 ${
+              activeNoise === value
+                ? "bg-green-600 text-white border-green-600"
+                : "bg-ivory text-muted border-warm-border hover:border-green-400 hover:text-green-600"
+            }`}
           >
             {label}
           </button>
@@ -82,108 +172,50 @@ export default function FilterBar({
 
         <div className="w-px h-5 bg-warm-border shrink-0" />
 
-        {/* Cuisine */}
-        <div className="relative shrink-0">
-          <button
-            onClick={() => {
-              setCuisineOpen(!cuisineOpen);
-              setOccasionOpen(false);
-            }}
-            className={`font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${activeCuisine ? "bg-green-600 text-white border-green-600" : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"}`}
-          >
-            {activeCuisine || "Cuisine"}
-            <span className="text-[0.6rem]">{cuisineOpen ? "▴" : "▾"}</span>
-          </button>
-          {cuisineOpen && (
-            <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[100] min-w-[160px]">
-              {activeCuisine && (
-                <button
-                  onClick={() => {
-                    setActiveCuisine("");
-                    setCuisineOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2 font-sans text-xs text-amber hover:bg-ivory-dark transition-colors border-b border-warm-border"
-                >
-                  Clear ✕
-                </button>
-              )}
-              {CUISINES.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => {
-                    setActiveCuisine(c === activeCuisine ? "" : c);
-                    setCuisineOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 font-sans text-xs transition-colors ${activeCuisine === c ? "text-green-600 bg-green-50" : "text-muted hover:text-green-600 hover:bg-ivory-dark"}`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Occasion */}
-        <div className="relative shrink-0">
-          <button
-            onClick={() => {
-              setOccasionOpen(!occasionOpen);
-              setCuisineOpen(false);
-            }}
-            className={`font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${activeOccasion ? "bg-green-600 text-white border-green-600" : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"}`}
-          >
-            {activeOccasion || "Occasion"}
-            <span className="text-[0.6rem]">{occasionOpen ? "▴" : "▾"}</span>
-          </button>
-          {occasionOpen && (
-            <div className="absolute top-full left-0 mt-2 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[100] min-w-[160px]">
-              {activeOccasion && (
-                <button
-                  onClick={() => {
-                    setActiveOccasion("");
-                    setOccasionOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2 font-sans text-xs text-amber hover:bg-ivory-dark transition-colors border-b border-warm-border"
-                >
-                  Clear ✕
-                </button>
-              )}
-              {OCCASIONS.map((o) => (
-                <button
-                  key={o}
-                  onClick={() => {
-                    setActiveOccasion(o === activeOccasion ? "" : o);
-                    setOccasionOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 font-sans text-xs transition-colors ${activeOccasion === o ? "text-green-600 bg-green-50" : "text-muted hover:text-green-600 hover:bg-ivory-dark"}`}
-                >
-                  {o}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        <Dropdown
+          label="Area"
+          value={activeArea}
+          setValue={setActiveArea}
+          options={AREAS}
+        />
+        <Dropdown
+          label="Cuisine"
+          value={activeCuisine}
+          setValue={setActiveCuisine}
+          options={CUISINES}
+        />
+        <Dropdown
+          label="Occasion"
+          value={activeOccasion}
+          setValue={setActiveOccasion}
+          options={OCCASIONS}
+        />
 
         <div className="w-px h-5 bg-warm-border shrink-0" />
 
         {/* Verified */}
         <button
-          onClick={() => {
-            setVerifiedOnly(!verifiedOnly);
-            closeAll();
-          }}
-          className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${verifiedOnly ? "bg-green-600 text-white border-green-600" : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"}`}
+          onClick={() => setVerifiedOnly(!verifiedOnly)}
+          className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${
+            verifiedOnly
+              ? "bg-green-600 text-white border-green-600"
+              : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"
+          }`}
         >
           <span className="w-2 h-2 rounded-full bg-current inline-block" />
           Verified
         </button>
 
-        {/* View toggle — hidden on mobile */}
+        {/* View toggle */}
         {!isMobile && (
           <div className="hidden md:flex items-center border border-warm-border rounded overflow-hidden shrink-0 ml-auto">
             <button
               onClick={() => setView("cards")}
-              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "cards" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${
+                view === "cards"
+                  ? "bg-green-600 text-white"
+                  : "bg-ivory text-muted hover:text-green-600"
+              }`}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <rect
@@ -228,7 +260,11 @@ export default function FilterBar({
             <div className="w-px h-5 bg-warm-border" />
             <button
               onClick={() => setView("map")}
-              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${view === "map" ? "bg-green-600 text-white" : "bg-ivory text-muted hover:text-green-600"}`}
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${
+                view === "map"
+                  ? "bg-green-600 text-white"
+                  : "bg-ivory text-muted hover:text-green-600"
+              }`}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path

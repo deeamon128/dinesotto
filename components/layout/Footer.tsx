@@ -42,12 +42,12 @@ export default function Footer() {
         <div className="flex flex-col gap-5">
           <SottoLogo className="h-14 w-auto self-start" darkMode={false} />
           <p className="font-display italic text-amber text-sm leading-relaxed">
-            Quiet dining, found.
+            For anyone who values conversation.
           </p>
-          <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
+          {/* <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
             London's community-driven guide to restaurants where you can
             actually hear yourself think.
-          </p>
+          </p> */}
         </div>
 
         {/* Nav cols */}
@@ -77,9 +77,6 @@ export default function Footer() {
         <div className="max-w-5xl mx-auto px-8 py-5 flex items-center justify-between">
           <p className="font-sans text-[0.65rem] text-muted/40">
             © {yearNow} Sotto. All rights reserved.
-          </p>
-          <p className="font-sans text-[0.65rem] text-muted/30 italic">
-            For anyone who values conversation.
           </p>
         </div>
       </div>
