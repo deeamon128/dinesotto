@@ -118,19 +118,22 @@ export default function RatingForm({ restaurantId }: Props) {
 
     setLoading(true);
 
-    const supabase = createClient();
-
-    const { error: insertError } = await supabase.from("ratings").insert({
-      restaurant_id: restaurantId,
-      time_slot: TIME_SLOT_MAP[timeSlot],
-      day_of_week: DAY_MAP[day],
-      music_score: musicScore,
-      crowd_score: crowdScore,
-      spacing_score: spacingScore,
-      noise_sources: sources.length > 0 ? sources : null,
-      review_text: review || null,
-      status: "pending",
+    const response = await fetch("/api/rate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        restaurant_id: restaurantId,
+        time_slot: TIME_SLOT_MAP[timeSlot],
+        day_of_week: DAY_MAP[day],
+        music_score: musicScore,
+        crowd_score: crowdScore,
+        spacing_score: spacingScore,
+        noise_sources: sources.length > 0 ? sources : null,
+        review_text: review || null,
+        status: "pending",
+      }),
     });
+    const insertError = response.ok ? null : await response.json();
 
     setLoading(false);
 
@@ -289,7 +292,7 @@ export default function RatingForm({ restaurantId }: Props) {
               "Very Spacious",
               "Spacious",
               "Comfortable",
-              "Cosy",
+              "Tight",
               "Cramped",
             ]}
           />

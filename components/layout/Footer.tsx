@@ -5,19 +5,10 @@ const NAV = [
   {
     heading: "Explore",
     links: [
-      { label: "Explore", href: "/explore" },
-      { label: "Verified Quiet", href: "/directory?filter=verified" },
-      { label: "By Borough", href: "/directory?view=boroughs" },
-      { label: "Saved Places", href: "/saved" },
-    ],
-  },
-  {
-    heading: "Community",
-    links: [
-      { label: "Suggest a Restaurant", href: "/rate" },
+      { label: "All Restaurants", href: "/explore" },
+      { label: "Verified Quiet", href: "/explore?filter=verified" },
       { label: "Rate a Visit", href: "/rate" },
-      { label: "Partner With Us", href: "/about#contact" },
-      { label: "Press", href: "/about#press" },
+      { label: "Suggest a Restaurant", href: "/suggest" },
     ],
   },
   {
@@ -26,13 +17,20 @@ const NAV = [
       { label: "Our Story", href: "/about" },
       { label: "How It Works", href: "/about#how" },
       { label: "Contact", href: "/about#contact" },
-      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Partner With Us", href: "/about#contact" },
+    ],
+  },
+  {
+    heading: "Community",
+    links: [
+      { label: "Instagram", href: "https://instagram.com" },
+      { label: "Threads", href: "https://threads.net" },
+      { label: "Newsletter", href: "#newsletter" },
+      { label: "Press", href: "/about#contact" },
     ],
   },
 ];
 
-const socialClass =
-  "font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/40 hover:text-green-600 transition-colors";
 const yearNow = new Date().getFullYear();
 
 export default function Footer() {
@@ -41,10 +39,14 @@ export default function Footer() {
       {/* Main footer */}
       <div className="max-w-5xl mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-12">
         {/* Brand col */}
-        <div className="flex flex-col gap-6">
-          <SottoLogo className="w-28" darkMode={false} />
-          <p className="font-display italic text-amber text-sm">
-            For anyone who values conversation.
+        <div className="flex flex-col gap-5">
+          <SottoLogo className="h-14 w-auto self-start" darkMode={false} />
+          <p className="font-display italic text-amber text-sm leading-relaxed">
+            Quiet dining, found.
+          </p>
+          <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
+            London's community-driven guide to restaurants where you can
+            actually hear yourself think.
           </p>
         </div>
 
@@ -76,14 +78,9 @@ export default function Footer() {
           <p className="font-sans text-[0.65rem] text-muted/40">
             © {yearNow} Sotto. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className={socialClass}>
-              Instagram
-            </a>
-            <a href="#" className={socialClass}>
-              Threads
-            </a>
-          </div>
+          <p className="font-sans text-[0.65rem] text-muted/30 italic">
+            For anyone who values conversation.
+          </p>
         </div>
       </div>
     </footer>
