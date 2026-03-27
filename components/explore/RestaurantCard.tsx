@@ -26,14 +26,18 @@ const NOISE_COLOURS: Record<string, string> = {
 interface Props {
   restaurant: Restaurant;
   selected?: boolean;
+  asDiv?: boolean;
 }
 
-export default function RestaurantCard({ restaurant, selected }: Props) {
-  return (
-    <Link
-      href={`/restaurant/${restaurant.slug}`}
-      className={`group bg-ivory rounded border transition-all duration-200 cursor-pointer overflow-hidden flex flex-col shrink-0 ${selected ? "border-amber shadow-md" : "border-warm-border hover:border-green-300 hover:shadow-sm"}`}
-    >
+export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
+  const className = `group bg-ivory rounded border transition-all duration-200 cursor-pointer overflow-hidden flex flex-col shrink-0 ${
+    selected
+      ? "border-amber shadow-md"
+      : "border-warm-border hover:border-green-300 hover:shadow-sm"
+  }`;
+
+  const content = (
+    <>
       {/* Photo */}
       {restaurant.photo && (
         <div className="relative h-28 w-full overflow-hidden shrink-0">
@@ -50,20 +54,36 @@ export default function RestaurantCard({ restaurant, selected }: Props) {
 
       {/* Accent bar */}
       <div
-        className={`h-0.5 w-full shrink-0 transition-colors duration-200 ${selected ? "bg-amber" : "bg-green-600 group-hover:bg-amber"}`}
+        className={`h-0.5 w-full shrink-0 transition-colors duration-200 ${
+          selected ? "bg-amber" : "bg-green-600 group-hover:bg-amber"
+        }`}
       />
 
       <div className="p-4 flex flex-col" style={{ height: "176px" }}>
         {/* Top row */}
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1 min-w-0">
-            <span
-              className={`font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full mb-1 inline-block ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}`}
-            >
-              {restaurant.noise}
-            </span>
+            <div className="flex items-center gap-1.5 mb-1">
+              <span
+                className={`font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full inline-block ${
+                  NOISE_COLOURS[restaurant.noise] ??
+                  "bg-green-50 text-green-600"
+                }`}
+              >
+                {restaurant.noise}
+              </span>
+              {restaurant.verified && (
+                <span className="font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full inline-block bg-green-700 text-green-100">
+                  ✓ Verified
+                </span>
+              )}
+            </div>
             <h3
-              className={`font-display text-base font-medium leading-tight truncate transition-colors ${selected ? "text-green-600" : "text-green-800 group-hover:text-green-600"}`}
+              className={`font-display text-base font-medium leading-tight truncate transition-colors ${
+                selected
+                  ? "text-green-600"
+                  : "text-green-800 group-hover:text-green-600"
+              }`}
             >
               {restaurant.name}
             </h3>
@@ -108,6 +128,16 @@ export default function RestaurantCard({ restaurant, selected }: Props) {
           </span>
         </div>
       </div>
+    </>
+  );
+
+  if (asDiv) {
+    return <div className={className}>{content}</div>;
+  }
+
+  return (
+    <Link href={`/restaurant/${restaurant.slug}`} className={className}>
+      {content}
     </Link>
   );
 }
