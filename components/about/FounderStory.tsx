@@ -20,16 +20,21 @@ export default function FounderStory() {
           So I built it myself.
         </p>
 
-        <p className="font-sans font-light text-charcoal text-lg leading-[1.85] mb-12">
+        <p className="font-sans font-light text-charcoal text-lg leading-[1.85] mb-8">
           Sotto is free, independent, and community-driven. Every rating comes
-          from a real person who sat at a real table. If you have ever struggled
-          to hear across a restaurant table, this was built for you.
+          from a real person who sat at a real table. We haven't visited every
+          restaurant. You have. That's the point.
+        </p>
+        <p className="font-sans font-light text-charcoal text-lg leading-[1.85] mb-8">
+          If you have ever struggled to hear across a restaurant table — or left
+          a dinner feeling more drained than when you arrived — this was built
+          for you.
         </p>
 
         {/* Founder signature */}
         <div className="border-t border-warm-border pt-8">
           <p className="font-display text-2xl italic text-green-700 mb-1">
-            The Sotto Team
+            Andreea
           </p>
           <div className="w-16 h-px bg-amber mt-2 mb-3" />
           <p className="font-sans text-xs tracking-[0.12em] uppercase text-muted/60">

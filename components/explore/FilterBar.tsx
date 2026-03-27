@@ -50,6 +50,7 @@ interface Props {
   setActiveOccasion: (v: string) => void;
   activeArea: string;
   setActiveArea: (v: string) => void;
+  clearArea: () => void;
   verifiedOnly: boolean;
   setVerifiedOnly: (v: boolean) => void;
   view: "cards" | "map";
@@ -61,17 +62,18 @@ function Dropdown({
   label,
   value,
   setValue,
+  onClear,
   options,
 }: {
   label: string;
   value: string;
   setValue: (v: string) => void;
+  onClear?: () => void;
   options: string[];
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -109,7 +111,7 @@ function Dropdown({
           {value && (
             <button
               onClick={() => {
-                setValue("");
+                onClear ? onClear() : setValue("");
                 setOpen(false);
               }}
               className="w-full text-left px-4 py-2 font-sans text-xs text-amber hover:bg-ivory-dark transition-colors border-b border-warm-border"
@@ -148,6 +150,7 @@ export default function FilterBar({
   setActiveOccasion,
   activeArea,
   setActiveArea,
+  clearArea,
   verifiedOnly,
   setVerifiedOnly,
   view,
@@ -178,6 +181,7 @@ export default function FilterBar({
           label="Area"
           value={activeArea}
           setValue={setActiveArea}
+          onClear={clearArea}
           options={AREAS}
         />
         <Dropdown

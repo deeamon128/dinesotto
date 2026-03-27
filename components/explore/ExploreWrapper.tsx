@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import FilterBar from "./FilterBar";
 import ExploreLayout from "./ExploreLayout";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
@@ -12,6 +12,7 @@ interface Props {
 
 export default function ExploreWrapper({ restaurants }: Props) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [activeNoise, setActiveNoise] = useState("all");
   const [activeCuisine, setActiveCuisine] = useState("");
   const [activeOccasion, setActiveOccasion] = useState("");
@@ -24,13 +25,13 @@ export default function ExploreWrapper({ restaurants }: Props) {
   useEffect(() => {
     const area = searchParams.get("area");
     const filter = searchParams.get("filter");
-    if (area)
-      setActiveArea(
-        area
-          .split("+")
-          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-          .join(" "),
-      );
+    if (area) {
+      const decoded = decodeURIComponent(area.replace(/\+/g, " "))
+        .split(" ")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ");
+      setActiveArea(decoded);
+    }
     if (filter === "verified") setVerifiedOnly(true);
   }, [searchParams]);
 
@@ -44,6 +45,11 @@ export default function ExploreWrapper({ restaurants }: Props) {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  function clearArea() {
+    setActiveArea("");
+    router.replace("/explore"); // ← clears URL params
+  }
 
   const filtered = restaurants.filter((r) => {
     if (activeNoise === "library" && r.noise !== "Library Quiet") return false;
@@ -68,6 +74,7 @@ export default function ExploreWrapper({ restaurants }: Props) {
         setActiveOccasion={setActiveOccasion}
         activeArea={activeArea}
         setActiveArea={setActiveArea}
+        clearArea={clearArea}
         verifiedOnly={verifiedOnly}
         setVerifiedOnly={setVerifiedOnly}
         view={view}
