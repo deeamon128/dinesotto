@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Our Story",
   description:
-    "Sotto was built by someone hard of hearing who couldn't find a quiet restaurant guide. So she built one.",
+    "DineSotto was built by someone hard of hearing who couldn't find a quiet restaurant guide. So she built one.",
 };
 
 import AboutHero from "@/components/about/AboutHero";
