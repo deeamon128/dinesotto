@@ -95,15 +95,18 @@ export default function ExploreLayout({ restaurants, view }: Props) {
                   key={restaurant.slug}
                   onMouseEnter={() => setHoveredSlug(restaurant.slug)}
                   onMouseLeave={() => setHoveredSlug(null)}
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.preventDefault();
                     setSelectedSlug(
                       selectedSlug === restaurant.slug ? null : restaurant.slug,
-                    )
-                  }
+                    );
+                  }}
+                  className="cursor-pointer"
                 >
                   <RestaurantCard
                     restaurant={restaurant}
                     selected={selectedSlug === restaurant.slug}
+                    asDiv={true}
                   />
                 </div>
               ))}

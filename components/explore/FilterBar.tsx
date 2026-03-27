@@ -18,6 +18,8 @@ const CUISINES = [
   "Indian",
   "Chinese",
   "European",
+  "Basque",
+  "Georgian",
 ];
 
 const OCCASIONS = [
@@ -96,7 +98,7 @@ function Dropdown({
 
       {open && (
         <div
-          className="fixed mt-1 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[999] min-w-[160px]"
+          className="fixed mt-1 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[999] w-[160px]"
           style={{
             top: ref.current
               ? ref.current.getBoundingClientRect().bottom + 4
