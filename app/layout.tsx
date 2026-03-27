@@ -21,10 +21,10 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sotto.com"),
+  metadataBase: new URL("https://dinesotto.com"),
   title: {
-    default: "Sotto — Quiet Dining in London",
-    template: "%s — Sotto",
+    default: "DineSotto — Quiet Dining in London",
+    template: "%s — DineSotto",
   },
   description:
     "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
     "hearing loss dining",
     "quiet dining London",
     "restaurant noise rating",
-    "sotto quiet dining",
+    "dinesotto quiet dining",
   ],
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://sotto.com",
-    siteName: "Sotto",
-    title: "Sotto — Quiet Dining in London",
+    url: "https://dinesotto.com",
+    siteName: "DineSotto",
+    title: "DineSotto — Quiet Dining in London",
     description:
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Sotto — Quiet Dining in London",
+        alt: "DineSotto — Quiet Dining in London",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sotto — Quiet Dining in London",
+    title: "DineSotto — Quiet Dining in London",
     description:
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: ["/og-image.jpg"],
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://sotto.com",
+    canonical: "https://dinesotto.com",
   },
 };
 
