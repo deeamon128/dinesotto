@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Rate a Restaurant",
+  description:
+    "Share your experience and help others find quiet dining in London.",
+};
+
 import { getRestaurants } from "@/lib/supabase/queries";
 import RateVisitForm from "@/components/rate/RateVisitForm";
 

@@ -2,7 +2,7 @@ const AUDIENCE = [
   {
     name: "The Hard of Hearing Community",
     description:
-      "Navigating the world with hearing aids or cochlear implants requires environments that respect auditory boundaries.",
+      "Navigating the world with hearing aids or cochlear implants means every environment matters. Sotto gives you the information no other guide does.",
   },
   {
     name: "Neurodivergent Diners",
@@ -16,7 +16,8 @@ const AUDIENCE = [
   },
   {
     name: "Business lunches",
-    description: "Have the conversation that matters in a room that allows it.",
+    description:
+      "Have the conversation that matters in a space that allows it.",
   },
 ];
 

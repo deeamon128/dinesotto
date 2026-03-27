@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Explore Quiet Restaurants",
+  description:
+    "Browse London restaurants rated by noise level, music volume, and table spacing.",
+};
+
 import ExploreWrapper from "@/components/explore/ExploreWrapper";
 import { getRestaurants } from "@/lib/supabase/queries";
 

@@ -2,17 +2,17 @@ const STEPS = [
   {
     number: "01",
     heading: "A real visit",
-    body: "Someone visits the restaurant and submits their experience — time of day, music level, crowd noise, and table spacing. No algorithms, no scraped reviews.",
+    body: "Someone visits the restaurant and submits their experience — time of day, music level, crowd noise, and table spacing. No scraped reviews. No guesswork.",
   },
   {
     number: "02",
     heading: "Time-aware data",
-    body: "Every rating is tagged to a time slot. Lunch ratings are kept separate from peak evening. You see the full picture, not a misleading average.",
+    body: "Every rating is tagged to a time slot. Lunch ratings are kept separate from peak evening. Because a Tuesday lunch is not a Friday night. You see how noise changes through the day — so you can choose the window that works for you.",
   },
   {
     number: "03",
     heading: "Confidence scoring",
-    body: "A restaurant with 3 ratings shows a warning. One with 50 shows a verified badge. You always know exactly how much to trust a score.",
+    body: "You always see how many people rated a restaurant. Two visits or two hundred — you decide how much weight to give it. We never hide thin data behind a polished score.",
   },
 ];
 
