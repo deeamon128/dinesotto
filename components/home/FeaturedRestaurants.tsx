@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
 
 const NOISE_COLOURS: Record<string, string> = {
@@ -31,15 +31,33 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
       <div className="h-0.5 w-full bg-green-600 group-hover:bg-amber transition-colors duration-300" />
 
       <div className="p-6 flex flex-col flex-1">
-        <span
-          className={`
-            self-start font-sans text-[0.6rem] tracking-[0.12em]
-            uppercase px-2.5 py-1 rounded-full mb-4
-            ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
-          `}
-        >
-          {restaurant.noise}
-        </span>
+        {/* Top row — noise + verified + score */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span
+              className={`
+                font-sans text-[0.6rem] tracking-[0.12em]
+                uppercase px-2.5 py-1 rounded-full
+                ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
+              `}
+            >
+              {restaurant.noise}
+            </span>
+            {restaurant.verified && (
+              <span className="font-sans text-[0.6rem] tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-green-700 text-green-100">
+                ✓ Verified
+              </span>
+            )}
+          </div>
+          <div className="text-right shrink-0 ml-3">
+            <p className="font-display text-2xl font-light text-green-600 leading-none">
+              {restaurant.score}
+            </p>
+            <p className="font-sans text-[0.52rem] tracking-wide uppercase text-muted/50 mt-0.5">
+              {restaurant.ratings} ratings
+            </p>
+          </div>
+        </div>
 
         <h3 className="font-display text-xl font-medium text-green-800 group-hover:text-green-600 transition-colors mb-1">
           {restaurant.name}
@@ -62,6 +80,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
           ))}
         </div>
 
+        {/* Bottom row — best time + CTA */}
         <div className="mt-auto flex items-center justify-between pt-4 border-t border-warm-border">
           <div>
             <p className="font-sans text-[0.58rem] tracking-[0.12em] uppercase text-muted/60 mb-0.5">
@@ -71,14 +90,9 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
               {restaurant.bestTime}
             </p>
           </div>
-          <div className="text-right">
-            <p className="font-sans text-[0.58rem] tracking-[0.12em] uppercase text-muted/60 mb-0.5">
-              Score
-            </p>
-            <p className="font-display text-2xl font-light text-green-600">
-              {restaurant.score}
-            </p>
-          </div>
+          <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
+            View <ArrowRight size={11} />
+          </span>
         </div>
       </div>
     </Link>

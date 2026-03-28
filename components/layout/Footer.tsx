@@ -18,6 +18,8 @@ const NAV = [
       { label: "How It Works", href: "/about#how" },
       { label: "Contact", href: "/about#contact" },
       { label: "Partner With Us", href: "/about#contact" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Use", href: "/terms" },
     ],
   },
   {
@@ -44,10 +46,10 @@ export default function Footer() {
           <p className="font-display italic text-amber text-sm leading-relaxed">
             For anyone who values conversation.
           </p>
-          {/* <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
-            London's community-driven guide to restaurants where you can
-            actually hear yourself think.
-          </p> */}
+          <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
+            Ratings reflect individual visitor experiences at a specific time
+            and date. Noise levels vary.
+          </p>
         </div>
 
         {/* Nav cols */}
