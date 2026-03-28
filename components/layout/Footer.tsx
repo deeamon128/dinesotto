@@ -46,10 +46,6 @@ export default function Footer() {
           <p className="font-display italic text-amber text-sm leading-relaxed">
             For anyone who values conversation.
           </p>
-          <p className="font-sans font-light text-xs text-muted/50 leading-relaxed">
-            Ratings reflect individual visitor experiences at a specific time
-            and date. Noise levels vary.
-          </p>
         </div>
 
         {/* Nav cols */}
@@ -79,6 +75,10 @@ export default function Footer() {
         <div className="max-w-5xl mx-auto px-8 py-5 flex items-center justify-between">
           <p className="font-sans text-[0.65rem] text-muted/40">
             © {yearNow} Sotto. All rights reserved.
+          </p>
+          <p className="font-sans text-[0.65rem] text-muted/40">
+            Ratings reflect individual visitor experiences at a specific time
+            and date. Noise levels vary.
           </p>
         </div>
       </div>
