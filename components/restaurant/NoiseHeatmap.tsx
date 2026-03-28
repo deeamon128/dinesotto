@@ -34,20 +34,20 @@ interface Props {
 
 function scoreToColour(score: number | null) {
   if (score === null) return "bg-warm-border/20 text-muted/20";
-  if (score >= 8.5) return "bg-green-700 text-green-100";
-  if (score >= 7.0) return "bg-green-600 text-green-100";
-  if (score >= 5.5) return "bg-green-500 text-green-100";
-  if (score >= 4.0) return "bg-amber/60  text-charcoal";
-  return "bg-amber      text-charcoal";
+  if (score >= 9) return "bg-green-700 text-green-100";
+  if (score >= 7) return "bg-green-600 text-green-100";
+  if (score >= 5) return "bg-amber/40 text-charcoal";
+  if (score >= 3) return "bg-amber/70 text-charcoal";
+  return "bg-amber text-charcoal";
 }
 
 function scoreToLabel(score: number | null) {
   if (score === null) return "No data yet";
-  if (score >= 8.5) return "Library Quiet";
-  if (score >= 7.0) return "Very Quiet";
-  if (score >= 5.5) return "Pleasantly Quiet";
-  if (score >= 4.0) return "Moderate";
-  return "Loud";
+  if (score >= 9) return "Library Quiet";
+  if (score >= 7) return "Pleasantly Quiet";
+  if (score >= 5) return "Moderate";
+  if (score >= 3) return "Loud";
+  return "Very Loud";
 }
 
 interface TooltipState {
@@ -176,10 +176,10 @@ export default function NoiseHeatmap({ data }: Props) {
         <div className="flex items-center gap-6 mt-8 flex-wrap">
           {[
             { colour: "bg-green-700", label: "Library Quiet" },
-            { colour: "bg-green-600", label: "Very Quiet" },
-            { colour: "bg-green-500", label: "Pleasantly Quiet" },
-            { colour: "bg-amber/60", label: "Moderate" },
-            { colour: "bg-amber", label: "Loud" },
+            { colour: "bg-green-600", label: "Pleasantly Quiet" },
+            { colour: "bg-amber/40", label: "Moderate" },
+            { colour: "bg-amber/70", label: "Loud" },
+            { colour: "bg-amber", label: "Very Loud" },
             { colour: "bg-warm-border/20", label: "No data" },
           ].map(({ colour, label }) => (
             <div key={label} className="flex items-center gap-2">
