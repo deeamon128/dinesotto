@@ -10,12 +10,14 @@ export default async function Home() {
   const supabase = await createServerSupabaseClient();
 
   const [
+    allRestaurants,
     featured,
     topRated,
     { count: totalRestaurants },
     { count: verifiedCount },
     { count: ratingsCount },
   ] = await Promise.all([
+    getRestaurants(),
     getRestaurants({ verified: true, limit: 3 }),
     getRestaurants({ orderBy: "overall_score", limit: 3 }),
     supabase.from("restaurants").select("*", { count: "exact", head: true }),
@@ -31,7 +33,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Hero />
+      <Hero restaurants={allRestaurants} />
       <TrustBar
         totalRestaurants={totalRestaurants ?? 0}
         verifiedCount={verifiedCount ?? 0}
