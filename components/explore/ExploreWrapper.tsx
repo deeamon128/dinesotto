@@ -20,11 +20,13 @@ export default function ExploreWrapper({ restaurants }: Props) {
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [view, setView] = useState<"cards" | "map">("cards");
   const [isMobile, setIsMobile] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Read URL params on load
   useEffect(() => {
     const area = searchParams.get("area");
     const filter = searchParams.get("filter");
+    const search = searchParams.get("search");
+
     if (area) {
       const decoded = decodeURIComponent(area.replace(/\+/g, " "))
         .split(" ")
@@ -33,6 +35,7 @@ export default function ExploreWrapper({ restaurants }: Props) {
       setActiveArea(decoded);
     }
     if (filter === "verified") setVerifiedOnly(true);
+    if (search) setSearchQuery(decodeURIComponent(search));
   }, [searchParams]);
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function ExploreWrapper({ restaurants }: Props) {
 
   function clearArea() {
     setActiveArea("");
-    router.replace("/explore"); // ← clears URL params
+    router.replace("/explore");
   }
 
   const filtered = restaurants.filter((r) => {
@@ -60,6 +63,15 @@ export default function ExploreWrapper({ restaurants }: Props) {
     if (activeOccasion && !r.occasions?.includes(activeOccasion)) return false;
     if (activeArea && r.area !== activeArea) return false;
     if (verifiedOnly && !r.verified) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      if (
+        !r.name.toLowerCase().includes(q) &&
+        !r.area.toLowerCase().includes(q) &&
+        !r.cuisine.toLowerCase().includes(q)
+      )
+        return false;
+    }
     return true;
   });
 
@@ -81,7 +93,11 @@ export default function ExploreWrapper({ restaurants }: Props) {
         setView={setView}
         isMobile={isMobile}
       />
-      <ExploreLayout restaurants={filtered} view={isMobile ? "cards" : view} />
+      <ExploreLayout
+        restaurants={filtered}
+        view={isMobile ? "cards" : view}
+        initialSearch={searchQuery}
+      />
     </>
   );
 }
