@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -87,6 +88,7 @@ export default function RootLayout({
         <SpeedInsights />
         {children}
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );
