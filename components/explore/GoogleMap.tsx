@@ -14,6 +14,8 @@ const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "#2c4a2c",
   "Pleasantly Quiet": "#4e6e4e",
   Moderate: "#c8883a",
+  Loud: "#b85c20",
+  "Very Loud": "#8b3a1a",
 };
 
 const MAP_STYLES = [

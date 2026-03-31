@@ -17,9 +17,12 @@ const CUISINES = [
   "Mediterranean",
   "Indian",
   "Chinese",
+  "Pan Asian",
   "European",
   "Basque",
   "Georgian",
+  "Indonesian",
+  "Burmese",
 ];
 
 const OCCASIONS = [
@@ -39,6 +42,12 @@ const AREAS = [
   "Brixton",
   "Camden",
   "Mayfair",
+  "Bermondsey",
+  "Earl's Court",
+  "South Kensington",
+  "Belgravia",
+  "London Bridge",
+  "Bloomsbury",
 ];
 
 interface Props {
