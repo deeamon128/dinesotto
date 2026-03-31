@@ -7,6 +7,8 @@ const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
   "Pleasantly Quiet": "bg-green-50 text-green-600",
   Moderate: "bg-amber/10 text-amber",
+  Loud: "bg-amber/30 text-amber-800",
+  "Very Loud": "bg-red-100 text-red-700",
 };
 
 function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
