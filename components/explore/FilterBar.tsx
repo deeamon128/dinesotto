@@ -93,6 +93,15 @@ function Dropdown({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handleScroll = () => setOpen(false);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [open]);
+
   return (
     <div ref={ref} className="relative shrink-0">
       <button

@@ -72,13 +72,18 @@ export default function Footer() {
 
       {/* Bottom strip */}
       <div className="border-t border-warm-border">
-        <div className="max-w-5xl mx-auto px-8 py-5 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-8 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-1.5">
           <p className="font-sans text-[0.65rem] text-muted/40">
             © {yearNow} Sotto. All rights reserved.
           </p>
           <p className="font-sans text-[0.65rem] text-muted/40">
-            Ratings reflect individual visitor experiences at a specific time
-            and date. Noise levels vary.
+            Ratings reflect personal experiences. Photos are illustrative.{" "}
+            <a
+              href="/about"
+              className="underline underline-offset-2 hover:text-muted/60 transition-colors"
+            >
+              Restaurant owner?
+            </a>
           </p>
         </div>
       </div>

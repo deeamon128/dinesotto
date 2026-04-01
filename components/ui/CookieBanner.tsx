@@ -46,10 +46,13 @@ export default function CookieBanner() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-ivory border-t border-warm-border px-6 py-4 md:px-8">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <p className="font-sans text-base font-light text-charcoal/70 max-w-xl">
-          We use cookies to understand how DineSotto is used and improve the
-          experience. No advertising or tracking cookies — just basic analytics.{" "}
-          <a href="/privacy" className="text-green-600 underline">
+        <p className="font-sans text-sm font-light text-charcoal/70 max-w-xl">
+          We use cookies for basic analytics to understand how DineSotto is used
+          and improve the experience. No advertising or tracking cookies.{" "}
+          <a
+            href="/privacy"
+            className="text-green-600 underline underline-offset-2"
+          >
             Privacy Policy
           </a>
         </p>
