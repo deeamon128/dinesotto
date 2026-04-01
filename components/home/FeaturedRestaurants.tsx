@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
+import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
 
 const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
@@ -27,6 +28,9 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
             sizes="400px"
           />
           <div className="absolute inset-0 bg-green-900/10" />
+
+          {/* Illustrative photo badge */}
+          <IllustrativePhotoIcon />
         </div>
       )}
 

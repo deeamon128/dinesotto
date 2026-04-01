@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
+import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
 
 interface Restaurant {
   name: string;
@@ -51,6 +52,9 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
             sizes="400px"
           />
           <div className="absolute inset-0 bg-green-900/10" />
+
+          {/* Illustrative photo badge */}
+          <IllustrativePhotoIcon />
         </div>
       )}
 
