@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -43,7 +45,7 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
     <>
       {/* Photo */}
       {restaurant.photo && (
-        <div className="relative h-28 w-full overflow-hidden shrink-0">
+        <div className="relative h-32 w-full overflow-hidden shrink-0">
           <Image
             src={restaurant.photo}
             alt={restaurant.name}
@@ -52,8 +54,6 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
             sizes="400px"
           />
           <div className="absolute inset-0 bg-green-900/10" />
-
-          {/* Illustrative photo badge */}
           <IllustrativePhotoIcon />
         </div>
       )}
@@ -65,47 +65,44 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
         }`}
       />
 
-      <div className="p-4 flex flex-col" style={{ height: "176px" }}>
-        {/* Top row */}
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1.5 mb-1">
-              <span
-                className={`font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full inline-block ${
-                  NOISE_COLOURS[restaurant.noise] ??
-                  "bg-green-50 text-green-600"
-                }`}
-              >
-                {restaurant.noise}
-              </span>
-              {restaurant.verified && (
-                <span className="font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full inline-block bg-green-700 text-green-100">
-                  ✓ Verified
-                </span>
-              )}
-            </div>
-            <h3
-              className={`font-display text-base font-medium leading-tight truncate transition-colors ${
-                selected
-                  ? "text-green-600"
-                  : "text-green-800 group-hover:text-green-600"
+      {/* Card body */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        {/* Badges + score */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span
+              className={`font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full ${
+                NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"
               }`}
             >
-              {restaurant.name}
-            </h3>
+              {restaurant.noise}
+            </span>
+            {restaurant.verified && (
+              <span className="font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full border border-green-600/40 text-green-600">
+                ✦ Sotto Visit
+              </span>
+            )}
           </div>
-          <div className="text-right ml-3 shrink-0">
+          <div className="text-right shrink-0">
             <p className="font-display text-xl font-light text-green-600 leading-none">
-              {restaurant.score}
-            </p>
-            <p className="font-sans text-[0.52rem] tracking-wide uppercase text-muted/50 mt-0.5">
-              {restaurant.ratings} ratings
+              {restaurant.score ?? 0}
             </p>
           </div>
         </div>
 
+        {/* Name */}
+        <h3
+          className={`font-display text-base font-medium leading-snug transition-colors ${
+            selected
+              ? "text-green-600"
+              : "text-green-800 group-hover:text-green-600"
+          }`}
+        >
+          {restaurant.name}
+        </h3>
+
         {/* Location */}
-        <div className="flex items-center gap-1.5 text-muted/60 mb-2">
+        <div className="flex items-center gap-1.5 text-muted/60">
           <MapPin size={10} className="shrink-0" />
           <span className="font-sans text-[0.68rem] truncate">
             {restaurant.cuisine} · {restaurant.area} · {restaurant.price}
@@ -113,21 +110,23 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
         </div>
 
         {/* Tags */}
-        <div className="flex gap-1.5">
-          {restaurant.tags.slice(0, 2).map((tag) => (
+        <div className="flex flex-wrap gap-1.5">
+          {restaurant.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="font-sans text-[0.55rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted/70 truncate max-w-[130px]"
+              className="font-sans text-[0.55rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted/70"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Bottom row */}
-        <div className="mt-auto flex items-center justify-between pt-2 border-t border-warm-border">
-          <p className="font-display text-xs italic text-amber truncate max-w-[160px]">
-            {restaurant.bestTime}
+        {/* Footer */}
+        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between">
+          <p className="font-sans text-[0.52rem] tracking-wide uppercase italic text-amber">
+            {restaurant.ratings > 0
+              ? `${restaurant.ratings} ratings`
+              : "Be the first to rate"}
           </p>
           <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
             View <ArrowRight size={11} />
@@ -137,9 +136,7 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
     </>
   );
 
-  if (asDiv) {
-    return <div className={className}>{content}</div>;
-  }
+  if (asDiv) return <div className={className}>{content}</div>;
 
   return (
     <Link href={`/restaurant/${restaurant.slug}`} className={className}>

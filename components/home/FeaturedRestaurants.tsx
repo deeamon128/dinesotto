@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -19,7 +21,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
       className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
     >
       {restaurant.photo && (
-        <div className="relative h-40 w-full overflow-hidden shrink-0">
+        <div className="relative h-32 w-full overflow-hidden shrink-0">
           <Image
             src={restaurant.photo}
             alt={restaurant.name}
@@ -28,74 +30,68 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
             sizes="400px"
           />
           <div className="absolute inset-0 bg-green-900/10" />
-
-          {/* Illustrative photo badge */}
           <IllustrativePhotoIcon />
         </div>
       )}
 
       <div className="h-0.5 w-full bg-green-600 group-hover:bg-amber transition-colors duration-300" />
 
-      <div className="p-6 flex flex-col flex-1">
-        {/* Top row — noise + verified + score */}
-        <div className="flex items-start justify-between mb-4">
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        {/* Badges + score */}
+        <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span
-              className={`
-                font-sans text-[0.6rem] tracking-[0.12em]
-                uppercase px-2.5 py-1 rounded-full
-                ${NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"}
-              `}
+              className={`font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full ${
+                NOISE_COLOURS[restaurant.noise] ?? "bg-green-50 text-green-600"
+              }`}
             >
               {restaurant.noise}
             </span>
             {restaurant.verified && (
-              <span className="font-sans text-[0.6rem] tracking-[0.12em] uppercase px-2.5 py-1 rounded-full bg-green-700 text-green-100">
-                ✓ Verified
+              <span className="font-sans text-[0.55rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded-full border border-green-600/40 text-green-600">
+                ✦ Sotto Visit
               </span>
             )}
           </div>
-          <div className="text-right shrink-0 ml-3">
-            <p className="font-display text-2xl font-light text-green-600 leading-none">
-              {restaurant.score}
-            </p>
-            <p className="font-sans text-[0.52rem] tracking-wide uppercase text-muted/50 mt-0.5">
-              {restaurant.ratings} ratings
+          <div className="text-right shrink-0">
+            <p className="font-display text-xl font-light text-green-600 leading-none">
+              {restaurant.score ?? 0}
             </p>
           </div>
         </div>
 
-        <h3 className="font-display text-xl font-medium text-green-800 group-hover:text-green-600 transition-colors mb-1">
+        {/* Name */}
+        <h3 className="font-display text-base font-medium leading-snug text-green-800 group-hover:text-green-600 transition-colors">
           {restaurant.name}
         </h3>
-        <div className="flex items-center gap-1.5 text-muted mb-4">
-          <MapPin size={11} />
-          <span className="font-sans text-xs">
+
+        {/* Location */}
+        <div className="flex items-center gap-1.5 text-muted/60">
+          <MapPin size={10} className="shrink-0" />
+          <span className="font-sans text-[0.68rem] truncate">
             {restaurant.cuisine} · {restaurant.area} · {restaurant.price}
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {restaurant.tags.map((tag) => (
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {restaurant.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="font-sans text-[0.6rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted"
+              className="font-sans text-[0.55rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted/70"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        {/* Bottom row — best time + CTA */}
-        <div className="mt-auto flex items-center justify-between pt-4 border-t border-warm-border">
-          <div>
-            <p className="font-sans text-[0.58rem] tracking-[0.12em] uppercase text-muted/60 mb-0.5">
-              Best time
-            </p>
-            <p className="font-display text-sm italic text-amber">
-              {restaurant.bestTime}
-            </p>
-          </div>
+        {/* Footer */}
+        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between">
+          <p className="font-sans text-[0.52rem] tracking-wide uppercase italic text-amber">
+            {restaurant.ratings > 0
+              ? `${restaurant.ratings} ratings`
+              : "Be the first to rate"}
+          </p>
           <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
             View <ArrowRight size={11} />
           </span>

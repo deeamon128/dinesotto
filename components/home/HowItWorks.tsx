@@ -2,7 +2,7 @@ const STEPS = [
   {
     number: "01",
     heading: "Browse by noise level",
-    body: "Every restaurant is rated for music volume, crowd noise, and table spacing — not just stars.",
+    body: "Every restaurant is rated for music volume, crowd noise, and table spacing.",
   },
   {
     number: "02",

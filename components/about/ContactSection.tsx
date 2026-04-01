@@ -57,13 +57,19 @@ export default function ContactSection() {
               {[
                 {
                   label: "For restaurants",
-                  text: "Interested in a Verified Quiet badge?",
+                  text: "Want to claim your listing or add real photos?",
+                  value: "Partnership",
                 },
                 {
                   label: "Press & media",
                   text: "Writing about quiet dining or accessibility?",
+                  value: "Press",
                 },
-                { label: "Everything else", text: "contact@dinesotto.com" },
+                {
+                  label: "Everything else",
+                  text: "hello@dinesotto.com",
+                  value: "General",
+                },
               ].map(({ label, text }) => (
                 <div key={label} className="py-5 border-b border-warm-border">
                   <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/50 mb-1">
@@ -114,22 +120,37 @@ export default function ContactSection() {
             {[
               {
                 label: "For restaurants",
-                text: "Interested in a Verified Quiet badge?",
+                text: "Want to claim your listing or add real photos?",
+                value: "Partnership",
               },
               {
                 label: "Press & media",
                 text: "Writing about quiet dining or accessibility?",
+                value: "Press",
               },
-              { label: "Everything else", text: "contact@dinesotto.com" },
-            ].map(({ label, text }) => (
-              <div key={label} className="py-5 border-b border-warm-border">
-                <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/50 mb-1">
+              {
+                label: "Everything else",
+                text: "hello@dinesotto.com",
+                value: "General",
+              },
+            ].map(({ label, text, value }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => setSubject(value)}
+                className={`py-5 border-b border-warm-border text-left transition-colors group ${
+                  subject === value
+                    ? "opacity-100"
+                    : "opacity-60 hover:opacity-100"
+                }`}
+              >
+                <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/50 mb-1 group-hover:text-muted/70 transition-colors">
                   {label}
                 </p>
                 <p className="font-sans text-sm text-green-700 font-light">
                   {text}
                 </p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -214,6 +235,16 @@ export default function ContactSection() {
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
+
+          <p className="font-sans text-[0.6rem] text-muted/40 leading-relaxed text-center">
+            Your details will only be used to respond to your message.{" "}
+            <a
+              href="/privacy"
+              className="underline underline-offset-2 hover:text-muted/60 transition-colors"
+            >
+              Privacy Policy
+            </a>
+          </p>
 
           <p className="font-sans text-[0.65rem] text-muted/40 text-center">
             We aim to reply within 2 working days.
