@@ -28,7 +28,7 @@ export function mapRestaurant(r: DbRestaurant) {
     lng:          r.lng ?? 0,
     price:        PRICE_LABEL[r.price_range ?? 2] ?? '££',
     verified:     r.verified,
-    score:        r.overall_score,
+    score: r.overall_score ?? 0,
     musicScore:   r.music_score,
     crowdScore:   r.crowd_score,
     spacingScore: r.spacing_score,

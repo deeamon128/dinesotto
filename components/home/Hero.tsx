@@ -9,7 +9,6 @@ import { MappedRestaurant } from "@/lib/supabase/mappers";
 const AREAS = [
   "Covent Garden",
   "Notting Hill",
-  "Marylebone",
   "Soho",
   "Shoreditch",
   "Brixton",
@@ -223,11 +222,26 @@ export default function Hero({ restaurants }: Props) {
       </div>
 
       {/* Scroll indicator */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-2 opacity-30">
         <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-green-300">
           Scroll
         </span>
-        <div className="w-px h-8 bg-green-300/50 animate-pulse" />
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          className="text-green-300 animate-bounce"
+        >
+          <path
+            d="M2 5L8 11L14 5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </section>
   );

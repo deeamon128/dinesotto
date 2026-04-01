@@ -2,20 +2,20 @@ const AUDIENCE = [
   {
     name: "The Hard of Hearing Community",
     description:
-      "Navigating the world with hearing aids or cochlear implants means every environment matters. Sotto gives you the information no other guide does.",
+      "Navigating the world with hearing aids or cochlear implants means every environment matters. DineSotto gives you the information no other guide does.",
   },
   {
     name: "Neurodivergent Diners",
     description:
-      "For those with sensory processing sensitivities, a loud restaurant can lead to overstimulation rather than enjoyment.",
+      "For those with sensory processing sensitivities, a loud restaurant can tip an otherwise lovely evening into something overwhelming.",
   },
   {
     name: "Meaningful Gatherings",
     description:
-      "Whether it’s a delicate first date or a catch-up with elderly parents, some moments require our full, uninterrupted attention.",
+      "Whether it is a delicate first date or a catch-up with elderly parents, some moments deserve a space where you can actually hear each other.",
   },
   {
-    name: "Business lunches",
+    name: "Business Lunches",
     description:
       "Have the conversation that matters in a space that allows it.",
   },
@@ -36,11 +36,11 @@ export default function WhoThisIsFor() {
               className="flex items-start gap-8 py-6 border-b border-warm-border last:border-0"
             >
               <div className="w-1 self-stretch bg-green-600 rounded-full shrink-0" />
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between flex-1 gap-2">
+              <div className="flex flex-col gap-2 flex-1">
                 <h3 className="font-display text-lg font-medium text-green-800">
                   {name}
                 </h3>
-                <p className="font-sans font-light text-muted text-sm md:text-right md:max-w-xs">
+                <p className="font-sans font-light text-muted text-sm leading-relaxed">
                   {description}
                 </p>
               </div>

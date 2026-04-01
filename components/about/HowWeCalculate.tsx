@@ -2,17 +2,17 @@ const STEPS = [
   {
     number: "01",
     heading: "A real visit",
-    body: "Someone visits the restaurant and submits their experience — time of day, music level, crowd noise, and table spacing. No scraped reviews. No guesswork.",
+    body: "Someone visits the restaurant and submits their experience — the time of day, music level, crowd noise, and table spacing. No scraped reviews, guesswork, or AI summaries. Just a person who was actually there.",
   },
   {
     number: "02",
     heading: "Time-aware data",
-    body: "Every rating is tagged to a time slot. Lunch ratings are kept separate from peak evening. Because a Tuesday lunch is not a Friday night. You see how noise changes through the day — so you can choose the window that works for you.",
+    body: "Every rating is tagged to a time slot and day of the week, because a Tuesday lunch and a Friday evening are completely different experiences. When enough ratings come in, you can see exactly how noise changes through the day and choose the window that works for you.",
   },
   {
     number: "03",
-    heading: "Confidence scoring",
-    body: "You always see how many people rated a restaurant. Two visits or two hundred — you decide how much weight to give it. We never hide thin data behind a polished score.",
+    heading: "A weighted score",
+    body: "Crowd noise counts for half the score, because it is the hardest thing to escape. Music and table spacing each make up a quarter. If a room is packed and loud, no amount of quiet music will make it a peaceful dinner — and the score reflects that honestly.",
   },
 ];
 
@@ -28,9 +28,10 @@ export default function HowWeCalculate() {
           <h2 className="font-display text-4xl font-light italic text-green-700 mb-4">
             How every score is calculated.
           </h2>
-          <p className="font-sans font-light text-muted text-sm max-w-md">
-            No algorithms guessing from old reviews. Real people, real visits,
-            real data.
+          <p className="font-sans font-light text-muted text-sm  leading-relaxed">
+            Real people, real visits, real data. You can always see how many
+            ratings a restaurant has. We never hide thin data behind a polished
+            score
           </p>
         </div>
 

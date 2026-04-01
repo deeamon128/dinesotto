@@ -79,6 +79,10 @@ export default function TermsPage() {
                 specific time and date — not statements of fact.
               </p>
               <p>
+                All ratings are reviewed before publication. We reserve the
+                right to reject submissions at our discretion.
+              </p>
+              <p>
                 Noise levels change. A restaurant that was quiet on a Tuesday
                 lunch may be loud on a Friday evening. Always check the time
                 slot and rating count before making decisions.

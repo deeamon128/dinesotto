@@ -335,10 +335,18 @@ export default function RateVisitForm({ restaurants }: Props) {
             <textarea
               rows={4}
               value={review}
+              maxLength={280}
               onChange={(e) => setReview(e.target.value)}
-              placeholder="Anything a future visitor should know..."
+              placeholder="e.g. Quieter near the back, loud by the bar, great for conversation..."
               className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors resize-none font-light italic"
             />
+            <p className="font-sans text-[0.6rem] text-muted/40 mt-1.5">
+              Noise and atmosphere only — tips that help future visitors find a
+              quiet table.
+            </p>
+            <p className="font-sans text-[0.6rem] text-muted/40 text-right mt-0.5">
+              {review.length}/280
+            </p>
           </div>
 
           <button

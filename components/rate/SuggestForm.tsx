@@ -156,6 +156,7 @@ export default function SuggestForm() {
         <textarea
           rows={3}
           value={notes}
+          maxLength={280}
           onChange={(e) => setNotes(e.target.value)}
           placeholder="Tell us what makes it a good quiet dining spot..."
           className="bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors resize-none font-light"

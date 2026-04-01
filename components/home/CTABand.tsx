@@ -9,7 +9,8 @@ export default function CTABand() {
         </h2>
         <p className="font-sans font-light text-green-300/60 text-sm mb-10 leading-relaxed">
           DineSotto is built by the community, for the community. Every
-          suggestion and rating makes the guide better for everyone.
+          suggestion and rating makes the guide better for everyone. Rating a
+          visit takes ~3 minutes.
         </p>
 
         <div className="flex items-center justify-center gap-4">
