@@ -11,7 +11,7 @@ const AREAS = [
   "Notting Hill",
   "Soho",
   "Shoreditch",
-  "Brixton",
+  "South Kensington",
   "Camden",
   "Mayfair",
 ];

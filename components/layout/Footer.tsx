@@ -15,6 +15,7 @@ const NAV = [
     heading: "About",
     links: [
       { label: "Our Story", href: "/about" },
+      { label: "The Noise Problem", href: "/noise" },
       { label: "How It Works", href: "/about#how" },
       { label: "Contact", href: "/about#contact" },
       { label: "Partner With Us", href: "/about#contact" },
@@ -25,8 +26,8 @@ const NAV = [
   {
     heading: "Community",
     links: [
-      { label: "Instagram", href: "https://instagram.com" },
-      { label: "Threads", href: "https://threads.net" },
+      { label: "Instagram", href: "https://www.instagram.com/dinesottouk/" },
+      { label: "Threads", href: "https://www.threads.com/@dinesottouk" },
       { label: "Newsletter", href: "#newsletter" },
       { label: "Press", href: "/about#contact" },
     ],
@@ -59,6 +60,12 @@ export default function Footer() {
                 <li key={label}>
                   <Link
                     href={href}
+                    target={href.startsWith("https://") ? "_blank" : undefined}
+                    rel={
+                      href.startsWith("https://")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="font-sans font-light text-sm text-muted/70 hover:text-green-600 transition-colors"
                   >
                     {label}
@@ -79,7 +86,7 @@ export default function Footer() {
           <p className="font-sans text-[0.65rem] text-muted/40">
             Ratings reflect personal experiences. Photos are illustrative.{" "}
             <a
-              href="/about"
+              href="/about#contact"
               className="underline underline-offset-2 hover:text-muted/60 transition-colors"
             >
               Restaurant owner?
