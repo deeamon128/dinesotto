@@ -21,7 +21,6 @@ const NOISE_COLOURS: Record<string, string> = {
 };
 
 interface Props {
-  restaurant: Restaurant;
   selected?: boolean;
   asDiv?: boolean;
 }
