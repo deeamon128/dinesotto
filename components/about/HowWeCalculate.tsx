@@ -18,7 +18,10 @@ const STEPS = [
 
 export default function HowWeCalculate() {
   return (
-    <section className="bg-ivory-dark py-24 px-8 border-t border-warm-border">
+    <section
+      id="how"
+      className="bg-ivory-dark py-24 px-8 border-t border-warm-border"
+    >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-16">

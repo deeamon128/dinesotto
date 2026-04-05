@@ -39,7 +39,10 @@ export default function ContactSection() {
 
   if (success) {
     return (
-      <section className="bg-ivory-dark py-24 px-8 border-t border-warm-border">
+      <section
+        id="contact"
+        className="bg-ivory-dark py-24 px-8 border-t border-warm-border"
+      >
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
@@ -100,7 +103,10 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="bg-ivory-dark py-24 px-8 border-t border-warm-border">
+    <section
+      id="contact"
+      className="bg-ivory-dark py-24 px-8 border-t border-warm-border"
+    >
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left */}
         <div>
