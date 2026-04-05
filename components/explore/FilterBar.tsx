@@ -227,7 +227,7 @@ export default function FilterBar({
           }`}
         >
           <span className="w-2 h-2 rounded-full bg-current inline-block" />
-          Verified
+          Sotto Visit
         </button>
 
         {/* View toggle */}

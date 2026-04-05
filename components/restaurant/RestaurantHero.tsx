@@ -15,6 +15,7 @@ interface Props {
   spacingScore: number;
   bestTime: string;
   noise: string;
+  bookingUrl?: string | null;
 }
 
 const NOISE_COLOURS: Record<string, string> = {
@@ -28,10 +29,12 @@ const NOISE_COLOURS: Record<string, string> = {
 function toBarWidth(score: number): number {
   // Converts DB score (2-10) back to raw (1-5) then to percentage
   // Low score = quiet = short bar
+  if (!score) return 0;
   return (6 - score / 2) * 20;
 }
 
 function toRawLabel(score: number): string {
+  if (!score) return "0/5";
   const raw = Math.round(6 - score / 2);
   return `${raw}/5`;
 }
@@ -50,6 +53,7 @@ export default function RestaurantHero({
   spacingScore,
   bestTime,
   noise,
+  bookingUrl,
 }: Props) {
   return (
     <section className="relative bg-green-900 overflow-hidden">
@@ -113,6 +117,26 @@ export default function RestaurantHero({
             </p>
           </div>
         </div>
+
+        {/* Reserve CTA */}
+        {bookingUrl && (
+          <div className="mt-6 flex items-center gap-4">
+            <a
+              href={bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-amber hover:bg-amber/80 text-green-900 font-sans text-sm tracking-wide px-5 py-2.5 rounded transition-colors"
+            >
+              Reserve a table →
+            </a>
+            <a
+              href="#rate"
+              className="border border-green-300/30 hover:border-green-300/60 text-green-300/60 hover:text-green-100 font-sans text-sm tracking-wide px-5 py-2.5 rounded transition-all"
+            >
+              Rate your visit
+            </a>
+          </div>
+        )}
 
         {/* Score bars */}
         <div className="grid grid-cols-3 gap-6 pt-8 border-t border-green-800">

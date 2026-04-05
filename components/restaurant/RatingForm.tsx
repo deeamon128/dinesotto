@@ -198,7 +198,10 @@ export default function RatingForm({ restaurantId }: Props) {
   }
 
   return (
-    <section className="bg-ivory py-16 px-8 border-t border-warm-border">
+    <section
+      id="rate"
+      className="bg-ivory py-16 px-8 border-t border-warm-border"
+    >
       <div className="max-w-2xl mx-auto">
         <div className="mb-10">
           <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-2">
