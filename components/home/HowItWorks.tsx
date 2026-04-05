@@ -19,7 +19,7 @@ const STEPS = [
 export default function HowItWorks() {
   return (
     <section className="bg-ivory py-24 px-8 border-t border-warm-border">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto text-center">
         {/* Header */}
         <div className="text-center mb-16">
           <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">

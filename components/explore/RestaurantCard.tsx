@@ -4,20 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
+import { MappedRestaurant } from "@/lib/supabase/mappers";
 
-interface Restaurant {
-  name: string;
-  slug: string;
-  cuisine: string;
-  area: string;
-  price: string;
-  score: number;
-  noise: string;
-  tags: string[];
-  bestTime: string;
-  ratings: number;
-  verified: boolean;
-  photo?: string | null;
+interface Props {
+  restaurant: MappedRestaurant;
+  selected?: boolean;
+  asDiv?: boolean;
 }
 
 const NOISE_COLOURS: Record<string, string> = {
@@ -122,15 +114,29 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
         </div>
 
         {/* Footer */}
+        {/* Footer */}
         <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between">
           <p className="font-sans text-[0.52rem] tracking-wide uppercase italic text-amber">
             {restaurant.ratings > 0
               ? `${restaurant.ratings} ratings`
               : "Be the first to rate"}
           </p>
-          <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
-            View <ArrowRight size={11} />
-          </span>
+          <div className="flex items-center gap-3">
+            {restaurant.bookingUrl && (
+              <a
+                href={restaurant.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+              >
+                Reserve <ArrowRight size={11} />
+              </a>
+            )}
+            <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
+              View <ArrowRight size={11} />
+            </span>
+          </div>
         </div>
       </div>
     </>

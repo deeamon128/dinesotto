@@ -40,6 +40,7 @@ export default async function RestaurantPage({ params }: Props) {
         spacingScore={restaurant.spacingScore}
         bestTime={restaurant.bestTime}
         noise={restaurant.noise}
+        bookingUrl={restaurant.bookingUrl}
       />
       <NoiseHeatmap data={heatmapData} />
       <Reviews reviews={reviews} />

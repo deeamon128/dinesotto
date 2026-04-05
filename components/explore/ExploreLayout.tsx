@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import GoogleMap from "./GoogleMap";
 import { Search } from "lucide-react";
@@ -20,6 +20,15 @@ export default function ExploreLayout({
   const [search, setSearch] = useState(initialSearch);
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    if (!selectedSlug) return;
+    const el = cardRefs.current[selectedSlug];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [selectedSlug]);
 
   const filtered = restaurants.filter((r) => {
     if (!search) return true;
@@ -95,6 +104,9 @@ export default function ExploreLayout({
               {filtered.map((restaurant) => (
                 <div
                   key={restaurant.slug}
+                  ref={(el) => {
+                    cardRefs.current[restaurant.slug] = el;
+                  }}
                   onMouseEnter={() => setHoveredSlug(restaurant.slug)}
                   onMouseLeave={() => setHoveredSlug(null)}
                   onClick={(e) => {
