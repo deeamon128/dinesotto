@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MapPin, ArrowRight } from "lucide-react";
 import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
@@ -18,19 +19,22 @@ const NOISE_COLOURS: Record<string, string> = {
   Moderate: "bg-amber/10 text-amber",
   Loud: "bg-amber/30 text-amber-800",
   "Very Loud": "bg-red-100 text-red-700",
+  "Be the first to rate":
+    "bg-ivory border border-warm-border text-muted/60 italic",
 };
 
-interface Props {
-  selected?: boolean;
-  asDiv?: boolean;
-}
-
 export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
+  const router = useRouter();
+
   const className = `group bg-ivory rounded border transition-all duration-200 cursor-pointer overflow-hidden flex flex-col shrink-0 ${
     selected
       ? "border-amber shadow-md"
       : "border-warm-border hover:border-green-300 hover:shadow-sm"
   }`;
+
+  const handleCardClick = () => {
+    router.push(`/restaurant/${restaurant.slug}`);
+  };
 
   const content = (
     <>
@@ -113,29 +117,23 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
         </div>
 
         {/* Footer */}
-        {/* Footer */}
-        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between">
-          <p className="font-sans text-[0.52rem] tracking-wide uppercase italic text-amber">
-            {restaurant.ratings > 0
-              ? `${restaurant.ratings} ratings`
-              : "Be the first to rate"}
-          </p>
-          <div className="flex items-center gap-3">
-            {restaurant.bookingUrl && (
-              <a
-                href={restaurant.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
-              >
-                Reserve <ArrowRight size={11} />
-              </a>
-            )}
-            <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
-              View <ArrowRight size={11} />
-            </span>
-          </div>
+        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">
+          {restaurant.bookingUrl ? (
+            <a
+              href={restaurant.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+            >
+              Reserve a table <ArrowRight size={11} />
+            </a>
+          ) : (
+            <span />
+          )}
+          <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
+            View <ArrowRight size={11} />
+          </span>
         </div>
       </div>
     </>
@@ -144,8 +142,8 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
   if (asDiv) return <div className={className}>{content}</div>;
 
   return (
-    <Link href={`/restaurant/${restaurant.slug}`} className={className}>
+    <div onClick={handleCardClick} className={className}>
       {content}
-    </Link>
+    </div>
   );
 }
