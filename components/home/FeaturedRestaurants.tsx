@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -12,13 +13,17 @@ const NOISE_COLOURS: Record<string, string> = {
   Moderate: "bg-amber/10 text-amber",
   Loud: "bg-amber/30 text-amber-800",
   "Very Loud": "bg-red-100 text-red-700",
+  "Be the first to rate":
+    "bg-ivory border border-warm-border text-muted/60 italic",
 };
 
 function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
+  const router = useRouter();
+
   return (
-    <Link
-      href={`/restaurant/${restaurant.slug}`}
-      className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
+    <div
+      onClick={() => router.push(`/restaurant/${restaurant.slug}`)}
+      className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
     >
       {restaurant.photo && (
         <div className="relative h-32 w-full overflow-hidden shrink-0">
@@ -86,18 +91,26 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
         </div>
 
         {/* Footer */}
-        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between">
-          <p className="font-sans text-[0.52rem] tracking-wide uppercase italic text-amber">
-            {restaurant.ratings > 0
-              ? `${restaurant.ratings} ratings`
-              : "Be the first to rate"}
-          </p>
+        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">
+          {restaurant.bookingUrl ? (
+            <a
+              href={restaurant.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+            >
+              Reserve a table <ArrowRight size={11} />
+            </a>
+          ) : (
+            <span />
+          )}
           <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
             View <ArrowRight size={11} />
           </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -108,7 +121,7 @@ interface Props {
 
 export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
   return (
-    <section className="bg-ivory-dark py-24 px-8">
+    <section id="featured" className="bg-ivory-dark py-24 px-8">
       <div className="max-w-5xl mx-auto">
         {/* Row 1 — Handpicked */}
         <div className="flex items-end justify-between mb-12">

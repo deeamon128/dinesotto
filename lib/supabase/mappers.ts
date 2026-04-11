@@ -5,6 +5,7 @@ const NOISE_LABEL: Record<string, string> = {
   pleasantly_quiet: 'Pleasantly Quiet',
   moderate:         'Moderate',
   loud:             'Loud',
+  first:            'Be the first to rate',
 }
 
 const PRICE_LABEL: Record<number, string> = {
