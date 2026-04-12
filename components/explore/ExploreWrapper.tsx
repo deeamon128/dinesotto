@@ -6,11 +6,18 @@ import FilterBar from "./FilterBar";
 import ExploreLayout from "./ExploreLayout";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
 
-interface Props {
-  restaurants: MappedRestaurant[];
+interface FilterOptions {
+  areas: string[];
+  cuisines: string[];
+  occasions: string[];
 }
 
-export default function ExploreWrapper({ restaurants }: Props) {
+interface Props {
+  restaurants: MappedRestaurant[];
+  filterOptions: FilterOptions;
+}
+
+export default function ExploreWrapper({ restaurants, filterOptions }: Props) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [activeNoise, setActiveNoise] = useState("all");
@@ -92,6 +99,9 @@ export default function ExploreWrapper({ restaurants }: Props) {
         view={view}
         setView={setView}
         isMobile={isMobile}
+        areas={filterOptions.areas}
+        cuisines={filterOptions.cuisines}
+        occasions={filterOptions.occasions}
       />
       <ExploreLayout
         restaurants={filtered}

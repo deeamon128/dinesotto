@@ -5,10 +5,13 @@ export const metadata = {
 };
 
 import ExploreWrapper from "@/components/explore/ExploreWrapper";
-import { getRestaurants } from "@/lib/supabase/queries";
+import { getRestaurants, getFilterOptions } from "@/lib/supabase/queries";
 
 export default async function ExplorePage() {
-  const restaurants = await getRestaurants();
+  const [restaurants, filterOptions] = await Promise.all([
+    getRestaurants(),
+    getFilterOptions(),
+  ]);
 
   return (
     <main>
@@ -23,7 +26,10 @@ export default async function ExplorePage() {
             </h1>
           </div>
         </div>
-        <ExploreWrapper restaurants={restaurants} />
+        <ExploreWrapper
+          restaurants={restaurants}
+          filterOptions={filterOptions}
+        />
       </div>
     </main>
   );

@@ -5,6 +5,7 @@ interface GetRestaurantsOptions {
   orderBy?: string;
   limit?: number;
   verified?: boolean;
+  minRatings?: number;
 }
 
 export async function getRestaurants(options: GetRestaurantsOptions = {}) {
@@ -14,6 +15,7 @@ export async function getRestaurants(options: GetRestaurantsOptions = {}) {
     orderBy = 'overall_score',
     limit,
     verified,
+    minRatings,
   } = options;
 
   let query = supabase
@@ -23,6 +25,7 @@ export async function getRestaurants(options: GetRestaurantsOptions = {}) {
 
   if (verified !== undefined) query = query.eq('verified', verified)
   if (limit !== undefined) query = query.limit(limit)
+  if (minRatings !== undefined) query = query.gte('rating_count', minRatings)
 
   const { data, error } = await query
 
@@ -81,4 +84,20 @@ export async function getHeatmapData(restaurantId: string) {
     avg_score:   number
     count:       number
   }[]
+}
+
+export async function getFilterOptions() {
+  const supabase = await createServerSupabaseClient()
+
+  const { data } = await supabase
+    .from('restaurants')
+    .select('area, cuisine, occasions')
+
+  if (!data) return { areas: [], cuisines: [], occasions: [] }
+
+  const areas = [...new Set(data.map(r => r.area).filter(Boolean))].sort() as string[]
+  const cuisines = [...new Set(data.map(r => r.cuisine).filter(Boolean))].sort() as string[]
+  const occasions = [...new Set(data.flatMap(r => r.occasions ?? []).filter(Boolean))].sort() as string[]
+
+  return { areas, cuisines, occasions }
 }
