@@ -165,11 +165,18 @@ export default function RestaurantHero({
         </div>
 
         {/* Best time */}
+        {/* Best time */}
         <div className="mt-6">
           <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/30 mb-1">
             Best time to visit
           </p>
-          <p className="font-display italic text-amber text-lg">{bestTime}</p>
+          {bestTime ? (
+            <p className="font-display italic text-amber text-lg">{bestTime}</p>
+          ) : (
+            <p className="font-display italic text-green-300/30 text-lg">
+              Not enough data yet. Be the first to rate
+            </p>
+          )}
         </div>
       </div>
     </section>

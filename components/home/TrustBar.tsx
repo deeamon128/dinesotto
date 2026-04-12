@@ -28,7 +28,7 @@ export default function TrustBar({
       label: "Community Ratings",
     },
     {
-      number: "27",
+      number: "32",
       label: "London Boroughs",
     },
   ];

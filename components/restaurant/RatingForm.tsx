@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 const TIME_SLOTS = [
@@ -20,6 +19,14 @@ const NOISE_SOURCES = [
   "Packed Tables",
   "Echoing Space",
   "Street Noise",
+];
+const OCCASIONS = [
+  "Date Night",
+  "Business Lunch",
+  "Solo Dining",
+  "Family",
+  "Celebration",
+  "Friends",
 ];
 
 const TIME_SLOT_MAP: Record<string, string> = {
@@ -95,6 +102,7 @@ export default function RatingForm({ restaurantId }: Props) {
   const [crowdScore, setCrowdScore] = useState(0);
   const [spacingScore, setSpacingScore] = useState(0);
   const [sources, setSources] = useState<string[]>([]);
+  const [occasion, setOccasion] = useState("");
   const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -129,12 +137,13 @@ export default function RatingForm({ restaurantId }: Props) {
         crowd_score: crowdScore,
         spacing_score: spacingScore,
         noise_sources: sources.length > 0 ? sources : null,
+        occasion: occasion || null,
         review_text: review || null,
         status: "pending",
       }),
     });
-    const insertError = response.ok ? null : await response.json();
 
+    const insertError = response.ok ? null : await response.json();
     setLoading(false);
 
     if (insertError) {
@@ -158,7 +167,6 @@ export default function RatingForm({ restaurantId }: Props) {
               Your rating has been submitted and will appear once verified.
             </p>
           </div>
-
           <div className="text-center">
             <p className="font-display text-xl italic text-green-700 mb-2">
               Did you also visit at a different time?
@@ -177,13 +185,13 @@ export default function RatingForm({ restaurantId }: Props) {
                   setCrowdScore(0);
                   setSpacingScore(0);
                   setSources([]);
+                  setOccasion("");
                   setReview("");
                 }}
                 className="bg-green-600 hover:bg-green-500 text-white font-display italic text-base px-6 py-3 rounded transition-colors"
               >
                 Rate another visit
               </button>
-
               <Link
                 href="/"
                 className="border border-warm-border text-muted hover:text-green-600 hover:border-green-400 font-sans text-sm px-6 py-3 rounded transition-all"
@@ -233,15 +241,11 @@ export default function RatingForm({ restaurantId }: Props) {
                   key={slot}
                   type="button"
                   onClick={() => setTimeSlot(slot)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      timeSlot === slot
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    timeSlot === slot
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {slot}
                 </button>
@@ -260,15 +264,11 @@ export default function RatingForm({ restaurantId }: Props) {
                   key={d}
                   type="button"
                   onClick={() => setDay(d)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      day === d
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    day === d
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {d}
                 </button>
@@ -311,17 +311,36 @@ export default function RatingForm({ restaurantId }: Props) {
                   key={source}
                   type="button"
                   onClick={() => toggleSource(source)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      sources.includes(source)
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    sources.includes(source)
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {source}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Occasion */}
+          <div>
+            <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
+              What was the occasion? (optional)
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {OCCASIONS.map((o) => (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => setOccasion(occasion === o ? "" : o)}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    occasion === o
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
+                >
+                  {o}
                 </button>
               ))}
             </div>
@@ -353,10 +372,11 @@ export default function RatingForm({ restaurantId }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className={`
-              text-white font-display italic text-lg px-6 py-4 rounded transition-colors
-              ${loading ? "bg-green-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-500"}
-            `}
+            className={`text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
+              loading
+                ? "bg-green-400 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-500"
+            }`}
           >
             {loading ? "Submitting..." : "Add My Rating"}
           </button>

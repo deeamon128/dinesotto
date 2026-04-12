@@ -79,16 +79,19 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
         </div>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {restaurant.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="font-sans text-[0.55rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted/70"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {/* Occasions */}
+        {restaurant.occasions && restaurant.occasions.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {restaurant.occasions.slice(0, 3).map((occasion) => (
+              <span
+                key={occasion}
+                className="font-sans text-[0.55rem] tracking-wide px-2 py-0.5 rounded border border-warm-border text-muted/70"
+              >
+                {occasion}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Footer */}
         <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">

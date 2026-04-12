@@ -21,6 +21,14 @@ const NOISE_SOURCES = [
   "Echoing Space",
   "Street Noise",
 ];
+const OCCASIONS = [
+  "Date Night",
+  "Business Lunch",
+  "Solo Dining",
+  "Family",
+  "Celebration",
+  "Friends",
+];
 
 const TIME_SLOT_MAP: Record<string, string> = {
   Breakfast: "breakfast",
@@ -62,15 +70,11 @@ function ScaleInput({
             key={i}
             type="button"
             onClick={() => onChange(i)}
-            className={`
-              flex-1 flex flex-col items-center gap-2 py-3 rounded border
-              transition-all duration-200
-              ${
-                value === i
-                  ? "border-amber bg-amber/10 text-amber"
-                  : "border-warm-border text-muted/40 hover:border-green-300"
-              }
-            `}
+            className={`flex-1 flex flex-col items-center gap-2 py-3 rounded border transition-all duration-200 ${
+              value === i
+                ? "border-amber bg-amber/10 text-amber"
+                : "border-warm-border text-muted/40 hover:border-green-300"
+            }`}
           >
             <span className="font-display text-lg font-light">{i}</span>
             <span className="font-sans text-[0.52rem] tracking-wide text-center leading-tight">
@@ -97,6 +101,7 @@ export default function RateVisitForm({ restaurants }: Props) {
   const [crowdScore, setCrowdScore] = useState(0);
   const [spacingScore, setSpacingScore] = useState(0);
   const [sources, setSources] = useState<string[]>([]);
+  const [occasion, setOccasion] = useState("");
   const [review, setReview] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -106,7 +111,6 @@ export default function RateVisitForm({ restaurants }: Props) {
     if (search.length === 0) return false;
     const q = search.toLowerCase();
     return r.name.toLowerCase().startsWith(q);
-    // r.area.toLowerCase().startsWith(q)  // startsWith instead of includes for area
   });
 
   function selectRestaurant(r: MappedRestaurant) {
@@ -144,6 +148,7 @@ export default function RateVisitForm({ restaurants }: Props) {
       crowd_score: crowdScore,
       spacing_score: spacingScore,
       noise_sources: sources.length > 0 ? sources : null,
+      occasion: occasion || null,
       review_text: review || null,
       status: "pending",
     });
@@ -198,8 +203,6 @@ export default function RateVisitForm({ restaurants }: Props) {
             placeholder="Search by name or area..."
             className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors"
           />
-
-          {/* Search results */}
           {showResults && filtered.length > 0 && (
             <div className="absolute top-full left-0 right-0 mt-1 bg-ivory border border-warm-border rounded shadow-lg py-1 z-50">
               {filtered.map((r) => (
@@ -220,7 +223,6 @@ export default function RateVisitForm({ restaurants }: Props) {
             </div>
           )}
         </div>
-
         {selected && (
           <p className="font-sans text-xs text-green-600 mt-1">
             ✓ {selected.name}, {selected.area}
@@ -228,7 +230,6 @@ export default function RateVisitForm({ restaurants }: Props) {
         )}
       </div>
 
-      {/* Only show rest of form once restaurant is selected */}
       {selected && (
         <>
           {/* Time slot */}
@@ -242,15 +243,11 @@ export default function RateVisitForm({ restaurants }: Props) {
                   key={slot}
                   type="button"
                   onClick={() => setTimeSlot(slot)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      timeSlot === slot
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    timeSlot === slot
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {slot}
                 </button>
@@ -269,15 +266,11 @@ export default function RateVisitForm({ restaurants }: Props) {
                   key={d}
                   type="button"
                   onClick={() => setDay(d)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      day === d
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    day === d
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {d}
                 </button>
@@ -312,15 +305,11 @@ export default function RateVisitForm({ restaurants }: Props) {
                   key={source}
                   type="button"
                   onClick={() => toggleSource(source)}
-                  className={`
-                    font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                    transition-all duration-200
-                    ${
-                      sources.includes(source)
-                        ? "bg-green-600 text-white border-green-600"
-                        : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                    }
-                  `}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    sources.includes(source)
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
                 >
                   {source}
                 </button>
@@ -328,6 +317,30 @@ export default function RateVisitForm({ restaurants }: Props) {
             </div>
           </div>
 
+          {/* Occasion */}
+          <div>
+            <p className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60 mb-3">
+              What was the occasion? (optional)
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {OCCASIONS.map((o) => (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => setOccasion(occasion === o ? "" : o)}
+                  className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                    occasion === o
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-ivory border-warm-border text-muted hover:border-green-400"
+                  }`}
+                >
+                  {o}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Written review */}
           <div className="flex flex-col gap-1.5">
             <label className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60">
               Anything else? (optional)
@@ -352,14 +365,11 @@ export default function RateVisitForm({ restaurants }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className={`
-              text-white font-display italic text-lg px-6 py-4 rounded transition-colors
-              ${
-                loading
-                  ? "bg-green-400 cursor-not-allowed"
-                  : "bg-green-600 hover:bg-green-500"
-              }
-            `}
+            className={`text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
+              loading
+                ? "bg-green-400 cursor-not-allowed"
+                : "bg-green-600 hover:bg-green-500"
+            }`}
           >
             {loading ? "Submitting..." : "Add My Rating"}
           </button>
