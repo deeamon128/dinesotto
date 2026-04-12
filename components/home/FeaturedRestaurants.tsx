@@ -93,15 +93,16 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
         {/* Footer */}
         <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">
           {restaurant.bookingUrl ? (
-            <a
-              href={restaurant.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
-            >
-              Reserve a table <ArrowRight size={11} />
-            </a>
+            <div onClick={(e) => e.stopPropagation()}>
+              <a
+                href={restaurant.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+              >
+                Reserve a table <ArrowRight size={11} />
+              </a>
+            </div>
           ) : (
             <span />
           )}

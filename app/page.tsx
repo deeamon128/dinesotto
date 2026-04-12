@@ -19,7 +19,7 @@ export default async function Home() {
   ] = await Promise.all([
     getRestaurants(),
     getRestaurants({ verified: true, limit: 3 }),
-    getRestaurants({ orderBy: "overall_score", limit: 3 }),
+    getRestaurants({ orderBy: "overall_score", limit: 3, minRatings: 1 }),
     supabase.from("restaurants").select("*", { count: "exact", head: true }),
     supabase
       .from("restaurants")

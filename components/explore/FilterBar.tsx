@@ -9,46 +9,46 @@ const NOISE_FILTERS = [
   { label: "Moderate", value: "moderate" },
 ];
 
-const CUISINES = [
-  "Italian",
-  "Japanese",
-  "British",
-  "French",
-  "Mediterranean",
-  "Indian",
-  "Chinese",
-  "Pan Asian",
-  "European",
-  "Basque",
-  "Georgian",
-  "Indonesian",
-  "Burmese",
-];
+// const CUISINES = [
+//   "Italian",
+//   "Japanese",
+//   "British",
+//   "French",
+//   "Mediterranean",
+//   "Indian",
+//   "Chinese",
+//   "Pan Asian",
+//   "European",
+//   "Basque",
+//   "Georgian",
+//   "Indonesian",
+//   "Burmese",
+// ];
 
-const OCCASIONS = [
-  "First Date",
-  "Business Lunch",
-  "Solo Dining",
-  "Family",
-  "Celebration",
-];
+// const OCCASIONS = [
+//   "First Date",
+//   "Business Lunch",
+//   "Solo Dining",
+//   "Family",
+//   "Celebration",
+// ];
 
-const AREAS = [
-  "Covent Garden",
-  "Notting Hill",
-  "Marylebone",
-  "Soho",
-  "Shoreditch",
-  "Brixton",
-  "Camden",
-  "Mayfair",
-  "Bermondsey",
-  "Earl's Court",
-  "South Kensington",
-  "Belgravia",
-  "London Bridge",
-  "Bloomsbury",
-];
+// const AREAS = [
+//   "Covent Garden",
+//   "Notting Hill",
+//   "Marylebone",
+//   "Soho",
+//   "Shoreditch",
+//   "Brixton",
+//   "Camden",
+//   "Mayfair",
+//   "Bermondsey",
+//   "Earl's Court",
+//   "South Kensington",
+//   "Belgravia",
+//   "London Bridge",
+//   "Bloomsbury",
+// ];
 
 interface Props {
   activeNoise: string;
@@ -65,6 +65,9 @@ interface Props {
   view: "cards" | "map";
   setView: (v: "cards" | "map") => void;
   isMobile: boolean;
+  areas: string[];
+  cuisines: string[];
+  occasions: string[];
 }
 
 function Dropdown({
@@ -106,7 +109,7 @@ function Dropdown({
     <div ref={ref} className="relative shrink-0">
       <button
         onClick={() => setOpen((prev) => !prev)}
-        className={`font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${
+        className={`font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 cursor-pointer ${
           value
             ? "bg-green-600 text-white border-green-600"
             : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"
@@ -118,7 +121,7 @@ function Dropdown({
 
       {open && (
         <div
-          className="fixed mt-1 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[999] w-[160px]"
+          className="fixed mt-1 bg-ivory border border-warm-border rounded shadow-lg py-2 z-[999] w-[160px] max-h-64 overflow-y-auto dropdown-scroll"
           style={{
             top: ref.current
               ? ref.current.getBoundingClientRect().bottom + 4
@@ -174,6 +177,9 @@ export default function FilterBar({
   view,
   setView,
   isMobile,
+  areas,
+  cuisines,
+  occasions,
 }: Props) {
   return (
     <div className="bg-ivory border-b border-warm-border px-4 md:px-8 py-3 sticky top-16 z-30">
@@ -183,7 +189,7 @@ export default function FilterBar({
           <button
             key={value}
             onClick={() => setActiveNoise(value)}
-            className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 ${
+            className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
               activeNoise === value
                 ? "bg-green-600 text-white border-green-600"
                 : "bg-ivory text-muted border-warm-border hover:border-green-400 hover:text-green-600"
@@ -193,26 +199,26 @@ export default function FilterBar({
           </button>
         ))}
 
-        <div className="w-px h-5 bg-warm-border shrink-0" />
+        <div className="w-px h-5 bg-warm-border shrink-0 " />
 
         <Dropdown
           label="Area"
           value={activeArea}
           setValue={setActiveArea}
           onClear={clearArea}
-          options={AREAS}
+          options={areas}
         />
         <Dropdown
           label="Cuisine"
           value={activeCuisine}
           setValue={setActiveCuisine}
-          options={CUISINES}
+          options={cuisines}
         />
         <Dropdown
           label="Occasion"
           value={activeOccasion}
           setValue={setActiveOccasion}
-          options={OCCASIONS}
+          options={occasions}
         />
 
         <div className="w-px h-5 bg-warm-border shrink-0" />
@@ -220,13 +226,13 @@ export default function FilterBar({
         {/* Verified */}
         <button
           onClick={() => setVerifiedOnly(!verifiedOnly)}
-          className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 ${
+          className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 cursor-pointer ${
             verifiedOnly
               ? "bg-green-600 text-white border-green-600"
               : "border-warm-border text-muted hover:border-green-400 hover:text-green-600"
           }`}
         >
-          <span className="w-2 h-2 rounded-full bg-current inline-block" />
+          <span className="w-2 h-2 rounded-full bg-current inline-block " />
           Sotto Visit
         </button>
 
@@ -235,7 +241,7 @@ export default function FilterBar({
           <div className="hidden md:flex items-center border border-warm-border rounded overflow-hidden shrink-0 ml-auto">
             <button
               onClick={() => setView("cards")}
-              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                 view === "cards"
                   ? "bg-green-600 text-white"
                   : "bg-ivory text-muted hover:text-green-600"
@@ -284,7 +290,7 @@ export default function FilterBar({
             <div className="w-px h-5 bg-warm-border" />
             <button
               onClick={() => setView("map")}
-              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 ${
+              className={`px-4 py-2 font-sans text-[0.72rem] tracking-wide transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                 view === "map"
                   ? "bg-green-600 text-white"
                   : "bg-ivory text-muted hover:text-green-600"
