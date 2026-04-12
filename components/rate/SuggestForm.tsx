@@ -16,11 +16,21 @@ const CUISINES = [
   "Other",
 ];
 
+const OCCASIONS = [
+  "Date Night",
+  "Business Lunch",
+  "Solo Dining",
+  "Family",
+  "Celebration",
+  "Friends",
+];
+
 export default function SuggestForm() {
   const [name, setName] = useState("");
   const [area, setArea] = useState("");
   const [address, setAddress] = useState("");
   const [cuisine, setCuisine] = useState("");
+  const [occasion, setOccasion] = useState("");
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,6 +52,7 @@ export default function SuggestForm() {
       area: area.trim(),
       address: address.trim() || null,
       cuisine: cuisine || null,
+      occasion: occasion || null,
       notes: notes.trim() || null,
       status: "pending",
     });
@@ -64,7 +75,7 @@ export default function SuggestForm() {
           Thank you.
         </p>
         <p className="font-sans font-light text-muted text-sm max-w-sm mx-auto">
-          We'll research your suggestion and add it to Sotto if it meets our
+          We'll research your suggestion and add it to DineSotto if it meets our
           quiet dining criteria.
         </p>
       </div>
@@ -131,18 +142,37 @@ export default function SuggestForm() {
             <button
               key={c}
               type="button"
-              onClick={() => setCuisine(c)}
-              className={`
-                font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border
-                transition-all duration-200
-                ${
-                  cuisine === c
-                    ? "bg-green-600 text-white border-green-600"
-                    : "bg-ivory border-warm-border text-muted hover:border-green-400"
-                }
-              `}
+              onClick={() => setCuisine(cuisine === c ? "" : c)}
+              className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                cuisine === c
+                  ? "bg-green-600 text-white border-green-600"
+                  : "bg-ivory border-warm-border text-muted hover:border-green-400"
+              }`}
             >
               {c}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Occasion */}
+      <div className="flex flex-col gap-1.5">
+        <label className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-muted/60">
+          Best suited for (optional)
+        </label>
+        <div className="flex flex-wrap gap-2">
+          {OCCASIONS.map((o) => (
+            <button
+              key={o}
+              type="button"
+              onClick={() => setOccasion(occasion === o ? "" : o)}
+              className={`font-sans text-[0.72rem] tracking-wide px-4 py-2 rounded border transition-all duration-200 ${
+                occasion === o
+                  ? "bg-green-600 text-white border-green-600"
+                  : "bg-ivory border-warm-border text-muted hover:border-green-400"
+              }`}
+            >
+              {o}
             </button>
           ))}
         </div>
@@ -166,20 +196,17 @@ export default function SuggestForm() {
       <button
         type="submit"
         disabled={loading}
-        className={`
-          text-white font-display italic text-lg px-6 py-4 rounded transition-colors
-          ${
-            loading
-              ? "bg-green-400 cursor-not-allowed"
-              : "bg-green-600 hover:bg-green-500"
-          }
-        `}
+        className={`text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
+          loading
+            ? "bg-green-400 cursor-not-allowed"
+            : "bg-green-600 hover:bg-green-500"
+        }`}
       >
         {loading ? "Submitting..." : "Suggest this Restaurant"}
       </button>
 
       <p className="font-sans text-[0.65rem] text-muted/40 text-center">
-        We review every suggestion before adding it to Sotto.
+        We review every suggestion before adding it to DineSotto.
       </p>
     </form>
   );

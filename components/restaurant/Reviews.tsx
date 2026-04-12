@@ -4,6 +4,7 @@ interface Review {
   day_of_week: string;
   music_score: number;
   crowd_score: number;
+  spacing_score: number;
   review_text: string | null;
   created_at: string;
 }
@@ -88,6 +89,7 @@ export default function Reviews({ reviews }: Props) {
                 {[
                   { label: "Music", score: review.music_score },
                   { label: "Crowd", score: review.crowd_score },
+                  { label: "Spacing", score: review.spacing_score },
                 ].map(({ label, score }) => (
                   <div key={label} className="flex items-center gap-3 flex-1">
                     <span className="font-sans text-[0.6rem] tracking-[0.1em] uppercase text-muted/50 w-10 shrink-0">
