@@ -4,8 +4,8 @@ export default function NoisePullQuote() {
       <div className="max-w-2xl mx-auto">
         <p className="font-display text-xl md:text-2xl italic text-amber/80 leading-relaxed">
           "Millions of people leave restaurants exhausted, overstimulated, or
-          simply unable to follow the conversation. No one was building
-          something for them."
+          simply unable to follow the conversation. London had no dedicated
+          guide built around them."
         </p>
       </div>
     </section>

@@ -6,6 +6,7 @@ interface GetRestaurantsOptions {
   limit?: number;
   verified?: boolean;
   minRatings?: number;
+  featured?: boolean;
 }
 
 export async function getRestaurants(options: GetRestaurantsOptions = {}) {
@@ -16,6 +17,7 @@ export async function getRestaurants(options: GetRestaurantsOptions = {}) {
     limit,
     verified,
     minRatings,
+     featured,
   } = options;
 
   let query = supabase
@@ -23,9 +25,10 @@ export async function getRestaurants(options: GetRestaurantsOptions = {}) {
     .select('*')
     .order(orderBy, { ascending: false })
 
-  if (verified !== undefined) query = query.eq('verified', verified)
-  if (limit !== undefined) query = query.limit(limit)
-  if (minRatings !== undefined) query = query.gte('rating_count', minRatings)
+ if (verified !== undefined) query = query.eq('verified', verified)
+if (limit !== undefined) query = query.limit(limit)
+if (minRatings !== undefined) query = query.gte('rating_count', minRatings)
+if (featured !== undefined) query = query.eq('featured', featured)
 
   const { data, error } = await query
 
@@ -101,3 +104,5 @@ export async function getFilterOptions() {
 
   return { areas, cuisines, occasions }
 }
+
+

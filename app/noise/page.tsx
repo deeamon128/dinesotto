@@ -7,9 +7,9 @@ import NoiseDesigned from "@/components/noise/NoiseDesigned";
 import NoiseCTA from "@/components/noise/NoiseCTA";
 
 export const metadata: Metadata = {
-  title: "The Noise Problem | DineSotto",
+  title: "The Noise Problem",
   description:
-    "Why restaurant noise matters — the science, the data, and who it affects.",
+    "Why restaurant noise matters. The science, the data, and who it affects.",
 };
 
 export default function NoisePage() {
