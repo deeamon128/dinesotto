@@ -29,7 +29,7 @@ const STATS = [
     context:
       "And close to eight in ten UK residents have already left a restaurant, café or bar because it was too loud.",
     source: "SoundPrint Research",
-    href: "https://www.scirp.org/journal/PaperInformation.aspx?PaperID=86590",
+    href: "https://www.soundprint.co/blog/noise-in-restaurants",
   },
 ];
 

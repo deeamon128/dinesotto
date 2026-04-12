@@ -60,7 +60,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
           </div>
           <div className="text-right shrink-0">
             <p className="font-display text-xl font-light text-green-600 leading-none">
-              {restaurant.score ?? 0}
+              {restaurant.score > 0 ? restaurant.score : "—"}
             </p>
           </div>
         </div>
