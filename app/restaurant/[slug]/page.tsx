@@ -13,6 +13,41 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const restaurant = await getRestaurantBySlug(slug);
+
+  if (!restaurant) return {};
+
+  return {
+    title: `${restaurant.name} — Quiet Dining in ${restaurant.area}`,
+    description: `Is ${restaurant.name} quiet? Rated ${restaurant.score}/10 for noise by the DineSotto community. ${restaurant.cuisine} restaurant in ${restaurant.area}, London. See noise heatmap by time and day.`,
+    alternates: {
+      canonical: `https://dinesotto.com/restaurant/${slug}`,
+    },
+    openGraph: {
+      title: `${restaurant.name} — Noise Rating & Quiet Dining Guide`,
+      description: `Community noise rating for ${restaurant.name} in ${restaurant.area}. ${restaurant.cuisine} · ${restaurant.price} · See when it's quietest.`,
+      url: `https://dinesotto.com/restaurant/${slug}`,
+      images: restaurant.photo
+        ? [
+            {
+              url: restaurant.photo,
+              width: 1200,
+              height: 630,
+              alt: restaurant.name,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${restaurant.name} — Noise Rating`,
+      description: `Is ${restaurant.name} quiet? See community noise ratings by time and day.`,
+    },
+  };
+}
+
 export default async function RestaurantPage({ params }: Props) {
   const { slug } = await params;
   const restaurant = await getRestaurantBySlug(slug);
