@@ -18,7 +18,7 @@ const NAV = [
       { label: "The Noise Problem", href: "/noise" },
       { label: "How It Works", href: "/about#how" },
       { label: "Contact", href: "/about#contact" },
-      { label: "Partner With Us", href: "/about#contact" },
+      { label: "Partner With Us", href: "/about?subject=Partnership#contact" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
     ],
