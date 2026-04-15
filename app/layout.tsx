@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   },
   description:
     "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
+  verification: {
+    google: "hnK8PLf3GSPKguauJhXn3Fr0krtc-9vjHfTDviv5obs",
+  },
   keywords: [
     "quiet restaurants London",
     "noise level restaurant guide",
