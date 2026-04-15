@@ -4,6 +4,7 @@ export const metadata = {
     "DineSotto was built by someone hard of hearing who couldn't find a quiet restaurant guide. So she built one.",
 };
 
+import { Suspense } from "react";
 import AboutHero from "@/components/about/AboutHero";
 import FounderStory from "@/components/about/FounderStory";
 import PullQuote from "@/components/about/PullQuote";
@@ -20,7 +21,9 @@ export default function AboutPage() {
       <PullQuote />
       <HowWeCalculate />
       <WhoThisIsFor />
-      <ContactSection />
+      <Suspense>
+        <ContactSection />
+      </Suspense>
       <CTABand />
     </main>
   );
