@@ -75,7 +75,7 @@ export default function Hero({ restaurants }: Props) {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-green-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-green-900 py-32 md:py-16">
       {/* Amber glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-amber/20 blur-[120px] z-0 pointer-events-none" />
 
@@ -129,12 +129,12 @@ export default function Hero({ restaurants }: Props) {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-green-900/80 to-transparent z-0 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center">
-        <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/50 mb-6">
+      <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-36 md:pt-0 pb-16 md:pb-0">
+        <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/50 mb-6 mt-10 md:mt-0">
           London's quiet dining guide
         </p>
 
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-16 max-w-2xl mx-auto text-balance">
+        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-8 md:mb-16 max-w-2xl mx-auto text-balance">
           Find restaurants where you can{" "}
           <span className="not-italic text-amber/90">actually talk.</span>
         </h1>
@@ -230,7 +230,7 @@ export default function Hero({ restaurants }: Props) {
             ?.scrollIntoView({ behavior: "smooth" })
         }
         aria-label="Scroll to explore restaurants"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-2 opacity-30 hover:opacity-60 transition-opacity duration-200 cursor-pointer"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 opacity-30 hover:opacity-60 transition-opacity duration-200 cursor-pointer"
       >
         <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-green-300">
           Scroll
