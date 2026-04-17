@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .select("slug, updated_at");
 
   const restaurantPages = (data ?? []).map((r) => ({
-    url: `https://dinesotto.com/restaurant/${r.slug}`,
+    url: `https://www.dinesotto.com/restaurant/${r.slug}`,
     lastModified: new Date(r.updated_at),
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -16,37 +16,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: "https://dinesotto.com",
+      url: "https://www.dinesotto.com",
       lastModified: new Date(),
       changeFrequency: "daily" as const,
       priority: 1,
     },
     {
-      url: "https://dinesotto.com/explore",
+      url: "https://www.dinesotto.com/explore",
       lastModified: new Date(),
       changeFrequency: "daily" as const,
       priority: 0.9,
     },
     {
-      url: "https://dinesotto.com/about",
+      url: "https://www.dinesotto.com/about",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
     {
-      url: "https://dinesotto.com/noise",
+      url: "https://www.dinesotto.com/noise",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
     {
-      url: "https://dinesotto.com/rate",
+      url: "https://www.dinesotto.com/rate",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
     {
-      url: "https://dinesotto.com/suggest",
+      url: "https://www.dinesotto.com/suggest",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,

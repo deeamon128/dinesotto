@@ -23,7 +23,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dinesotto.com"),
+  metadataBase: new URL("https://www.dinesotto.com"),
   title: {
     default: "DineSotto — Quiet Dining in London",
     template: "%s — DineSotto",
@@ -44,14 +44,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://dinesotto.com",
+    url: "https://www.dinesotto.com",
     siteName: "DineSotto",
     title: "DineSotto — Quiet Dining in London",
     description:
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: [
       {
-        url: "https://dinesotto.com/og-image.jpg",
+        url: "https://www.dinesotto.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "DineSotto — Quiet Dining in London",
@@ -63,14 +63,14 @@ export const metadata: Metadata = {
     title: "DineSotto — Quiet Dining in London",
     description:
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
-    images: ["https://dinesotto.com/og-image.jpg"],
+    images: ["https://www.dinesotto.com/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: "https://dinesotto.com",
+    canonical: "https://www.dinesotto.com",
   },
 };
 
