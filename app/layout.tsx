@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://dinesotto.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "DineSotto — Quiet Dining in London",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: "DineSotto — Quiet Dining in London",
     description:
       "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
-    images: ["/og-image.jpg"],
+    images: ["https://dinesotto.com/og-image.jpg"],
   },
   robots: {
     index: true,
