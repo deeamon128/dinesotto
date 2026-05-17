@@ -13,7 +13,7 @@ const EFFECTS = [
   },
   {
     heading: "Stress and cortisol",
-    body: "Research has found that loud environments suppress the perception of sweetness and sourness, meaning food genuinely tastes different in a noisy room. Background noise also reduces our ability to appreciate aroma and flavour complexity, affecting the overall satisfaction of the dining experience",
+    body: "Noise exposure activates the sympathetic nervous system, the same physiological response as stress. Studies show that louder environments correlate with elevated cortisol levels. For people already navigating noisy commutes, open-plan offices, and busy streets, a loud restaurant is one more demand on a system that may already be running close to its limit.",
     source: "PMC10088431",
     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088431/",
   },
