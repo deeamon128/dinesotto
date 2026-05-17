@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://dinesotto.com/sitemap.xml",
+    sitemap: "https://www.dinesotto.com/sitemap.xml",
   };
 }
