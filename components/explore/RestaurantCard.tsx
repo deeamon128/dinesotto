@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { MapPin, ArrowRight } from "lucide-react";
 import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
@@ -24,21 +23,14 @@ const NOISE_COLOURS: Record<string, string> = {
 };
 
 export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
-  const router = useRouter();
-
   const className = `group bg-ivory rounded border transition-all duration-200 cursor-pointer overflow-hidden flex flex-col shrink-0 ${
     selected
       ? "border-amber shadow-md"
       : "border-warm-border hover:border-green-300 hover:shadow-sm"
   }`;
 
-  const handleCardClick = () => {
-    router.push(`/restaurant/${restaurant.slug}`);
-  };
-
   const content = (
     <>
-      {/* Photo */}
       {restaurant.photo && (
         <div className="relative h-32 w-full overflow-hidden shrink-0">
           <Image
@@ -53,16 +45,13 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
         </div>
       )}
 
-      {/* Accent bar */}
       <div
         className={`h-0.5 w-full shrink-0 transition-colors duration-200 ${
           selected ? "bg-amber" : "bg-green-600 group-hover:bg-amber"
         }`}
       />
 
-      {/* Card body */}
       <div className="p-4 flex flex-col gap-3 flex-1">
-        {/* Badges + score */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span
@@ -85,7 +74,6 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
           </div>
         </div>
 
-        {/* Name */}
         <h3
           className={`font-display text-base font-medium leading-snug transition-colors ${
             selected
@@ -96,7 +84,6 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
           {restaurant.name}
         </h3>
 
-        {/* Location */}
         <div className="flex items-center gap-1.5 text-muted/60">
           <MapPin size={10} className="shrink-0" />
           <span className="font-sans text-[0.68rem] truncate">
@@ -104,8 +91,6 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
           </span>
         </div>
 
-        {/* Tags */}
-        {/* Occasions */}
         {restaurant.occasions && restaurant.occasions.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {restaurant.occasions.slice(0, 3).map((occasion) => (
@@ -119,22 +104,8 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
           </div>
         )}
 
-        {/* Footer */}
         <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">
-          {restaurant.bookingUrl ? (
-            <div onClick={(e) => e.stopPropagation()}>
-              <a
-                href={restaurant.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
-              >
-                Reserve a table <ArrowRight size={11} />
-              </a>
-            </div>
-          ) : (
-            <span />
-          )}
+          <span />
           <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
             View <ArrowRight size={11} />
           </span>
@@ -146,8 +117,25 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
   if (asDiv) return <div className={className}>{content}</div>;
 
   return (
-    <div onClick={handleCardClick} className={className}>
-      {content}
+    <div className={`relative ${className}`}>
+      <Link
+        href={`/restaurant/${restaurant.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`View ${restaurant.name}`}
+      />
+      <div className="relative z-0 pointer-events-none">{content}</div>
+      {restaurant.bookingUrl && (
+        <div className="absolute bottom-3 left-4 z-20">
+          <a
+            href={restaurant.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+          >
+            Reserve a table <ArrowRight size={11} />
+          </a>
+        </div>
+      )}
     </div>
   );
 }
