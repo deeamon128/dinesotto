@@ -11,7 +11,7 @@ const STATS = [
     number: "62%",
     label: "of UK adults struggle to hear conversations in noisy environments",
     context:
-      "Nearly two in three people are affected — not just those with diagnosed hearing loss. This is the cocktail party problem, experienced by almost everyone.",
+      "Nearly two in three people are affected, not only those with diagnosed hearing loss. The cocktail party effect is something almost everyone experiences at some point, in any busy room.",
     source: "Hearing Review",
     href: "https://hearingreview.com/hearing-loss/most-adult-britons-struggle-hear-noisy-environments",
   },
@@ -29,7 +29,7 @@ const STATS = [
     context:
       "And close to eight in ten UK residents have already left a restaurant, café or bar because it was too loud.",
     source: "SoundPrint Research",
-    href: "https://www.soundprint.co/blog/noise-in-restaurants",
+    href: "https://rnid.org.uk/wp-content/uploads/2020/05/A1286_Cafe-pubs-and-restaurants-policy-statement.pdf",
   },
 ];
 

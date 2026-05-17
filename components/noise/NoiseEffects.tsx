@@ -1,27 +1,27 @@
 const EFFECTS = [
   {
     heading: "The Lombard Effect",
-    body: "When background noise rises above a comfortable level, everyone at the table involuntarily raises their voice to be heard. This increases the overall noise, which causes everyone to raise their voices further. The room gets louder simply by being full. Research shows this cycle begins above around 50 dB — well below the level of most busy London restaurants.",
+    body: "When background noise rises above a comfortable level, everyone at the table involuntarily raises their voice to be heard. This increases the overall noise, which causes everyone to raise their voices further. The room gets louder simply by being full. Research places the threshold where this cycle accelerates at around 50 to 58 dB. Most busy London restaurants sit well above that.",
     source: "PMC9023576",
     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9023576/",
   },
   {
     heading: "Cognitive overload",
-    body: "When your brain works harder to filter background noise and follow a conversation, it uses the same cognitive resources needed for memory, problem solving, and concentration. A noisy dinner is not just uncomfortable — it is genuinely tiring. This is why you can leave a meal feeling more drained than when you arrived, even if you had a good time.",
+    body: "When your brain works harder to filter background noise and follow a conversation, it draws on the same resources needed for memory, problem solving and concentration. Those resources are finite. You leave the table having spent them.",
     source: "PMC10088431",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088431/",
+    href: "https://link.springer.com/article/10.1007/s10111-023-00746-2",
   },
   {
     heading: "Stress and cortisol",
-    body: "Noise exposure activates the sympathetic nervous system — the same physiological response as stress. Studies show that louder environments correlate with elevated cortisol levels. For people already navigating noisy commutes, open-plan offices, and busy streets, a loud restaurant is one more demand on a system that may already be running close to its limit.",
+    body: "Research has found that loud environments suppress the perception of sweetness and sourness, meaning food genuinely tastes different in a noisy room. Background noise also reduces our ability to appreciate aroma and flavour complexity, affecting the overall satisfaction of the dining experience",
     source: "PMC10088431",
     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10088431/",
   },
   {
     heading: "It even changes how food tastes",
-    body: "Research has found that loud environments suppress the perception of saltiness and amplify bitterness, meaning food genuinely tastes different in a noisy room. Noise also correlates with faster eating, higher alcohol consumption, and less satisfaction with the overall experience — effects that benefit restaurant revenue but not the diner.",
+    body: "Research has found that loud environments suppress the perception of sweetness and sourness, meaning food genuinely tastes different in a noisy room. Background noise also reduces our ability to appreciate aroma and flavour complexity, affecting the overall satisfaction of the dining experience.",
     source: "PMC9023576",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9023576/",
+    href: "https://link.springer.com/article/10.1186/2044-7248-3-9",
   },
 ];
 

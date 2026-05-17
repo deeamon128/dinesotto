@@ -2,7 +2,7 @@ const STEPS = [
   {
     number: "01",
     heading: "A real visit",
-    body: "Someone visits the restaurant and submits their experience — the time of day, music level, crowd noise, and table spacing. No scraped reviews, guesswork, or AI summaries. Just a person who was actually there.",
+    body: "Someone visits the restaurant and submits their experience by the time of day, music level, crowd noise, and table spacing. No scraped reviews, guesswork, or AI summaries. Just a person who was actually there.",
   },
   {
     number: "02",
@@ -12,7 +12,7 @@ const STEPS = [
   {
     number: "03",
     heading: "A weighted score",
-    body: "Crowd noise counts for half the score, because it is the hardest thing to escape. Music and table spacing each make up a quarter. If a room is packed and loud, no amount of quiet music will make it a peaceful dinner — and the score reflects that honestly.",
+    body: "Crowd noise counts for half the score, because it is the hardest thing to escape. Music and table spacing each make up a quarter. If a room is packed and loud, no amount of quiet music will make it a peaceful dinner and the score reflects that honestly.",
   },
 ];
 

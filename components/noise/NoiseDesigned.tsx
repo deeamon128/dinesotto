@@ -14,13 +14,13 @@ export default function NoiseDesigned() {
             Modern restaurant design has moved toward hard floors, open
             kitchens, bare walls, and no soft furnishings. These choices amplify
             sound rather than absorb it. The result is an atmosphere that feels
-            buzzy and energetic — which research shows causes people to eat
+            buzzy and energetic, and research shows it causes people to eat
             faster, drink more, and turn over their tables sooner.
           </p>
           <p>
-            The financial incentives for louder restaurants are real. The cost
-            to diners — in exhaustion, missed conversation, and sensory overload
-            — is rarely counted.
+            The financial incentives for louder restaurants are real. What
+            diners pay in exhaustion, missed conversation, and sensory overload
+            rarely appears in any calculation.
           </p>
           <p>
             DineSotto does not exist to campaign against loud restaurants. It

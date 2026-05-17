@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -18,13 +17,14 @@ const NOISE_COLOURS: Record<string, string> = {
 };
 
 function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
-  const router = useRouter();
-
   return (
-    <div
-      onClick={() => router.push(`/restaurant/${restaurant.slug}`)}
-      className="group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
-    >
+    <div className="relative group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col cursor-pointer">
+      <Link
+        href={`/restaurant/${restaurant.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`View ${restaurant.name}`}
+      />
+
       {restaurant.photo && (
         <div className="relative h-32 w-full overflow-hidden shrink-0">
           <Image
@@ -41,8 +41,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
 
       <div className="h-0.5 w-full bg-green-600 group-hover:bg-amber transition-colors duration-300" />
 
-      <div className="p-4 flex flex-col gap-3 flex-1">
-        {/* Badges + score */}
+      <div className="relative z-0 pointer-events-none p-4 flex flex-col gap-3 flex-1">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span
@@ -65,12 +64,10 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
           </div>
         </div>
 
-        {/* Name */}
         <h3 className="font-display text-base font-medium leading-snug text-green-800 group-hover:text-green-600 transition-colors">
           {restaurant.name}
         </h3>
 
-        {/* Location */}
         <div className="flex items-center gap-1.5 text-muted/60">
           <MapPin size={10} className="shrink-0" />
           <span className="font-sans text-[0.68rem] truncate">
@@ -78,8 +75,6 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
           </span>
         </div>
 
-        {/* Tags */}
-        {/* Occasions */}
         {restaurant.occasions && restaurant.occasions.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {restaurant.occasions.slice(0, 3).map((occasion) => (
@@ -93,27 +88,25 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
           </div>
         )}
 
-        {/* Footer */}
-        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-between w-full">
-          {restaurant.bookingUrl ? (
-            <div onClick={(e) => e.stopPropagation()}>
-              <a
-                href={restaurant.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
-              >
-                Reserve a table <ArrowRight size={11} />
-              </a>
-            </div>
-          ) : (
-            <span />
-          )}
+        <div className="mt-auto pt-3 border-t border-warm-border flex items-center justify-end w-full">
           <span className="font-sans text-[0.62rem] tracking-wide uppercase text-green-600 group-hover:text-green-400 transition-colors flex items-center gap-1">
             View <ArrowRight size={11} />
           </span>
         </div>
       </div>
+
+      {restaurant.bookingUrl && (
+        <div className="absolute bottom-3 left-4 z-20">
+          <a
+            href={restaurant.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"
+          >
+            Reserve a table <ArrowRight size={11} />
+          </a>
+        </div>
+      )}
     </div>
   );
 }
@@ -127,7 +120,6 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
   return (
     <section id="featured" className="bg-ivory-dark py-24 px-8">
       <div className="max-w-5xl mx-auto">
-        {/* Row 1 — Handpicked */}
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
@@ -150,7 +142,6 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
           ))}
         </div>
 
-        {/* Row 2 — Highest Rated */}
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
