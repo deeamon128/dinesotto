@@ -10,7 +10,6 @@ export default function TermsPage() {
 
   return (
     <main className="bg-ivory min-h-screen">
-      {/* Hero — warm, personal, not clinical */}
       <section className="relative bg-green-900 overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-amber/10 blur-[120px] pointer-events-none" />
         <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
@@ -29,7 +28,6 @@ export default function TermsPage() {
         </div>
       </section>
 
-      {/* Pull quote */}
       <section className="bg-amber/5 border-y border-amber/20 py-10 px-8">
         <div className="max-w-2xl mx-auto">
           <p className="font-display text-xl italic text-amber/80 leading-relaxed">
@@ -39,14 +37,12 @@ export default function TermsPage() {
         </div>
       </section>
 
-      {/* Content */}
       <section className="max-w-2xl mx-auto px-8 py-20">
         <p className="font-sans text-[0.65rem] tracking-[0.15em] uppercase text-muted/40 mb-16">
-          Last updated: March 2026
+          Last updated: May 2026
         </p>
 
         <div className="flex flex-col gap-16">
-          {/* Section */}
           <div className="grid md:grid-cols-[120px_1fr] gap-6">
             <p className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-amber pt-1">
               Who we are
@@ -121,6 +117,29 @@ export default function TermsPage() {
 
           <div className="grid md:grid-cols-[120px_1fr] gap-6">
             <p className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-amber pt-1">
+              Noise meter
+            </p>
+            <div className="font-sans font-light text-charcoal/80 text-sm leading-relaxed flex flex-col gap-4">
+              <p>
+                The noise meter provides indicative sound level readings only.
+                Measurements depend on your device's microphone hardware and
+                environmental factors, and may not reflect precise decibel
+                values. DineSotto makes no warranty as to the accuracy of noise
+                meter readings. Use them as a guide rather than a precise
+                measurement.
+              </p>
+              <p>
+                By using the noise meter you confirm that you are comfortable
+                granting temporary microphone access to your browser for the
+                purpose of measuring ambient sound levels.
+              </p>
+            </div>
+          </div>
+
+          <div className="h-px bg-warm-border" />
+
+          <div className="grid md:grid-cols-[120px_1fr] gap-6">
+            <p className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-amber pt-1">
               Restaurants
             </p>
             <div className="font-sans font-light text-charcoal/80 text-sm leading-relaxed flex flex-col gap-4">
@@ -167,7 +186,6 @@ export default function TermsPage() {
           </div>
         </div>
 
-        {/* Footer note */}
         <div className="mt-20 pt-10 border-t border-warm-border">
           <p className="font-display italic text-green-700/50 text-sm">
             Still have questions?{" "}

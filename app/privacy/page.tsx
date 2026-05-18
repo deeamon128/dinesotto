@@ -10,7 +10,6 @@ export default function PrivacyPage() {
 
   return (
     <main className="bg-ivory min-h-screen">
-      {/* Hero */}
       <section className="relative bg-green-900 overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-amber/10 blur-[120px] pointer-events-none" />
         <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
@@ -28,7 +27,6 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      {/* Pull quote */}
       <section className="bg-amber/5 border-y border-amber/20 py-10 px-8">
         <div className="max-w-2xl mx-auto">
           <p className="font-display text-xl italic text-amber/80 leading-relaxed">
@@ -38,10 +36,9 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      {/* Content */}
       <section className="max-w-2xl mx-auto px-8 py-20">
         <p className="font-sans text-[0.65rem] tracking-[0.15em] uppercase text-muted/40 mb-16">
-          Last updated: March 2026
+          Last updated: May 2026
         </p>
 
         <div className="flex flex-col gap-16">
@@ -120,6 +117,27 @@ export default function PrivacyPage() {
 
           <div className="grid md:grid-cols-[120px_1fr] gap-6">
             <p className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-amber pt-1">
+              Noise meter
+            </p>
+            <div className="font-sans font-light text-charcoal/80 text-sm leading-relaxed flex flex-col gap-4">
+              <p>
+                If you use the noise meter feature, your device microphone is
+                accessed temporarily to measure ambient sound levels in real
+                time. No audio is recorded, stored, or transmitted at any point.
+                Microphone access ends when you stop measuring or leave the
+                page.
+              </p>
+              <p className="font-sans text-[0.7rem] tracking-wide uppercase text-muted/50 border border-warm-border rounded px-4 py-3">
+                We never store, record, or listen to any audio from your
+                microphone.
+              </p>
+            </div>
+          </div>
+
+          <div className="h-px bg-warm-border" />
+
+          <div className="grid md:grid-cols-[120px_1fr] gap-6">
+            <p className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-amber pt-1">
               What we don't
             </p>
             <div className="font-sans font-light text-charcoal/80 text-sm leading-relaxed">
@@ -128,6 +146,7 @@ export default function PrivacyPage() {
                   "Your name — ratings are fully anonymous",
                   "Your email address — unless you contact us directly",
                   "Any payment information",
+                  "Any audio from your microphone",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="text-amber mt-0.5 shrink-0">—</span>
@@ -279,7 +298,6 @@ export default function PrivacyPage() {
           </div>
         </div>
 
-        {/* Footer note */}
         <div className="mt-20 pt-10 border-t border-warm-border">
           <p className="font-display italic text-green-700/50 text-sm">
             Questions about your data?{" "}
