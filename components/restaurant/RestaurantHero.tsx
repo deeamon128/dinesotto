@@ -90,7 +90,7 @@ export default function RestaurantHero({
             {/* Noise pill + verified */}
             <div className="flex items-center gap-3 mb-4">
               <span
-                className={`font-sans text-[0.62rem] tracking-[0.12em] uppercase px-3 py-1 rounded-full ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}`}
+                className={`font-sans text-[0.55rem] tracking-[0.08em] uppercase px-2 py-0.5 rounded-full whitespace-nowrap ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}`}
               >
                 {noise}
               </span>
