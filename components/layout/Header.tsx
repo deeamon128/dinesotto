@@ -83,6 +83,7 @@ export default function Header() {
               { label: "Explore", href: "/explore" },
               { label: "About", href: "/about" },
               { label: "The Noise Problem", href: "/noise" },
+              { label: "Measure", href: "/measure" },
             ].map(({ label, href }) => (
               <Link
                 key={href}
@@ -126,6 +127,7 @@ export default function Header() {
               { label: "Explore", href: "/explore" },
               { label: "About", href: "/about" },
               { label: "The Noise Problem", href: "/noise" },
+              { label: "Measure", href: "/measure" },
             ].map(({ label, href }) => (
               <Link
                 key={href}
