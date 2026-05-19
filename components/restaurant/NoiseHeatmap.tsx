@@ -241,12 +241,12 @@ export default function NoiseHeatmap({ data }: Props) {
           </p>
           <div className="relative">
             {/* Fade hint on right edge */}
-            <div
+            {/* <div
               className="absolute top-0 right-0 w-10 h-full z-10 pointer-events-none"
               style={{
                 background: "linear-gradient(to right, transparent, #F5F0E8)",
               }}
-            />
+            /> */}
             <div
               className="overflow-x-auto pb-1"
               style={{ scrollbarWidth: "none" }}
