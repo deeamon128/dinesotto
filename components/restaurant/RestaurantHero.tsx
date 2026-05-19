@@ -39,6 +39,15 @@ function toRawLabel(score: number): string {
   return `${raw}/5`;
 }
 
+function formatBestTime(raw: string): string {
+  return raw
+    .split(" · ")
+    .map((part) =>
+      part.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+    )
+    .join(" · ");
+}
+
 export default function RestaurantHero({
   photo,
   name,
@@ -81,7 +90,7 @@ export default function RestaurantHero({
             {/* Noise pill + verified */}
             <div className="flex items-center gap-3 mb-4">
               <span
-                className={`font-sans text-[0.62rem] tracking-[0.12em] uppercase px-3 py-1 rounded-full ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}`}
+                className={`font-sans text-[0.60rem] tracking-[0.08em] uppercase px-3 py-1 rounded-full whitespace-nowrap ${NOISE_COLOURS[noise] ?? "bg-green-50 text-green-600"}`}
               >
                 {noise}
               </span>
@@ -139,18 +148,18 @@ export default function RestaurantHero({
         )}
 
         {/* Score bars */}
-        <div className="grid grid-cols-3 gap-6 pt-8 border-t border-green-800">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-green-800">
           {[
             { label: "Music Level", score: musicScore },
             { label: "Crowd Noise", score: crowdScore },
             { label: "Table Spacing", score: spacingScore },
           ].map(({ label, score }) => (
             <div key={label}>
-              <div className="flex items-center justify-between mb-2">
-                <p className="font-sans text-[0.62rem] tracking-[0.12em] uppercase text-green-300/40">
+              <div className="flex items-start justify-between mb-2 gap-1">
+                <p className="font-sans text-[0.58rem] tracking-[0.1em] uppercase text-green-300/40 leading-tight">
                   {label}
                 </p>
-                <p className="font-sans text-[0.62rem] text-green-300/40">
+                <p className="font-sans text-[0.62rem] text-green-300/40 shrink-0">
                   {toRawLabel(score)}
                 </p>
               </div>
@@ -171,7 +180,9 @@ export default function RestaurantHero({
             Best time to visit
           </p>
           {bestTime ? (
-            <p className="font-display italic text-amber text-lg">{bestTime}</p>
+            <p className="font-display italic text-amber text-lg">
+              {formatBestTime(bestTime)}
+            </p>
           ) : (
             <p className="font-display italic text-green-300/30 text-lg">
               Not enough data yet. Be the first to rate

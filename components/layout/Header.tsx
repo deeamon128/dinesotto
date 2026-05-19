@@ -9,7 +9,10 @@ import SottoLogo from "@/components/ui/SottoLogo";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bannerVisible, setBannerVisible] = useState(true);
+  const [bannerVisible, setBannerVisible] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return sessionStorage.getItem("bannerDismissed") !== "true";
+  });
   const pathname = usePathname();
 
   const isLightPage = pathname !== "/";
@@ -39,7 +42,10 @@ export default function Header() {
               .
             </p>
             <button
-              onClick={() => setBannerVisible(false)}
+              onClick={() => {
+                setBannerVisible(false);
+                sessionStorage.setItem("bannerDismissed", "true");
+              }}
               aria-label="Dismiss banner"
               className="text-charcoal/60 hover:text-charcoal transition-colors shrink-0"
             >
