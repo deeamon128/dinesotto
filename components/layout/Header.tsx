@@ -80,7 +80,7 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-6 lg:gap-10">
             {[
               { label: "Home", href: "/" },
               { label: "Explore", href: "/explore" },
@@ -106,7 +106,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/suggest"
               className="bg-green-600 hover:bg-green-400 text-white text-[0.76rem] font-medium tracking-[0.04em] px-4 py-2 rounded transition-colors duration-200"
@@ -117,14 +117,14 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden text-green-600"
+          className="lg:hidden text-green-600"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
         {menuOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-ivory border-b border-warm-border flex flex-col px-8 py-6 gap-5 md:hidden">
+          <div className="absolute top-16 left-0 right-0 bg-ivory border-b border-warm-border flex flex-col px-8 py-6 gap-5 lg:hidden">
             {[
               { label: "Home", href: "/" },
               { label: "Explore", href: "/explore" },
