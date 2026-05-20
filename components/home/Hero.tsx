@@ -75,7 +75,7 @@ export default function Hero({ restaurants }: Props) {
   }
 
   return (
-    <section className="relative min-h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden bg-green-900">
+    <section className="relative min-h-[600px] md:min-h-screen flex items-center justify-center bg-green-900">
       {/* Amber glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-amber/20 blur-[120px] z-0 pointer-events-none" />
 
@@ -129,7 +129,7 @@ export default function Hero({ restaurants }: Props) {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-green-900/80 to-transparent z-0 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-24 pb-10">
+      <div className="relative z-[100] w-full max-w-3xl mx-auto px-8 text-center pt-24 pb-20">
         <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/50 mb-6">
           London's quiet dining guide
         </p>
@@ -167,7 +167,7 @@ export default function Hero({ restaurants }: Props) {
 
           {/* Dropdown */}
           {showDropdown && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-ivory border border-warm-border rounded shadow-xl py-1 z-50">
+            <div className="absolute top-full left-0 right-0 mt-1 bg-ivory border border-warm-border rounded shadow-xl py-1 z-[200]">
               {suggestions.map((r) => (
                 <button
                   key={r.slug}
