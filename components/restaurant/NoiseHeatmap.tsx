@@ -34,8 +34,8 @@ interface Props {
 
 function scoreToColour(score: number | null) {
   if (score === null) return "bg-warm-border/20 text-muted/20";
-  if (score >= 9) return "bg-green-700 text-green-100";
-  if (score >= 7) return "bg-green-600 text-green-100";
+  if (score >= 9) return "bg-green-800 text-green-100";
+  if (score >= 7) return "bg-green-500 text-white";
   if (score >= 5) return "bg-amber/40 text-charcoal";
   if (score >= 3) return "bg-amber/70 text-charcoal";
   return "bg-amber text-charcoal";
@@ -70,8 +70,8 @@ export default function NoiseHeatmap({ data }: Props) {
   const legend = (
     <div className="flex items-center gap-4 mt-6 flex-wrap">
       {[
-        { colour: "bg-green-700", label: "Library Quiet" },
-        { colour: "bg-green-600", label: "Pleasantly Quiet" },
+        { colour: "bg-green-800", label: "Library Quiet" },
+        { colour: "bg-green-500", label: "Pleasantly Quiet" },
         { colour: "bg-amber/40", label: "Moderate" },
         { colour: "bg-amber/70", label: "Loud" },
         { colour: "bg-amber", label: "Very Loud" },
