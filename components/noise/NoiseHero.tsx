@@ -10,12 +10,14 @@ export default function NoiseHero() {
         <h1 className="font-display text-5xl md:text-6xl font-light italic text-green-100 leading-[1.1] mb-8">
           Why noise matters more than you think.
         </h1>
-        <p className="font-sans font-light text-green-300/60 text-sm leading-relaxed max-w-lg">
-          Loud restaurants are not just annoying. They affect how you hear, how
-          you feel, how your food tastes, and how much energy you have left at
-          the end of the evening. The research is clear. The information has
-          just never been easy to find.
-        </p>
+        <div className="flex flex-col gap-4 font-sans font-light text-green-300/60 text-sm leading-relaxed max-w-lg">
+          <p>
+            Loud restaurants are not just annoying. They affect how you hear,
+            how you feel, how your food tastes, and how much energy you have
+            left at the end of the evening. The research is clear. The
+            information has just never been easy to find.
+          </p>
+        </div>
       </div>
     </section>
   );

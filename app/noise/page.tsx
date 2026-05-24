@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import NoiseHero from "@/components/noise/NoiseHero";
-import NoisePullQuote from "@/components/noise/NoisePullQuote";
+import NoiseSolutions from "@/components/noise/NoiseSolution";
 import NoiseStats from "@/components/noise/NoiseStats";
 import NoiseEffects from "@/components/noise/NoiseEffects";
-import NoiseDesigned from "@/components/noise/NoiseDesigned";
 import NoiseCTA from "@/components/noise/NoiseCTA";
 
 export const metadata: Metadata = {
@@ -16,10 +15,9 @@ export default function NoisePage() {
   return (
     <main className="bg-ivory min-h-screen">
       <NoiseHero />
-      <NoisePullQuote />
       <NoiseStats />
       <NoiseEffects />
-      <NoiseDesigned />
+      <NoiseSolutions />
       <NoiseCTA />
     </main>
   );
