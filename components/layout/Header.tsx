@@ -34,8 +34,21 @@ export default function Header() {
         <div className="fixed top-0 left-0 right-0 z-[60] bg-amber/90 backdrop-blur-sm">
           <div className="max-w-5xl mx-auto px-8 py-2 flex items-center justify-between gap-4">
             <p className="font-sans text-[0.7rem] tracking-wide text-charcoal/80 text-center flex-1">
-              We're still building — new restaurants and features are being
-              added daily. Feel free to explore and{" "}
+              We're still building -{" "}
+              <Link
+                href="/explore"
+                className="underline underline-offset-2 hover:text-charcoal transition-colors"
+              >
+                explore restaurants
+              </Link>
+              ,{" "}
+              <Link
+                href="/rate"
+                className="underline underline-offset-2 hover:text-charcoal transition-colors"
+              >
+                rate a visit
+              </Link>{" "}
+              or{" "}
               <Link
                 href="/suggest"
                 className="underline underline-offset-2 hover:text-charcoal transition-colors"
