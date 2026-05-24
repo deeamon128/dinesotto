@@ -9,13 +9,7 @@ import SottoLogo from "@/components/ui/SottoLogo";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bannerVisible, setBannerVisible] = useState(true);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("bannerDismissed") === "true") {
-      setBannerVisible(false);
-    }
-  }, []);
   const pathname = usePathname();
 
   const isLightPage = pathname !== "/";
@@ -29,55 +23,13 @@ export default function Header() {
 
   return (
     <>
-      {/* Construction banner */}
-      {bannerVisible && (
-        <div className="fixed top-0 left-0 right-0 z-[60] bg-amber/90 backdrop-blur-sm">
-          <div className="max-w-5xl mx-auto px-8 py-2 flex items-center justify-between gap-4">
-            <p className="font-sans text-[0.7rem] tracking-wide text-charcoal/80 text-center flex-1">
-              New restaurants added every week -{" "}
-              <Link
-                href="/explore"
-                className="underline underline-offset-2 hover:text-charcoal transition-colors"
-              >
-                explore restaurants
-              </Link>
-              ,{" "}
-              <Link
-                href="/rate"
-                className="underline underline-offset-2 hover:text-charcoal transition-colors"
-              >
-                rate a visit
-              </Link>{" "}
-              or{" "}
-              <Link
-                href="/suggest"
-                className="underline underline-offset-2 hover:text-charcoal transition-colors"
-              >
-                suggest a spot
-              </Link>
-              .
-            </p>
-            <button
-              onClick={() => {
-                setBannerVisible(false);
-                sessionStorage.setItem("bannerDismissed", "true");
-              }}
-              aria-label="Dismiss banner"
-              className="text-charcoal/60 hover:text-charcoal transition-colors shrink-0 cursor-pointer p-2 -mr-2"
-            >
-              <X size={16} />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Header — shifts down when banner is visible */}
       <header
         className={`
           fixed left-0 right-0 z-50 h-16
           flex items-center justify-between
           px-8 transition-all duration-300
-          ${bannerVisible ? "top-8" : "top-0"}
+          ${"top-0"}
           ${
             showScrolled
               ? "bg-ivory/95 backdrop-blur-md border-b border-warm-border shadow-sm"
