@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import CommunityNudgeBar from "@/components/home/CommunityNudgeBar";
 import TrustBar from "@/components/home/TrustBar";
 import FeaturedRestaurants from "@/components/home/FeaturedRestaurants";
 import HowItWorks from "@/components/home/HowItWorks";
@@ -42,6 +43,7 @@ export default async function Home() {
       <FeaturedRestaurants restaurants={featured} topRated={topRated} />
       <HowItWorks />
       <CTABand />
+      <CommunityNudgeBar />
     </main>
   );
 }
