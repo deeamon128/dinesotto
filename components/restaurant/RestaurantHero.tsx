@@ -108,7 +108,7 @@ export default function RestaurantHero({
             </h1>
 
             {/* Location */}
-            <div className="flex items-center gap-2 text-green-300/50">
+            <div className="flex items-center gap-2 text-green-300/70">
               <MapPin size={13} />
               <span className="font-sans text-sm font-light">
                 {cuisine} · {area} · {price} · {address}
@@ -121,7 +121,7 @@ export default function RestaurantHero({
             <p className="font-display text-6xl font-light text-green-100 leading-none">
               {overallScore}
             </p>
-            <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/40 mt-1">
+            <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/70 mt-1">
               Overall
             </p>
           </div>
@@ -156,7 +156,7 @@ export default function RestaurantHero({
           ].map(({ label, score }) => (
             <div key={label}>
               <div className="flex items-start justify-between mb-2 gap-1">
-                <p className="font-sans text-[0.58rem] tracking-[0.1em] uppercase text-green-300/40 leading-tight">
+                <p className="font-sans text-[0.58rem] tracking-[0.1em] uppercase text-green-300/70 leading-tight">
                   {label}
                 </p>
                 <p className="font-sans text-[0.62rem] text-green-300/40 shrink-0">
@@ -176,7 +176,7 @@ export default function RestaurantHero({
         {/* Best time */}
         {/* Best time */}
         <div className="mt-6">
-          <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/30 mb-1">
+          <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/60 mb-1">
             Best time to visit
           </p>
           {bestTime ? (
