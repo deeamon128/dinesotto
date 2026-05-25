@@ -228,7 +228,7 @@ export default function Hero({ restaurants }: Props) {
             <Link
               key={area}
               href={`/explore?area=${encodeURIComponent(area)}`}
-              className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/4.0 text-green-300/70 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
+              className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/40 text-green-300/70 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
             >
               {area}
             </Link>
