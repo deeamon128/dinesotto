@@ -132,7 +132,7 @@ export default function Hero({ restaurants }: Props) {
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-16 sm:pt-20 pb-20">
-        <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/50 mb-6">
+        <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/70 mb-6">
           London's quiet dining guide
         </p>
 
@@ -228,7 +228,7 @@ export default function Hero({ restaurants }: Props) {
             <Link
               key={area}
               href={`/explore?area=${encodeURIComponent(area)}`}
-              className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/20 text-green-300/50 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
+              className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/4.0 text-green-300/70 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
             >
               {area}
             </Link>
