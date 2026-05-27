@@ -374,7 +374,7 @@ export default function RatingForm({ restaurantId }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full  text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
+            className={` text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
               loading
                 ? "bg-green-400 cursor-not-allowed"
                 : "bg-green-600 hover:bg-green-500"
