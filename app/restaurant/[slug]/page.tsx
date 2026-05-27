@@ -8,6 +8,7 @@ import RestaurantHero from "@/components/restaurant/RestaurantHero";
 import NoiseHeatmap from "@/components/restaurant/NoiseHeatmap";
 import Reviews from "@/components/restaurant/Reviews";
 import RatingForm from "@/components/restaurant/RatingForm";
+import RatePromptBubble from "@/components/restaurant/RatePromptBubble";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -119,6 +120,7 @@ export default async function RestaurantPage({ params }: Props) {
       <NoiseHeatmap data={heatmapData} />
       <Reviews reviews={reviews} />
       <RatingForm restaurantId={restaurant.id} />
+      <RatePromptBubble />
     </main>
   );
 }

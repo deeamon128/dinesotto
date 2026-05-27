@@ -359,20 +359,22 @@ export default function RatingForm({ restaurantId }: Props) {
               placeholder="e.g. Quieter near the back, loud by the bar, great for conversation..."
               className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors resize-none font-light italic"
             />
-            <p className="font-sans text-[0.6rem] text-muted/40 mt-1.5">
-              Noise and atmosphere only. Tips that help future visitors find a
-              quiet table.
-            </p>
-            <p className="font-sans text-[0.6rem] text-muted/40 text-right mt-0.5">
-              {review.length}/280
-            </p>
+            <div className="flex items-start justify-between gap-4 mt-1.5">
+              <p className="font-sans text-[0.6rem] text-muted/40">
+                Noise and atmosphere only. Tips that help future visitors find a
+                quiet table.
+              </p>
+              <p className="font-sans text-[0.6rem] text-muted/40 shrink-0">
+                {review.length}/280
+              </p>
+            </div>
           </div>
 
           {/* Submit */}
           <button
             type="submit"
             disabled={loading}
-            className={`text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
+            className={` text-white font-display italic text-lg px-6 py-4 rounded transition-colors ${
               loading
                 ? "bg-green-400 cursor-not-allowed"
                 : "bg-green-600 hover:bg-green-500"
