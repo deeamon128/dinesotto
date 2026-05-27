@@ -158,7 +158,7 @@ export default function Hero({ restaurants }: Props) {
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 onFocus={() => search.length > 0 && setShowDropdown(true)}
-                placeholder="Area, cuisine or restaurant..."
+                placeholder="Search restaurants, areas..."
                 className="w-full bg-transparent text-charcoal placeholder:text-muted/50 text-sm py-4 focus:outline-none font-sans"
               />
             </div>
