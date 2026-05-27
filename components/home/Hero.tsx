@@ -131,15 +131,18 @@ export default function Hero({ restaurants }: Props) {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-green-900/80 to-transparent z-0 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-16 sm:pt-20 pb-20">
-        <p className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/70 mb-6">
+      <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-24 sm:pt-20 pb-20">
+        <p className="hidden sm:block font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/70 mb-6">
           London's quiet dining guide
         </p>
 
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-8 md:mb-16 max-w-2xl mx-auto text-balance">
+        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-6 max-w-2xl mx-auto text-balance">
           Find restaurants where you can{" "}
           <span className="not-italic text-amber/90">actually talk.</span>
         </h1>
+        <p className="font-sans font-light text-green-300/70 text-sm leading-relaxed mb-8 md:mb-12 max-w-lg mx-auto">
+          Know what a restaurant feels like before you book.
+        </p>
 
         {/* Search bar */}
         <div ref={wrapperRef} className="relative max-w-lg mx-auto mb-8">
