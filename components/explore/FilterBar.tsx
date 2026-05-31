@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const NOISE_FILTERS = [
   { label: "All", value: "all" },
@@ -145,6 +146,10 @@ function Dropdown({
               key={o}
               onClick={() => {
                 setValue(o === value ? "" : o);
+                trackEvent("filter_dropdown_click", {
+                  filter: label,
+                  value: o,
+                });
                 setOpen(false);
               }}
               className={`w-full text-left px-4 py-2 font-sans text-xs transition-colors ${
@@ -188,7 +193,10 @@ export default function FilterBar({
         {NOISE_FILTERS.map(({ label, value }) => (
           <button
             key={value}
-            onClick={() => setActiveNoise(value)}
+            onClick={() => {
+              setActiveNoise(value);
+              trackEvent("filter_noise_click", { filter: value });
+            }}
             className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 cursor-pointer ${
               activeNoise === value
                 ? "bg-green-600 text-white border-green-600"
@@ -225,7 +233,12 @@ export default function FilterBar({
 
         {/* Verified */}
         <button
-          onClick={() => setVerifiedOnly(!verifiedOnly)}
+          onClick={() => {
+            setVerifiedOnly(!verifiedOnly);
+            trackEvent("filter_verified_toggle", {
+              active: String(!verifiedOnly),
+            });
+          }}
           className={`shrink-0 font-sans text-[0.72rem] tracking-wide px-3 py-1.5 rounded border transition-all duration-200 flex items-center gap-2 cursor-pointer ${
             verifiedOnly
               ? "bg-green-600 text-white border-green-600"

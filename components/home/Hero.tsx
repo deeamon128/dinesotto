@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
+import { trackEvent } from "@/lib/analytics";
 
 const AREAS = [
   "Covent Garden",
@@ -67,11 +68,13 @@ export default function Hero({ restaurants }: Props) {
 
   function handleSearch() {
     if (!search.trim()) return;
+    trackEvent("search_performed", { query: search.trim() });
     setShowDropdown(false);
     router.push(`/explore?search=${encodeURIComponent(search.trim())}`);
   }
 
   function handleSelect(restaurant: MappedRestaurant) {
+    trackEvent("search_result_clicked", { restaurant: restaurant.name });
     setShowDropdown(false);
     router.push(`/restaurant/${restaurant.slug}`);
   }
@@ -231,6 +234,7 @@ export default function Hero({ restaurants }: Props) {
             <Link
               key={area}
               href={`/explore?area=${encodeURIComponent(area)}`}
+              onClick={() => trackEvent("area_chip_click", { area })}
               className="font-sans text-[0.72rem] tracking-wide px-4 py-1.5 rounded-full border border-green-300/40 text-green-300/70 hover:border-green-300/50 hover:text-green-300/80 transition-all duration-200"
             >
               {area}

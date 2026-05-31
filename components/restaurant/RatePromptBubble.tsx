@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function RatePromptBubble() {
   const [visible, setVisible] = useState(false);
@@ -14,6 +15,7 @@ export default function RatePromptBubble() {
       const scrolled = window.scrollY;
       const total = document.documentElement.scrollHeight - window.innerHeight;
       if (scrolled / total > 0.5) setVisible(true);
+      trackEvent("rate_prompt_bubble_shown");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,7 +36,10 @@ export default function RatePromptBubble() {
         Visited here?{" "}
         <a
           href="#rate"
-          onClick={dismiss}
+          onClick={() => {
+            dismiss();
+            trackEvent("rate_prompt_bubble_clicked");
+          }}
           className="text-ivory font-medium underline underline-offset-2 decoration-amber/60 hover:decoration-amber"
         >
           Rate it in 2 minutes.

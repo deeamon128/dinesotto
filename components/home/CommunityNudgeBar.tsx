@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function CommunityNudgeBubble() {
   const [visible, setVisible] = useState(false);
@@ -51,6 +52,7 @@ export default function CommunityNudgeBubble() {
         Built by the community.{" "}
         <Link
           href="/rate"
+          onClick={() => trackEvent("nudge_bubble_click", { action: "rate" })}
           className="text-[#f5f0e8] font-medium underline underline-offset-2 decoration-[#c8883a]/60 hover:decoration-[#c8883a]"
         >
           Rate a visit
@@ -58,6 +60,9 @@ export default function CommunityNudgeBubble() {
         or{" "}
         <Link
           href="/suggest"
+          onClick={() =>
+            trackEvent("nudge_bubble_click", { action: "suggest" })
+          }
           className="text-[#f5f0e8] font-medium underline underline-offset-2 decoration-[#c8883a]/60 hover:decoration-[#c8883a]"
         >
           suggest a restaurant
