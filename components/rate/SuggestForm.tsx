@@ -156,7 +156,7 @@ export default function SuggestForm() {
 
     trackEvent("suggest_form_submitted", {
       restaurant_name: name,
-      has_visit: visited,
+      has_visit: visited ? "yes" : "no",
     });
     setSubmitted(true);
   }
