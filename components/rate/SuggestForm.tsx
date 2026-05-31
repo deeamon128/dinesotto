@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { trackEvent } from "@/lib/analytics";
 
 const CUISINES = [
   "British",
@@ -124,6 +125,7 @@ export default function SuggestForm() {
       if (!spacingScore) return setError("Please rate the table spacing.");
     }
 
+    trackEvent("suggest_form_started", { restaurant_name: name });
     setLoading(true);
 
     const supabase = createClient();
@@ -152,6 +154,10 @@ export default function SuggestForm() {
       return;
     }
 
+    trackEvent("suggest_form_submitted", {
+      restaurant_name: name,
+      has_visit: visited ? "yes" : "no",
+    });
     setSubmitted(true);
   }
 

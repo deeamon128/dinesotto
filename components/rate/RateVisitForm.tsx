@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
+import { trackEvent } from "@/lib/analytics";
 
 const TIME_SLOTS = [
   "Breakfast",
@@ -136,6 +137,7 @@ export default function RateVisitForm({ restaurants }: Props) {
     if (!crowdScore) return setError("Please rate the crowd noise.");
     if (!spacingScore) return setError("Please rate the table spacing.");
 
+    trackEvent("rate_visit_started", { restaurant: selected?.name ?? "" });
     setLoading(true);
 
     const supabase = createClient();
@@ -161,6 +163,7 @@ export default function RateVisitForm({ restaurants }: Props) {
       return;
     }
 
+    trackEvent("rate_visit_submitted", { restaurant: selected?.name ?? "" });
     setSubmitted(true);
   }
 

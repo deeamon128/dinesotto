@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 const TIME_SLOTS = [
   "Breakfast",
@@ -124,6 +125,7 @@ export default function RatingForm({ restaurantId }: Props) {
     if (!crowdScore) return setError("Please rate the crowd noise.");
     if (!spacingScore) return setError("Please rate the table spacing.");
 
+    trackEvent("rate_form_started", { restaurant_id: restaurantId });
     setLoading(true);
 
     const response = await fetch("/api/rate", {
@@ -152,6 +154,7 @@ export default function RatingForm({ restaurantId }: Props) {
       return;
     }
 
+    trackEvent("rate_form_submitted", { restaurant_id: restaurantId });
     setSubmitted(true);
   }
 

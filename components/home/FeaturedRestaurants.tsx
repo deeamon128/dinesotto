@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
 import { MappedRestaurant } from "@/lib/supabase/mappers";
 import IllustrativePhotoIcon from "@/components/ui/IllustrativePhotoIcon";
+import { trackEvent } from "@/lib/analytics";
 
 const NOISE_COLOURS: Record<string, string> = {
   "Library Quiet": "bg-green-100 text-green-700",
@@ -21,6 +22,9 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
     <div className="relative group bg-ivory rounded border border-warm-border hover:border-green-300 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col cursor-pointer">
       <Link
         href={`/restaurant/${restaurant.slug}`}
+        onClick={() =>
+          trackEvent("restaurant_card_click", { restaurant: restaurant.name })
+        }
         className="absolute inset-0 z-10"
         aria-label={`View ${restaurant.name}`}
       />
@@ -99,6 +103,9 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
         <div className="absolute bottom-3 left-4 z-20">
           <a
             href={restaurant.bookingUrl}
+            onClick={() =>
+              trackEvent("reserve_table_click", { restaurant: restaurant.name })
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="font-sans text-[0.62rem] tracking-wide uppercase text-amber hover:text-amber/70 transition-colors flex items-center gap-1"

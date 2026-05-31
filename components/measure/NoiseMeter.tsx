@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 const LEVELS = [
   {
@@ -107,6 +108,7 @@ export default function NoiseMeter() {
       source.connect(analyser);
       analyserRef.current = analyser;
       setIsRunning(true);
+      trackEvent("measure_started");
       loop();
     } catch {
       setError(
@@ -124,6 +126,7 @@ export default function NoiseMeter() {
     streamRef.current = null;
     audioCtxRef.current = null;
     setIsRunning(false);
+    trackEvent("measure_stopped", { db_reading: db ?? 0 });
     setDb(null);
   }
 
@@ -274,6 +277,12 @@ export default function NoiseMeter() {
         </p>
         <Link
           href="/rate"
+          onClick={() =>
+            trackEvent("measure_cta_click", {
+              db_reading: db ?? 0,
+              noise_level: level?.label ?? "none",
+            })
+          }
           className="inline-block bg-green-600 hover:bg-green-500 text-white font-sans text-sm font-medium px-6 py-2.5 rounded transition-colors"
         >
           Rate a restaurant
