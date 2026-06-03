@@ -302,9 +302,9 @@ export default function SuggestForm() {
             ? "✓ I've visited this restaurant"
             : "I've visited this restaurant"}
         </button>
-        <p className="font-sans text-[0.6rem] text-muted/40 mt-2">
-          Optional — share your experience and we'll include it as the first
-          rating when we add it.
+        <p className="font-sans text-[0.6rem] text-muted/70 mt-2">
+          Optional. All experiences welcome, loud or quiet. Tips that help
+          future visitors choose wisely.
         </p>
       </div>
 
@@ -394,7 +394,7 @@ export default function SuggestForm() {
         {loading ? "Submitting..." : "Suggest this Restaurant"}
       </button>
 
-      <p className="font-sans text-[0.65rem] text-muted/40 text-center">
+      <p className="font-sans text-[0.65rem] text-muted/70 text-center">
         We review every suggestion before adding it to DineSotto.
       </p>
     </form>
