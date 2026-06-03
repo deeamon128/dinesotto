@@ -356,13 +356,15 @@ export default function RateVisitForm({ restaurants }: Props) {
               placeholder="e.g. Quieter near the back, loud by the bar, great for conversation..."
               className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors resize-none font-light italic"
             />
-            <p className="font-sans text-[0.6rem] text-muted/40 mt-1.5">
-              Noise and atmosphere only — tips that help future visitors find a
-              quiet table.
-            </p>
-            <p className="font-sans text-[0.6rem] text-muted/40 text-right mt-0.5">
-              {review.length}/280
-            </p>
+            <div className="flex items-start justify-between gap-4 mt-1.5">
+              <p className="font-sans text-[0.6rem] text-muted/70">
+                Noise and atmosphere only. All experiences welcome, loud or
+                quiet. Tips that help future visitors choose wisely.
+              </p>
+              <p className="font-sans text-[0.6rem] text-muted/70 text-right mt-0.5">
+                {review.length}/280
+              </p>
+            </div>
           </div>
 
           <button
@@ -377,7 +379,7 @@ export default function RateVisitForm({ restaurants }: Props) {
             {loading ? "Submitting..." : "Add My Rating"}
           </button>
 
-          <p className="font-sans text-[0.65rem] text-muted/40 text-center">
+          <p className="font-sans text-[0.65rem] text-muted/70 text-center">
             Your rating is anonymous and helps real people make better choices.
           </p>
         </>
