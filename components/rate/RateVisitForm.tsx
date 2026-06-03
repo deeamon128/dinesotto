@@ -357,7 +357,7 @@ export default function RateVisitForm({ restaurants }: Props) {
               className="w-full bg-ivory border border-warm-border rounded px-4 py-3 font-sans text-sm text-charcoal placeholder:text-muted/40 focus:outline-none focus:border-green-400 transition-colors resize-none font-light italic"
             />
             <div className="flex items-start justify-between gap-4 mt-1.5">
-              <p className="font-sans text-[0.6rem] text-muted/70 mt-1.5">
+              <p className="font-sans text-[0.6rem] text-muted/70">
                 Noise and atmosphere only. All experiences welcome, loud or
                 quiet. Tips that help future visitors choose wisely.
               </p>
