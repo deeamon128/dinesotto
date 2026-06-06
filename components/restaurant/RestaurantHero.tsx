@@ -87,7 +87,7 @@ export default function RestaurantHero({
 
       <div className="relative z-10 max-w-5xl mx-auto px-8 pt-32 pb-16">
         {/* Top row */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start justify-between mb-6 gap-4">
           <div>
             {/* Noise pill + verified */}
             <div className="flex items-center gap-3 mb-4">
@@ -113,14 +113,14 @@ export default function RestaurantHero({
             <div className="flex items-center gap-2 text-green-300/70">
               <MapPin size={13} />
               <span className="font-sans text-sm font-light">
-                {cuisine} · {area} · {price} · {address}
+                {cuisine} · {area} · {price} ·
               </span>
             </div>
           </div>
 
           {/* Overall score */}
           <div className="text-center shrink-0 ml-8">
-            <p className="font-display text-6xl font-light text-green-100 leading-none">
+            <p className="font-display text-5xl md:text-6xl font-light text-green-100 leading-none tabular-nums">
               {overallScore}
             </p>
             <p className="font-sans text-[0.6rem] tracking-[0.15em] uppercase text-green-300/70 mt-1">
@@ -130,7 +130,7 @@ export default function RestaurantHero({
         </div>
 
         {description && (
-          <p className="font-sans font-light text-green-200/70 text-sm mt-4 max-w-xl leading-relaxed">
+          <p className="font-sans font-light text-green-200/70 text-xs md:text-sm mt-4 max-w-xl leading-relaxed">
             {description}
           </p>
         )}
