@@ -116,6 +116,7 @@ export default async function RestaurantPage({ params }: Props) {
         bestTime={restaurant.bestTime}
         noise={restaurant.noise}
         bookingUrl={restaurant.bookingUrl}
+        description={restaurant.description}
       />
       <NoiseHeatmap data={heatmapData} />
       <Reviews reviews={reviews} />

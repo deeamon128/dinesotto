@@ -39,6 +39,7 @@ export function mapRestaurant(r: DbRestaurant) {
     tags:         r.tags ?? [],
     bookingUrl:   r.booking_url ?? null,
     photo:        r.photo_url ?? null,
+    description:  r.description ?? null,
   }
 }
 
