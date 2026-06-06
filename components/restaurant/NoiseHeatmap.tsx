@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 
 const TIME_SLOTS = [
@@ -66,6 +67,18 @@ export default function NoiseHeatmap({ data }: Props) {
   });
 
   const hasData = data.length > 0;
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!hasData || !scrollRef.current) return;
+    const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+    const firstRatedDay = days.findIndex((d) =>
+      data.some((cell) => cell.day_of_week === d),
+    );
+    if (firstRatedDay > 2) {
+      scrollRef.current.scrollLeft = firstRatedDay * 60;
+    }
+  }, [data, hasData]);
 
   const legend = (
     <div className="flex items-center gap-4 mt-6 flex-wrap">
@@ -248,6 +261,7 @@ export default function NoiseHeatmap({ data }: Props) {
               }}
             /> */}
             <div
+              ref={scrollRef}
               className="overflow-x-auto pb-1"
               style={{ scrollbarWidth: "none" }}
             >
