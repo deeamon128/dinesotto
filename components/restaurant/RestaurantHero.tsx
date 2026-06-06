@@ -16,6 +16,7 @@ interface Props {
   bestTime: string;
   noise: string;
   bookingUrl?: string | null;
+  description?: string | null;
 }
 
 const NOISE_COLOURS: Record<string, string> = {
@@ -63,6 +64,7 @@ export default function RestaurantHero({
   bestTime,
   noise,
   bookingUrl,
+  description,
 }: Props) {
   return (
     <section className="relative bg-green-900 overflow-hidden">
@@ -126,6 +128,12 @@ export default function RestaurantHero({
             </p>
           </div>
         </div>
+
+        {description && (
+          <p className="font-sans font-light text-green-200/70 text-sm mt-4 max-w-xl leading-relaxed">
+            {description}
+          </p>
+        )}
 
         {/* Reserve CTA */}
         {bookingUrl && (

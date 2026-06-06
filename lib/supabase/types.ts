@@ -22,6 +22,7 @@ export interface DbRestaurant {
   tags:             string[] | null
   booking_url:      string | null
   photo_url:        string | null
+  description:      string | null
   created_at:       string
   updated_at:       string
 }
