@@ -10,17 +10,21 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 export default async function Home() {
   const supabase = await createServerSupabaseClient();
 
+  const allFeaturedPool = await getRestaurants({ featured: true });
+  const weekNum = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+  const featured = [0, 1, 2].map(
+    (i) => allFeaturedPool[(weekNum + i + 3) % allFeaturedPool.length],
+  );
+
   const [
     allRestaurants,
-    featured,
     topRated,
     { count: totalRestaurants },
     { count: verifiedCount },
     { count: ratingsCount },
   ] = await Promise.all([
     getRestaurants(),
-    getRestaurants({ featured: true, limit: 3 }),
-    getRestaurants({ orderBy: "overall_score", limit: 3, minRatings: 1 }),
+    getRestaurants({ orderBy: "created_at", limit: 3 }),
     supabase.from("restaurants").select("*", { count: "exact", head: true }),
     supabase
       .from("restaurants")

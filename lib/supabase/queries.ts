@@ -17,13 +17,13 @@ export async function getRestaurants(options: GetRestaurantsOptions = {}) {
     limit,
     verified,
     minRatings,
-     featured,
+    featured,
   } = options;
 
   let query = supabase
     .from('restaurants')
     .select('*')
-    .order(orderBy, { ascending: false })
+    .order(orderBy, { ascending: false, nullsFirst: false })
 
  if (verified !== undefined) query = query.eq('verified', verified)
 if (limit !== undefined) query = query.limit(limit)
