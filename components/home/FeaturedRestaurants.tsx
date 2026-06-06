@@ -152,10 +152,10 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
-              Community Favourites
+              New to DineSotto
             </p>
             <h2 className="font-display text-4xl font-light italic text-green-700">
-              Highest rated
+              Recently added
             </h2>
           </div>
         </div>

@@ -119,7 +119,10 @@ export default async function RestaurantPage({ params }: Props) {
       />
       <NoiseHeatmap data={heatmapData} />
       <Reviews reviews={reviews} />
-      <RatingForm restaurantId={restaurant.id} />
+      <RatingForm
+        restaurantId={restaurant.id}
+        ratingCount={restaurant.ratings}
+      />
       <RatePromptBubble />
     </main>
   );

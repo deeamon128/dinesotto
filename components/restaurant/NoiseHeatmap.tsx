@@ -229,7 +229,7 @@ export default function NoiseHeatmap({ data }: Props) {
           <p className="font-sans font-light text-muted text-sm mt-2">
             {hasData
               ? "Based on real community ratings. Tap any cell to see details."
-              : "No ratings yet — be the first to rate this restaurant."}
+              : "No community data yet. Scores appear once ratings come in."}
           </p>
         </div>
 

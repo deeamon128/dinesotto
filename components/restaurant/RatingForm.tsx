@@ -94,9 +94,10 @@ function ScaleInput({
 
 interface Props {
   restaurantId: string;
+  ratingCount?: number;
 }
 
-export default function RatingForm({ restaurantId }: Props) {
+export default function RatingForm({ restaurantId, ratingCount }: Props) {
   const [timeSlot, setTimeSlot] = useState("");
   const [day, setDay] = useState("");
   const [musicScore, setMusicScore] = useState(0);
@@ -222,7 +223,9 @@ export default function RatingForm({ restaurantId }: Props) {
             Rate your visit
           </h2>
           <p className="font-sans font-light text-muted text-sm mt-2">
-            Your rating is anonymous and helps real people make better choices.
+            {ratingCount && ratingCount > 0
+              ? `${ratingCount} ${ratingCount === 1 ? "rating" : "ratings"} so far. Add yours and help the next visitor choose wisely.`
+              : "Be the first to rate this restaurant. Your visit helps everyone who comes after."}
           </p>
         </div>
 
