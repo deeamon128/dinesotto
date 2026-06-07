@@ -127,21 +127,13 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
   return (
     <section id="featured" className="bg-ivory-dark py-24 px-8">
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
-              Handpicked
-            </p>
-            <h2 className="font-display text-4xl font-light italic text-green-700">
-              Places we love
-            </h2>
-          </div>
-          <Link
-            href="/explore"
-            className="font-sans text-[0.75rem] tracking-wide uppercase text-muted hover:text-green-600 transition-colors border-b border-warm-border hover:border-green-600 pb-0.5"
-          >
-            View all restaurants →
-          </Link>
+        <div className="mb-12">
+          <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
+            Handpicked
+          </p>
+          <h2 className="font-display text-4xl font-light italic text-green-700">
+            Places we love
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           {restaurants.map((r) => (
