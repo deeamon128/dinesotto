@@ -155,7 +155,7 @@ function MapContent({
       marker.setIcon({
         path: google.maps.SymbolPath.CIRCLE,
         scale: isSelected ? 12 : isHovered ? 10 : 8,
-        fillColor: isSelected ? "#c8883a" : colour,
+        fillColor: isSelected ? "#ffffff" : colour,
         fillOpacity: 1,
         strokeColor: "white",
         strokeWeight: isSelected ? 3 : 2,
