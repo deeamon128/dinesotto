@@ -82,8 +82,8 @@ export default function ExploreLayout({
 
       {/* ── MAP VIEW ── */}
       {view === "map" && (
-        <div className="flex h-[calc(100vh-8rem)] overflow-hidden min-h-0">
-          <div className="w-full md:w-[380px] md:min-w-[380px] shrink-0 flex flex-col border-r border-warm-border bg-ivory-dark min-h-0">
+        <div className="flex flex-col md:flex-row h-[calc(100vh-8rem)] overflow-hidden min-h-0">
+          <div className="hidden md:flex w-full md:w-[380px] md:min-w-[380px] shrink-0 flex-col border-r border-warm-border bg-ivory-dark min-h-0 md:h-full">
             <div className="p-4 border-b border-warm-border">
               <div className="flex items-center gap-3 bg-ivory border border-warm-border rounded px-3 py-2.5">
                 <Search size={14} className="text-muted/50 shrink-0" />
@@ -138,7 +138,7 @@ export default function ExploreLayout({
             </div>
           </div>
 
-          <div className="hidden md:block flex-1 relative">
+          <div className="flex-1 relative h-[calc(100vh-8rem)] md:h-full">
             <GoogleMap
               restaurants={filtered}
               hoveredSlug={hoveredSlug}

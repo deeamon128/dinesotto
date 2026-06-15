@@ -49,7 +49,6 @@ export default function ExploreWrapper({ restaurants, filterOptions }: Props) {
     const check = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      if (mobile) setView("cards");
     };
     check();
     window.addEventListener("resize", check);
@@ -105,7 +104,7 @@ export default function ExploreWrapper({ restaurants, filterOptions }: Props) {
       />
       <ExploreLayout
         restaurants={filtered}
-        view={isMobile ? "cards" : view}
+        view={view}
         initialSearch={searchQuery}
       />
     </>
