@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { trackEvent } from "@/lib/analytics";
 
 const CUISINES = [
@@ -128,28 +127,29 @@ export default function SuggestForm() {
     trackEvent("suggest_form_started", { restaurant_name: name });
     setLoading(true);
 
-    const supabase = createClient();
-
-    const { error: insertError } = await supabase.from("suggestions").insert({
-      name: name.trim(),
-      area: area.trim(),
-      address: address.trim() || null,
-      cuisine: cuisine || null,
-      occasion: occasion || null,
-      notes: notes.trim() || null,
-      status: "pending",
-      visited,
-      time_slot: visited ? TIME_SLOT_MAP[timeSlot] : null,
-      day_of_week: visited ? DAY_MAP[day] : null,
-      music_score: visited ? musicScore : null,
-      crowd_score: visited ? crowdScore : null,
-      spacing_score: visited ? spacingScore : null,
+    const response = await fetch("/api/suggest", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name.trim(),
+        area: area.trim(),
+        address: address.trim() || null,
+        cuisine: cuisine || null,
+        occasion: occasion || null,
+        notes: notes.trim() || null,
+        status: "pending",
+        visited,
+        time_slot: visited ? TIME_SLOT_MAP[timeSlot] : null,
+        day_of_week: visited ? DAY_MAP[day] : null,
+        music_score: visited ? musicScore : null,
+        crowd_score: visited ? crowdScore : null,
+        spacing_score: visited ? spacingScore : null,
+      }),
     });
 
     setLoading(false);
 
-    if (insertError) {
-      console.error(insertError);
+    if (!response.ok) {
       setError("Something went wrong. Please try again.");
       return;
     }
