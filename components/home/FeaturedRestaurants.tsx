@@ -99,7 +99,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
         </div>
       </div>
 
-      {restaurant.bookingUrl && (
+      {/* {restaurant.bookingUrl && (
         <div className="absolute bottom-3 left-4 z-20">
           <a
             href={restaurant.bookingUrl}
@@ -113,7 +113,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
             Reserve a table <ArrowRight size={11} />
           </a>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
@@ -129,10 +129,10 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
       <div className="max-w-5xl mx-auto">
         <div className="mb-12">
           <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
-            Handpicked
+            Noise Verified
           </p>
           <h2 className="font-display text-4xl font-light italic text-green-700">
-            Places we love
+            The quiet ones
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
@@ -144,10 +144,10 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
         <div className="flex items-end justify-between mb-12">
           <div>
             <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-amber mb-3">
-              New to DineSotto
+              Fresh noise ratings
             </p>
             <h2 className="font-display text-4xl font-light italic text-green-700">
-              Recently added
+              Just rated
             </h2>
           </div>
         </div>

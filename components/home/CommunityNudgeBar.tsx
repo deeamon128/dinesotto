@@ -49,7 +49,7 @@ export default function CommunityNudgeBubble() {
     >
       <span className="w-[7px] h-[7px] rounded-full bg-[#c8883a] shrink-0 animate-pulse" />
       <span className="text-[#f5f0e8]/80 text-[12.5px] leading-snug flex-1">
-        Built by the community.{" "}
+        Tired of noisy restaurants? Help others avoid them.{" "}
         <Link
           href="/rate"
           onClick={() => trackEvent("nudge_bubble_click", { action: "rate" })}

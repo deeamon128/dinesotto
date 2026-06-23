@@ -2,17 +2,17 @@ const STEPS = [
   {
     number: "01",
     heading: "Browse by noise level",
-    body: "Every restaurant is rated for music volume, crowd noise, and table spacing.",
+    body: "Every restaurant is rated for music volume, crowd noise, and table spacing. What reviews always leave out.",
   },
   {
     number: "02",
     heading: "Check the time heatmap",
-    body: "See exactly how loud a restaurant gets at lunch vs peak evening. Pick the right moment.",
+    body: "See exactly how loud a restaurant gets at lunch vs. peak evening. Because the same table can be perfect on Tuesday and unbearable on Friday.",
   },
   {
     number: "03",
     heading: "Rate your visit",
-    body: "Been somewhere quiet? Add your rating. Every submission helps someone else find their perfect table.",
+    body: "Dined somewhere recently? Your noise rating helps the next person choose wisely.",
   },
 ];
 
@@ -26,7 +26,7 @@ export default function HowItWorks() {
             How it works
           </p>
           <h2 className="font-display text-4xl font-light italic text-green-700">
-            Simple, honest, community-driven
+            Three things that set DineSotto apart.
           </h2>
         </div>
 
