@@ -144,7 +144,7 @@ export default function Hero({ restaurants }: Props) {
           <span className="not-italic text-amber/90">actually talk.</span>
         </h1>
         <p className="font-sans font-light text-green-300/70 text-sm leading-relaxed mb-8 md:mb-12 max-w-lg mx-auto">
-          Know what a restaurant feels like before you book.
+          So you can focus on the conversation, not the noise.
         </p>
 
         {/* Search bar */}
@@ -161,7 +161,7 @@ export default function Hero({ restaurants }: Props) {
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 onFocus={() => search.length > 0 && setShowDropdown(true)}
-                placeholder="Search restaurants, areas..."
+                placeholder="Try 'Soho', or 'Italian'..."
                 className="w-full bg-transparent text-charcoal placeholder:text-muted/50 text-sm py-4 focus:outline-none font-sans"
               />
             </div>

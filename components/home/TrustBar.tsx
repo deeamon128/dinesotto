@@ -25,7 +25,7 @@ export default function TrustBar({
           : ratingsCount > 0
             ? ratingsCount.toString()
             : "Growing",
-      label: "Community Ratings",
+      label: "Noise Ratings",
     },
     {
       number: "32",
