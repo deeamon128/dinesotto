@@ -136,7 +136,7 @@ export default function Hero({ restaurants }: Props) {
       {/* Content */}
       <div className="relative z-20 w-full max-w-3xl mx-auto px-8 text-center pt-24 sm:pt-20 pb-20">
         <p className="hidden sm:block font-sans text-[0.7rem] tracking-[0.25em] uppercase text-green-300/70 mb-6">
-          London's quiet dining guide
+          London's quiet restaurant guide
         </p>
 
         <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light italic text-green-100 leading-[1.1] mb-6 max-w-2xl mx-auto text-balance">

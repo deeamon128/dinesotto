@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Rate a Restaurant",
   description:
-    "Share your experience and help others find quiet dining in London.",
+    "Share your experience and help others find quiet restaurants in London.",
 };
 
 import { getRestaurants } from "@/lib/supabase/queries";

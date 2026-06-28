@@ -8,7 +8,7 @@ export default function NoiseHero() {
           The science
         </p>
         <h1 className="font-display text-5xl md:text-6xl font-light italic text-green-100 leading-[1.1] mb-8">
-          Why noise matters more than you think.
+          Why noise matters.
         </h1>
         <div className="flex flex-col gap-4 font-sans font-light text-green-300/100 text-sm leading-relaxed max-w-lg">
           <p>

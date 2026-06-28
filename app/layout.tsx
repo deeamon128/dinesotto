@@ -25,11 +25,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.dinesotto.com"),
   title: {
-    default: "DineSotto — Quiet Dining in London",
+    default: "DineSotto — Quiet Restaurants in London",
     template: "%s — DineSotto",
   },
   description:
-    "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
+    "Find quiet restaurants in London where you can actually hear each other. Rated by noise level, music volume, and time of day.",
   verification: {
     google: "hnK8PLf3GSPKguauJhXn3Fr0krtc-9vjHfTDviv5obs",
   },
@@ -40,29 +40,39 @@ export const metadata: Metadata = {
     "quiet dining London",
     "restaurant noise rating",
     "dinesotto quiet dining",
+    "ADHD friendly restaurants London",
+    "neurodivergent dining London",
+    "deaf friendly restaurants London",
+    "sensory friendly restaurants London",
+    "hard of hearing dining",
+    "accessible restaurants London",
+    "low noise restaurants London",
+    "quiet restaurants for conversation",
+    "restaurant noise levels UK",
+    "noise sensitive dining London",
   ],
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: "https://www.dinesotto.com",
     siteName: "DineSotto",
-    title: "DineSotto — Quiet Dining in London",
+    title: "DineSotto — Quiet Restaurants in London",
     description:
-      "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
+      "Find quiet restaurants in London where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: [
       {
         url: "https://www.dinesotto.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "DineSotto — Quiet Dining in London",
+        alt: "DineSotto — Quiet Restaurants in London",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DineSotto — Quiet Dining in London",
+    title: "DineSotto — Quiet Restaurants in London",
     description:
-      "Find London restaurants where you can actually hear each other. Rated by noise level, music volume, and time of day.",
+      "Find quiet restaurants in London where you can actually hear each other. Rated by noise level, music volume, and time of day.",
     images: ["https://www.dinesotto.com/og-image.jpg"],
   },
   robots: {

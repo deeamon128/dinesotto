@@ -14,7 +14,9 @@ export default function AboutHero() {
         <h1 className="font-display text-5xl md:text-6xl font-light italic text-green-100 leading-[1.1] max-w-2xl mx-auto">
           Built by someone who needed it.
           <br />
-          <span className="text-amber/80">For everyone who deserves it.</span>
+          <span className="text-amber/80">
+            For everyone who knows the feeling.
+          </span>
         </h1>
       </div>
     </section>
