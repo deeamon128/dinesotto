@@ -17,7 +17,7 @@ const AUDIENCE = [
   {
     name: "Business Lunches",
     description:
-      "Have the conversation that matters in a space that allows it.",
+      "Because some conversations are too important to shout across a table.",
   },
 ];
 

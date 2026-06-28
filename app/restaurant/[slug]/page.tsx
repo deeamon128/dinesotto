@@ -21,15 +21,15 @@ export async function generateMetadata({ params }: Props) {
   if (!restaurant) return {};
 
   return {
-    title: `${restaurant.name} — Quiet Dining in ${restaurant.area}`,
-    description: `Is ${restaurant.name} quiet? Rated ${restaurant.score}/10 for noise by the DineSotto community. ${restaurant.cuisine} restaurant in ${restaurant.area}, London. See noise heatmap by time and day.`,
+    title: `${restaurant.name} — quiet restaurant in ${restaurant.area}`,
+    description: `${restaurant.name} is a ${restaurant.cuisine} restaurant in ${restaurant.area}, London. Noise rating: ${restaurant.score}/10. See when it's quietest by day and time — rated by real visitors on DineSotto.`,
     alternates: {
-      canonical: `https://dinesotto.com/restaurant/${slug}`,
+      canonical: `https://www.dinesotto.com/restaurant/${slug}`,
     },
     openGraph: {
       title: `${restaurant.name} — Noise Rating & Quiet Dining Guide`,
       description: `Community noise rating for ${restaurant.name} in ${restaurant.area}. ${restaurant.cuisine} · ${restaurant.price} · See when it's quietest.`,
-      url: `https://dinesotto.com/restaurant/${slug}`,
+      url: `https://www.dinesotto.com/restaurant/${slug}`,
       images: restaurant.photo
         ? [
             {
@@ -64,7 +64,7 @@ export default async function RestaurantPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: restaurant.name,
-    url: `https://dinesotto.com/restaurant/${restaurant.slug}`,
+    url: `https://www.dinesotto.com/restaurant/${restaurant.slug}`,
     address: {
       "@type": "PostalAddress",
       streetAddress: restaurant.address,

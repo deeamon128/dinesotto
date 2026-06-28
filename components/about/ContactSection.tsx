@@ -124,9 +124,8 @@ export default function ContactSection() {
             We'd love to hear from you.
           </h2>
           <p className="font-sans font-light text-muted text-sm leading-relaxed mb-10">
-            Whether you want to suggest a restaurant, report an inaccurate
-            rating, discuss a partnership, or just say hello — we read
-            everything.
+            We read everything — whether it's a restaurant suggestion, an
+            inaccurate rating, a partnership idea, or just a hello.
           </p>
 
           <div className="flex flex-col gap-0">
