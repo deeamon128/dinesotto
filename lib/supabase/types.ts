@@ -17,7 +17,7 @@ export interface DbRestaurant {
   crowd_score:      number
   spacing_score:    number
   rating_count:     number
-  noise_level:      'library_quiet' | 'pleasantly_quiet' | 'moderate' | 'loud' | null
+  noise_level:      'library_quiet' | 'pleasantly_quiet' | 'moderate' | 'loud' | 'very loud' | null
   best_time_label:  string | null
   tags:             string[] | null
   booking_url:      string | null
