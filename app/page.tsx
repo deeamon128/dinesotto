@@ -7,6 +7,8 @@ import CTABand from "@/components/home/CTABand";
 import { getRestaurants } from "@/lib/supabase/queries";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
+export const revalidate = 3600;
+
 export default async function Home() {
   const supabase = await createServerSupabaseClient();
 
@@ -23,7 +25,7 @@ export default async function Home() {
     { count: verifiedCount },
     { count: ratingsCount },
   ] = await Promise.all([
-    getRestaurants(),
+    getRestaurants({ limit: 30 }),
     getRestaurants({ orderBy: "created_at", limit: 3 }),
     supabase.from("restaurants").select("*", { count: "exact", head: true }),
     supabase

@@ -7,6 +7,8 @@ export const metadata = {
 import ExploreWrapper from "@/components/explore/ExploreWrapper";
 import { getRestaurants, getFilterOptions } from "@/lib/supabase/queries";
 
+export const revalidate = 3600;
+
 export default async function ExplorePage() {
   const [restaurants, filterOptions] = await Promise.all([
     getRestaurants(),

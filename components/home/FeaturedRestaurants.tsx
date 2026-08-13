@@ -37,6 +37,7 @@ function RestaurantCard({ restaurant }: { restaurant: MappedRestaurant }) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="400px"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-green-900/10" />
           <IllustrativePhotoIcon />
@@ -147,7 +148,7 @@ export default function FeaturedRestaurants({ restaurants, topRated }: Props) {
               Fresh noise ratings
             </p>
             <h2 className="font-display text-4xl font-light italic text-green-700">
-              Just rated
+              Just added
             </h2>
           </div>
         </div>
