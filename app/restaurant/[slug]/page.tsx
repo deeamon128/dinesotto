@@ -10,6 +10,8 @@ import Reviews from "@/components/restaurant/Reviews";
 import RatingForm from "@/components/restaurant/RatingForm";
 import RatePromptBubble from "@/components/restaurant/RatePromptBubble";
 
+export const revalidate = 3600;
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
