@@ -86,3 +86,11 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #2c3a2c;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+html.loading * {
+  cursor: wait !important;
+}
+
+#nprogress .bar {
+  background: #c8883a !important;
+}

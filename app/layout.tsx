@@ -6,6 +6,7 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import CookieBanner from "@/components/ui/CookieBanner";
 import ScrollToHash from "@/components/ScrollToHash";
+import NavigationLoader from "@/components/NavigationLoader";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -98,12 +99,14 @@ export default function RootLayout({
           antialiased
         `}
       >
-        <Header />
-        <SpeedInsights />
-        <ScrollToHash />
-        {children}
-        <Footer />
-        <CookieBanner />
+        <NavigationLoader>
+          <Header />
+          <SpeedInsights />
+          <ScrollToHash />
+          {children}
+          <Footer />
+          <CookieBanner />
+        </NavigationLoader>
       </body>
     </html>
   );
