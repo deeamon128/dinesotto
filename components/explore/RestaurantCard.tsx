@@ -40,6 +40,7 @@ export default function RestaurantCard({ restaurant, selected, asDiv }: Props) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
             sizes="400px"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-green-900/10" />
           <IllustrativePhotoIcon />
